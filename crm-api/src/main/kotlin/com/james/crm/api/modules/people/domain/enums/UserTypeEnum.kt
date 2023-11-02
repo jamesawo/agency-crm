@@ -5,7 +5,7 @@
  * @Project: agent-crm
  */
 
-package com.james.crm.api.features.people.domain.enums
+package com.james.crm.api.modules.people.domain.enums
 
 enum class UserTypeEnum {
     AGENT,

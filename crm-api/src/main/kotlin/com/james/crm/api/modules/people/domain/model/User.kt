@@ -5,11 +5,11 @@
  * @Project: agent-crm
  */
 
-package com.james.crm.api.features.people.domain.model
+package com.james.crm.api.modules.people.domain.model
 
-import com.james.crm.api.core.common.constant.TableConstant.Companion.USER_TABLE
-import com.james.crm.api.core.common.model.Base
-import com.james.crm.api.features.people.domain.enums.UserTypeEnum
+import com.james.crm.api.configuration.core.constant.TableConstant.Companion.USER_TABLE
+import com.james.crm.api.configuration.core.model.Base
+import com.james.crm.api.modules.people.domain.enums.UserTypeEnum
 import jakarta.persistence.*
 import java.time.LocalDate
 
