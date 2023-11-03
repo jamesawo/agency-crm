@@ -7,4 +7,10 @@
 
 package com.james.crm.api.modules.people.domain.model.shared
 
-class AgentProfile: Profile() {}
+import com.james.crm.api.core.constant.TableConstant.Companion.AGENT_PROFILE
+import jakarta.persistence.Entity
+import jakarta.persistence.Table
+
+@Entity
+@Table(name = AGENT_PROFILE)
+class AgentProfile : Profile() {}

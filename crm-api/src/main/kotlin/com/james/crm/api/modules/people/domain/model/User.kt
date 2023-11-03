@@ -7,10 +7,12 @@
 
 package com.james.crm.api.modules.people.domain.model
 
-import com.james.crm.api.configuration.core.constant.TableConstant.Companion.USER_TABLE
-import com.james.crm.api.configuration.core.model.Base
+import com.james.crm.api.core.constant.TableConstant.Companion.USER_TABLE
+import com.james.crm.api.core.model.Base
 import com.james.crm.api.modules.people.domain.enums.UserTypeEnum
-import jakarta.persistence.*
+import jakarta.persistence.Column
+import jakarta.persistence.Entity
+import jakarta.persistence.Table
 import java.time.LocalDate
 
 @Entity

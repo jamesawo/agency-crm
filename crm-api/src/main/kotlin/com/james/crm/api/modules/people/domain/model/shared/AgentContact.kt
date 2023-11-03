@@ -7,4 +7,7 @@
 
 package com.james.crm.api.modules.people.domain.model.shared
 
+import jakarta.persistence.Entity
+
+@Entity
 class AgentContact: Contact() {}

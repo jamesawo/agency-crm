@@ -7,4 +7,13 @@
 
 package com.james.crm.api.modules.people.domain.model
 
-class Client {}
+import com.james.crm.api.core.model.Base
+import jakarta.persistence.Entity
+import jakarta.persistence.ManyToOne
+
+@Entity
+class Client : Base() {
+
+    @ManyToOne()
+    var agent: Agent = Agent()
+}

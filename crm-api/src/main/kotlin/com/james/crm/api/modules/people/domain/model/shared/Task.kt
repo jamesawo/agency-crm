@@ -7,4 +7,8 @@
 
 package com.james.crm.api.modules.people.domain.model.shared
 
-class Task {}
+import com.james.crm.api.core.model.Base
+import jakarta.persistence.Entity
+
+@Entity
+class Task: Base() {}
