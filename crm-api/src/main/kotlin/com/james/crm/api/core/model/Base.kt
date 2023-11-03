@@ -5,10 +5,9 @@
  * @Project: agent-crm
  */
 
-package com.james.crm.api.configuration.core.model
+package com.james.crm.api.core.model
 
 import jakarta.persistence.*
-import org.hibernate.annotations.GenericGenerator
 import org.springframework.data.annotation.CreatedBy
 import org.springframework.data.annotation.LastModifiedBy
 import org.springframework.data.annotation.LastModifiedDate
@@ -41,5 +40,8 @@ abstract class Base {
     @Column(name = "created_by")
     @CreatedBy
     open val createdBy: String? = null
+
+    @Column(name = "is_active")
+    open val isActive: Boolean = true
 
 }
