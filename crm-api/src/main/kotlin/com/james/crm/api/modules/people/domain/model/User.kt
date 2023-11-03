@@ -29,5 +29,4 @@ open class User(@Column val username: String,
         isEnabled = true,
         expiryDate = LocalDate.now().plusDays(30),
         userType = UserTypeEnum.AGENT)
-
 }
