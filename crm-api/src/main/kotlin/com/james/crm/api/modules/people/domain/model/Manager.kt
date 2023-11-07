@@ -7,21 +7,25 @@
 
 package com.james.crm.api.modules.people.domain.model
 
+import com.james.crm.api.core.constant.TableConstant
 import com.james.crm.api.core.model.Base
-import com.james.crm.api.modules.people.domain.model.shared.ManagerContact
-import com.james.crm.api.modules.people.domain.model.shared.ManagerProfile
-import jakarta.persistence.Entity
-import jakarta.persistence.OneToOne
+import com.james.crm.api.modules.people.domain.model.submodel.Contact
+import com.james.crm.api.modules.people.domain.model.submodel.Profile
+import jakarta.persistence.*
 
 @Entity
+@Table(name = TableConstant.MANAGER_TABLE)
 class Manager: Base() {
 
-    @OneToOne
-    lateinit var profile: ManagerProfile
+    @OneToOne(cascade = [CascadeType.ALL])
+    var profile: Profile = Profile()
 
-    @OneToOne
-    lateinit var contact: ManagerContact
+    @OneToOne(cascade = [CascadeType.ALL])
+    var contact: Contact = Contact()
 
-    @OneToOne
-    lateinit var user: User
+    @OneToOne(cascade = [CascadeType.ALL])
+    var user: User = User()
+
+    @OneToMany(mappedBy = "manager", fetch = FetchType.LAZY)
+    var agents: MutableList<Agent> = mutableListOf();
 }

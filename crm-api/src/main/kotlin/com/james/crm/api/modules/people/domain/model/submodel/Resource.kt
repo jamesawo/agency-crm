@@ -5,18 +5,24 @@
  * @Project: agent-crm
  */
 
-package com.james.crm.api.modules.people.domain.model.shared
+package com.james.crm.api.modules.people.domain.model.submodel
 
+import com.james.crm.api.core.constant.TableConstant
 import com.james.crm.api.core.model.Base
-import com.james.crm.api.modules.people.domain.model.Agent
+import com.james.crm.api.modules.people.domain.model.User
 import jakarta.persistence.Entity
 import jakarta.persistence.FetchType
 import jakarta.persistence.ManyToOne
+import jakarta.persistence.Table
 
 @Entity
-open class Resource: Base() {
+@Table(name = TableConstant.RESOURCE_TABLE)
+class Resource: Base() {
+    var title: String = ""
+    var type: String = ""
+    var url: String = ""
 
     @ManyToOne(fetch = FetchType.LAZY)
-    var agent: Agent = Agent()
+    var owner: User = User()
 
 }

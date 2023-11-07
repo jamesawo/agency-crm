@@ -5,17 +5,19 @@
  * @Project: agent-crm
  */
 
-package com.james.crm.api.modules.people.domain.model.shared
+package com.james.crm.api.modules.people.domain.model.submodel
 
+import com.james.crm.api.core.constant.TableConstant
 import com.james.crm.api.core.model.Base
 import jakarta.persistence.Entity
+import jakarta.persistence.Table
 
 @Entity
+@Table(name = TableConstant.LOCATION_TABLE)
 class Location : Base() {
     var longitude: String = ""
     var latitude: String = ""
-    var name: String? = null
-    var street: String? = null
-    var type: String? = null
-    var timezone: String? = null
+    var title: String = ""
+    var type: String = ""
+    var timezone: String = ""
 }

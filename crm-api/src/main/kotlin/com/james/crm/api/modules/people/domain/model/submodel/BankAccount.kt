@@ -1,6 +1,6 @@
 /*
  * @Author: james.aworo
- * @Date: 11/1/23
+ * @Date: 11/6/23
  *
  * @Project: agent-crm
  */
@@ -13,7 +13,9 @@ import jakarta.persistence.Entity
 import jakarta.persistence.Table
 
 @Entity
-@Table(name = TableConstant.TEAM_TABLE)
-class Team: Base() {
-    var title: String = ""
-}
+@Table(name = TableConstant.BANK_ACC_TABLE)
+class BankAccount(
+    var accountName: String = "",
+    var accountNumber: String = "",
+    var bankName: String = "",
+) : Base()

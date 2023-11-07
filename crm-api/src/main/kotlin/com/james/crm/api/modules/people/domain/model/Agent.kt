@@ -9,37 +9,38 @@ package com.james.crm.api.modules.people.domain.model
 
 import com.james.crm.api.core.constant.TableConstant
 import com.james.crm.api.core.model.Base
-import com.james.crm.api.modules.people.domain.model.shared.*
+import com.james.crm.api.modules.people.domain.model.submodel.*
 import jakarta.persistence.*
 
 @Entity
 @Table(name = TableConstant.AGENT_TABLE)
 class Agent: Base(){
 
-    @OneToOne
-    var profile: AgentProfile = AgentProfile()
+    @OneToOne(cascade = [CascadeType.ALL])
+    var profile: Profile = Profile()
 
-    @OneToOne
-    var contact: AgentContact = AgentContact()
+    @OneToOne(cascade = [CascadeType.ALL])
+    var contact: Contact = Contact()
 
-    @OneToOne
-    var emergencyContact: EmergencyContact = EmergencyContact()
+    @OneToOne(cascade = [CascadeType.ALL])
+    var emergencyContact: Contact = Contact()
 
-    @OneToOne
+    @OneToOne(cascade =  [CascadeType.ALL])
     var user: User = User()
 
-    @OneToMany(mappedBy = "agent")
+    @OneToMany(mappedBy = "agent", cascade = [CascadeType.ALL])
     var clients: MutableList<Client> = mutableListOf()
 
-    @OneToMany(mappedBy = "agent")
-    var resources: MutableList<Resource> = mutableListOf()
-
-    @ManyToOne
+    @ManyToOne(cascade = [CascadeType.ALL])
     var task: Task = Task()
 
-    @ManyToOne
+    @ManyToOne(cascade = [CascadeType.ALL])
     var team: Team = Team()
 
-    @OneToOne
+    @OneToOne(cascade = [CascadeType.ALL])
     var location: Location = Location()
+
+    @ManyToOne(cascade = [CascadeType.ALL])
+    var manager: Manager = Manager()
+
 }
