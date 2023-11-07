@@ -10,7 +10,7 @@ package com.james.crm.api.modules.people.domain.usecase
 import com.james.crm.api.modules.people.domain.model.Client
 
 interface IClientUsecase {
-    fun find(id: Long): Client
+    fun find(clientId: String): Client
 
     fun create(client: Client): Client
 
