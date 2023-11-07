@@ -7,13 +7,13 @@
 
 package com.james.crm.api.modules.people.domain.model.submodel
 
-import com.james.crm.api.core.constant.TableConstant
+import com.james.crm.api.core.constant.DatabaseTable.Companion.TASK
 import com.james.crm.api.core.model.Base
 import jakarta.persistence.Entity
 import jakarta.persistence.Table
 
 @Entity
-@Table(name = TableConstant.TASK_TABLE)
+@Table(name = TASK)
 class Task: Base() {
     var title: String = ""
 }

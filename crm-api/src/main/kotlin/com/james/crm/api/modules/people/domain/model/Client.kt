@@ -7,7 +7,7 @@
 
 package com.james.crm.api.modules.people.domain.model
 
-import com.james.crm.api.core.constant.TableConstant
+import com.james.crm.api.core.constant.DatabaseTable.Companion.CLIENT
 import com.james.crm.api.core.model.Base
 import jakarta.persistence.Entity
 import jakarta.persistence.FetchType
@@ -15,7 +15,7 @@ import jakarta.persistence.ManyToOne
 import jakarta.persistence.Table
 
 @Entity
-@Table(name = TableConstant.CLIENT_TABLE)
+@Table(name = CLIENT)
 class Client : Base() {
     var firstName: String = ""
     var lastName: String = ""

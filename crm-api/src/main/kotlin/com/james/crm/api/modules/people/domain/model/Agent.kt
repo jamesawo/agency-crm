@@ -7,13 +7,13 @@
 
 package com.james.crm.api.modules.people.domain.model
 
-import com.james.crm.api.core.constant.TableConstant
+import com.james.crm.api.core.constant.DatabaseTable.Companion.AGENT
 import com.james.crm.api.core.model.Base
 import com.james.crm.api.modules.people.domain.model.submodel.*
 import jakarta.persistence.*
 
 @Entity
-@Table(name = TableConstant.AGENT_TABLE)
+@Table(name = AGENT)
 class Agent: Base(){
 
     @OneToOne(cascade = [CascadeType.ALL])
