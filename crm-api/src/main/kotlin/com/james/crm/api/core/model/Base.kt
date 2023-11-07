@@ -8,6 +8,7 @@
 package com.james.crm.api.core.model
 
 import jakarta.persistence.*
+import org.hibernate.annotations.GenericGenerator
 import org.springframework.data.annotation.CreatedBy
 import org.springframework.data.annotation.LastModifiedBy
 import org.springframework.data.annotation.LastModifiedDate
@@ -17,17 +18,18 @@ import java.time.LocalDateTime
 @EntityListeners(AuditingEntityListener::class)
 @MappedSuperclass
 abstract class Base {
-
-    // @Id
-    // @GeneratedValue(generator = "UUID")
-    // @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
-    // @Column(name = "id")
-    // open var id: String? = null
-
+    /*
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    open var id: Long? = null
+    open val id: Long? = null
+    */
+
+    @Id
+    @GeneratedValue(generator = "UUID")
+    @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
+    @Column(name = "id")
+    open var id: String? = null
 
     @Column(name = "last_modified_at")
     @LastModifiedDate
@@ -42,6 +44,6 @@ abstract class Base {
     open val createdBy: String? = null
 
     @Column(name = "is_active")
-    open val isActive: Boolean = true
+    open val isActive: Boolean? = null
 
 }
