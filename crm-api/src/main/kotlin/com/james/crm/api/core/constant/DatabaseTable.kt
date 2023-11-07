@@ -7,12 +7,12 @@
 
 package com.james.crm.api.core.constant
 
-class TableConstant {
+class Table {
 
     companion object {
         private const val TABLE_PREFIX: String = "crm_"
-        const val USER_TABLE: String = TABLE_PREFIX + "users"
-        const val CONTACT_TABLE: String = TABLE_PREFIX + "contacts"
+        const val USER: String = TABLE_PREFIX + "users"
+        const val CONTACT: String = TABLE_PREFIX + "contacts"
         const val CLIENT_TABLE: String = TABLE_PREFIX + "clients"
         const val AGENT_TABLE: String = TABLE_PREFIX + "agents"
         const val MANAGER_TABLE: String = TABLE_PREFIX + "managers"
