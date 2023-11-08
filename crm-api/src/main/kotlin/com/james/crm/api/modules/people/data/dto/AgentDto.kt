@@ -7,34 +7,46 @@
 
 package com.james.crm.api.modules.people.data.dto
 
+import com.fasterxml.jackson.annotation.JsonInclude
 import com.james.crm.api.core.model.Mapper
 import com.james.crm.api.modules.people.domain.model.Agent
 
-data class AgentDto(val id: String) : Mapper<AgentDto, Agent> {
+
+@JsonInclude(JsonInclude.Include.NON_NULL)
+data class AgentDto(var id: String?) : Mapper<AgentDto, Agent> {
     var isActive: Boolean = true
     var profile: ProfileDto = ProfileDto()
     var contact: ContactDto = ContactDto()
-    var emergencyContact: ContactDto = ContactDto()
+    var emergencyContact: ContactDto? = ContactDto()
     var user: UserDto = UserDto()
-    var clients: MutableList<ClientDto> = mutableListOf()
-    var resources: MutableList<ResourceDto> = mutableListOf()
-    var task: TaskDto = TaskDto()
-    var team: TeamDto = TeamDto()
-    var location: LocationDto = LocationDto()
-    var manager: ManagerDto = ManagerDto()
+    var clients: MutableList<ClientDto>? = mutableListOf()
+    var resources: MutableList<ResourceDto>? = mutableListOf()
+    var task: TaskDto? = TaskDto()
+    var team: TeamDto? = TeamDto()
+    var location: LocationDto? = LocationDto()
+    var manager: ManagerDto? = ManagerDto()
 
+    constructor() : this(id = null)
 
     override fun toRequest(entity: Agent): AgentDto {
-        TODO("Not yet implemented")
+        return this.apply {
+            id = entity.id
+            isActive = entity.isActive
+            profile = profile.toRequest(entity.profile)
+            contact = contact.toRequest(entity.contact)
+            emergencyContact = entity.emergencyContact?.let { emergencyContact?.toRequest(it) }
+            location = entity.location?.let { location?.toRequest(it) }
+            user = user.toRequest(entity.user)
+        }
     }
 
     override fun toEntity(): Agent {
         val agent = Agent()
         agent.profile = profile.toEntity()
         agent.contact = contact.toEntity()
-        agent.emergencyContact = emergencyContact.toEntity()
+        agent.emergencyContact = emergencyContact?.toEntity()
         agent.user = user.toEntity()
-        agent.location = location.toEntity()
+        agent.location = location?.toEntity()
 
         /*
         var clients: MutableList<Client> = mutableListOf()
@@ -46,5 +58,19 @@ data class AgentDto(val id: String) : Mapper<AgentDto, Agent> {
         return agent
     }
 
-
+    fun toTrimmedRequest(entity: Agent): AgentDto {
+        val request = toRequest(entity)
+        return request.apply {
+            manager = null
+            location = null
+            emergencyContact = null
+            task = null
+            team = null
+            clients = null
+            resources = null
+            profile.bankAccount = null
+            profile.virtualBankAccount = null
+        }
+    }
 }
+

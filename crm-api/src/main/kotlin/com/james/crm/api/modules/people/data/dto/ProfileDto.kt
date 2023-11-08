@@ -1,9 +1,11 @@
 package com.james.crm.api.modules.people.data.dto
 
+import com.fasterxml.jackson.annotation.JsonInclude
 import com.james.crm.api.core.model.Mapper
 import com.james.crm.api.modules.people.domain.model.submodel.Profile
 
-data class ProfileDto(val id: String? = null) : Mapper<ProfileDto, Profile> {
+@JsonInclude(JsonInclude.Include.NON_NULL)
+data class ProfileDto(var id: String? = null) : Mapper<ProfileDto, Profile> {
     var lastname: String = ""
     var firstName: String = ""
     var otherName: String = ""
@@ -25,6 +27,14 @@ data class ProfileDto(val id: String? = null) : Mapper<ProfileDto, Profile> {
     }
 
     override fun toRequest(entity: Profile): ProfileDto {
-        TODO("Not yet implemented")
+        val profile = this
+        profile.id = entity.id
+        profile.lastname = entity.lastname
+        profile.lastname = entity.lastname
+        profile.firstName = entity.firstName
+        profile.otherName = entity.otherName
+        profile.dateOfBirth = entity.dateOfBirth
+        profile.department = entity.department
+        return profile
     }
 }
