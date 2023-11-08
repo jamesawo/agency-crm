@@ -5,20 +5,20 @@
  * @Project: agent-crm
  */
 
-package com.james.crm.api.modules.people.data.usecase.interfaces
+package com.james.crm.api.modules.people.data.usecase.contract
 
 import com.james.crm.api.modules.people.data.dto.AgentDto
+import org.springframework.http.ResponseEntity
 
 interface IAgentUsecase{
-    fun create(agent: AgentDto): AgentDto
+    fun create(agent: AgentDto): ResponseEntity<AgentDto>
 
-    fun find(agentId: String): AgentDto?
+    fun find(agentId: String): ResponseEntity<AgentDto?>
 
-    fun findByEmail(email: String): AgentDto?
+    fun findByEmail(email: String): ResponseEntity<AgentDto?>
 
-    fun update(agent: AgentDto): AgentDto
+    fun update(agent: AgentDto): ResponseEntity<AgentDto>
 
-    fun find(): List<AgentDto>
-
+    fun find(): ResponseEntity<List<AgentDto>>
 
 }

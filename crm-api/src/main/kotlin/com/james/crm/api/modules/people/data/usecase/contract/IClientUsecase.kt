@@ -5,10 +5,9 @@
  * @Project: agent-crm
  */
 
-package com.james.crm.api.modules.people.data.usecase.interfaces
+package com.james.crm.api.modules.people.data.usecase.contract
 
 import com.james.crm.api.modules.people.data.dto.ClientDto
-import com.james.crm.api.modules.people.domain.model.Client
 
 interface IClientUsecase {
     fun find(clientId: String): ClientDto
