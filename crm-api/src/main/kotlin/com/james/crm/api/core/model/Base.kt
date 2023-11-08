@@ -10,6 +10,7 @@ package com.james.crm.api.core.model
 import jakarta.persistence.*
 import org.hibernate.annotations.GenericGenerator
 import org.springframework.data.annotation.CreatedBy
+import org.springframework.data.annotation.CreatedDate
 import org.springframework.data.annotation.LastModifiedBy
 import org.springframework.data.annotation.LastModifiedDate
 import org.springframework.data.jpa.domain.support.AuditingEntityListener
@@ -33,7 +34,11 @@ abstract class Base {
 
     @Column(name = "last_modified_at")
     @LastModifiedDate
-    open val lastModifiedAt: LocalDateTime? = null
+    open val lastModifiedAt: LocalDateTime = LocalDateTime.now()
+
+    @Column(name = "created_at")
+    @CreatedDate
+    open val createdAt: LocalDateTime = LocalDateTime.now()
 
     @Column(name = "last_modified_by")
     @LastModifiedBy
@@ -44,6 +49,6 @@ abstract class Base {
     open val createdBy: String? = null
 
     @Column(name = "is_active")
-    open val isActive: Boolean? = null
+    open val isActive: Boolean = true
 
 }
