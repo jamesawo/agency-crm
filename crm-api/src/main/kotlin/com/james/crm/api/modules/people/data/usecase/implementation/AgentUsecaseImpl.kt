@@ -13,7 +13,7 @@ import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Service
 
 @Service
-class AgentUsecaseImpl(private val agentDataRepository: AgentDataRepository)  {
+class AgentUsecaseImpl(private val repository: AgentDataRepository)  {
 
     fun create(agentDto: AgentDto): ResponseEntity<AgentDto>{
         val agent = agentDto.toEntity()
