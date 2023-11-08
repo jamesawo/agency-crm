@@ -5,12 +5,12 @@
  * @Project: agent-crm
  */
 
-package com.james.crm.api.modules.people.data.usecase.contract
+package com.james.crm.api.modules.people.data.usecase.contract.agent
 
 import com.james.crm.api.modules.people.data.dto.AgentDto
 import org.springframework.http.ResponseEntity
 
-interface IAgentUsecase{
+interface IAgentUsecase {
     fun create(agent: AgentDto): ResponseEntity<AgentDto>
 
     fun find(agentId: String): ResponseEntity<AgentDto?>

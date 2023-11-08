@@ -5,11 +5,11 @@
  * @Project: agent-crm
  */
 
-package com.james.crm.api.modules.people.data.usecase.contract
+package com.james.crm.api.modules.people.data.usecase.contract.manager
 
 import com.james.crm.api.modules.people.data.dto.ManagerDto
 
-interface IManagerUsecase{
+interface IManagerUsecase {
     fun create(manager: ManagerDto): ManagerDto
 
     fun find(managerId: String): ManagerDto?
