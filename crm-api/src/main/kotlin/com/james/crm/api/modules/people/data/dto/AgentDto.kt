@@ -47,20 +47,11 @@ data class AgentDto(var id: String?) : Mapper<AgentDto, Agent> {
         agent.emergencyContact = emergencyContact?.toEntity()
         agent.user = user.toEntity()
         agent.location = location?.toEntity()
-
-        /*
-        var clients: MutableList<Client> = mutableListOf()
-        var task: Task = Task()
-        var team: Team = Team()
-        var manager: Manager = Manager()
-        * */
-
         return agent
     }
 
-    fun toTrimmedRequest(entity: Agent): AgentDto {
-        val request = toRequest(entity)
-        return request.apply {
+    override fun toTrimmedRequest(entity: Agent): AgentDto {
+        return toRequest(entity).apply {
             manager = null
             location = null
             emergencyContact = null
