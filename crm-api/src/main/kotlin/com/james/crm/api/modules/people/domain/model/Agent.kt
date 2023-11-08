@@ -22,25 +22,25 @@ class Agent: Base(){
     @OneToOne(cascade = [CascadeType.ALL])
     var contact: Contact = Contact()
 
-    @OneToOne(cascade = [CascadeType.ALL])
-    var emergencyContact: Contact = Contact()
+    @OneToOne(fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
+    var emergencyContact: Contact? = null
 
-    @OneToOne(cascade =  [CascadeType.ALL])
+    @OneToOne(fetch = FetchType.LAZY, cascade =  [CascadeType.ALL])
     var user: User = User()
 
-    @OneToMany(mappedBy = "agent", cascade = [CascadeType.ALL])
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "agent", cascade = [CascadeType.ALL])
     var clients: MutableList<Client> = mutableListOf()
 
-    @ManyToOne(cascade = [CascadeType.ALL])
-    var task: Task = Task()
+    @ManyToOne(fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
+    var task: Task? = null
 
-    @ManyToOne(cascade = [CascadeType.ALL])
-    var team: Team = Team()
+    @ManyToOne(fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
+    var team: Team? = null
 
-    @OneToOne(cascade = [CascadeType.ALL])
-    var location: Location = Location()
+    @OneToOne(fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
+    var location: Location? = null
 
-    @ManyToOne(cascade = [CascadeType.ALL])
-    var manager: Manager = Manager()
+    @ManyToOne(fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
+    var manager: Manager? = null
 
 }
