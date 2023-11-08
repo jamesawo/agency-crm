@@ -10,4 +10,7 @@ package com.james.crm.api.core.model
 interface Mapper<R, E> {
     fun toEntity(): E
     fun toRequest(entity: E): R
+    fun toTrimmedRequest(entity: E): R {
+        return toRequest(entity)
+    }
 }
