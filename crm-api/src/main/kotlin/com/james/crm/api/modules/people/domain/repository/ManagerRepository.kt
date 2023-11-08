@@ -9,6 +9,8 @@ package com.james.crm.api.modules.people.domain.repository
 
 import com.james.crm.api.modules.people.domain.model.Manager
 import org.springframework.data.jpa.repository.JpaRepository
+import org.springframework.stereotype.Repository
 
+@Repository
 interface ManagerRepository: JpaRepository<Manager, String> {
 }
