@@ -26,7 +26,7 @@ class User : Base() {
     var userType: UserTypeEnum = UserTypeEnum.AGENT
 
     @PrePersist
-    fun beforeSave(){
-        println("I am saving a new user: username: $username, password: $password ")
+    fun beforeSave() {
+        println("{ User }: Hash password before saving")
     }
 }

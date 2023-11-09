@@ -23,9 +23,4 @@ class AgentEndpoint(
         return usecase.create(agentDto)
     }
 
-    @PutMapping
-    fun update(@RequestBody agentDto: AgentDto): ResponseEntity<AgentDto> {
-        return usecase.update(agentDto)
-    }
-    
 }

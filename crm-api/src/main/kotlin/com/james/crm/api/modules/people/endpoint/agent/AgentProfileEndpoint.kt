@@ -19,14 +19,24 @@ import org.springframework.web.bind.annotation.*
 class AgentProfileEndpoint(
     private val profileUsecase: IAgentProfileUsecase
 ) {
-    
-    @GetMapping("/{id}/profile")
-    fun getProfile(@PathVariable id: String): ResponseEntity<ProfileDto> {
-        return profileUsecase.getProfile(id)
-    }
+    @GetMapping
+    fun getProfile(@PathVariable agentId: String): ResponseEntity<ProfileDto> = profileUsecase.getProfile(agentId)
 
-    @PutMapping("/{id}/profile")
-    fun updateProfile(@PathVariable id: String, @RequestBody profileDto: ProfileDto): ResponseEntity<ProfileDto> =
-        profileUsecase.updateProfile(id, profileDto)
+    @PutMapping
+    fun updateProfile(
+        @RequestBody profileDto: ProfileDto,
+        @PathVariable agentId: String
+    ): ResponseEntity<ProfileDto> = profileUsecase.updateProfile(agentId, profileDto)
+
+    /*  @GetMapping("/{id}")
+      fun getProfile(@PathVariable id: String, @PathVariable agentId: String): ResponseEntity<ProfileDto> =
+          profileUsecase.getProfile(id)
+
+      @PutMapping("/{id}")
+      fun updateProfile(
+          @PathVariable id: String,
+          @RequestBody profileDto: ProfileDto,
+          @PathVariable agentId: String
+      ): ResponseEntity<ProfileDto> = profileUsecase.updateProfile(id, profileDto)*/
 
 }
