@@ -18,8 +18,8 @@ class AgentUsecaseImpl(
     private val repository: AgentDataRepository
 ) : IAgentUsecase {
     override fun create(agent: AgentDto): ResponseEntity<AgentDto> {
-        val savedAgent = repository.save(agent.toEntity())
-        return ResponseEntity.ok().body(agent.toTrimmedRequest(savedAgent))
+        val saved = repository.save(AgentDto.toEntity(agent))
+        return ResponseEntity.ok().body(AgentDto.toTrimmedRequest(saved))
     }
 
     override fun find(agentId: String): ResponseEntity<AgentDto?> {
