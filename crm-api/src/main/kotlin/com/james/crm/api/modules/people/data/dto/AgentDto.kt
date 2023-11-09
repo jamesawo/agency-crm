@@ -13,7 +13,7 @@ import com.james.crm.api.modules.people.domain.model.Agent
 
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-data class AgentDto(var id: String?) : Mapper<AgentDto, Agent> {
+data class AgentDto(var id: String?) {
     var isActive: Boolean = true
     var profile: ProfileDto = ProfileDto()
     var contact: ContactDto = ContactDto()
@@ -28,40 +28,78 @@ data class AgentDto(var id: String?) : Mapper<AgentDto, Agent> {
 
     constructor() : this(id = null)
 
-    override fun toRequest(entity: Agent): AgentDto {
-        return this.apply {
-            id = entity.id
-            isActive = entity.isActive
-            profile = profile.toRequest(entity.profile)
-            contact = contact.toRequest(entity.contact)
-            emergencyContact = entity.emergencyContact?.let { emergencyContact?.toRequest(it) }
-            location = entity.location?.let { location?.toRequest(it) }
-            user = user.toRequest(entity.user)
+    constructor(
+        id: String?,
+        isActive: Boolean,
+        profile: ProfileDto,
+        contact: ContactDto,
+        emergencyContact: ContactDto?,
+        user: UserDto,
+        clients: MutableList<ClientDto>?,
+        resources: MutableList<ResourceDto>?,
+        task: TaskDto?,
+        team: TeamDto?,
+        location: LocationDto?,
+        manager: ManagerDto?
+    ) : this(id) {
+        this.isActive = isActive
+        this.profile = profile
+        this.contact = contact
+        this.emergencyContact = emergencyContact
+        this.user = user
+        this.clients = clients
+        this.resources = resources
+        this.task = task
+        this.team = team
+        this.location = location
+        this.manager = manager
+    }
+
+
+    companion object : Mapper<AgentDto, Agent> {
+
+        override fun toRequest(entity: Agent): AgentDto {
+            return AgentDto(
+                id = entity.id,
+                isActive = entity.isActive,
+                profile = ProfileDto.toRequest(entity.profile),
+                contact = ContactDto.toRequest(entity.contact),
+                emergencyContact = entity.emergencyContact?.let { ContactDto.toRequest(it) },
+                user = UserDto.toRequest(entity.user),
+                clients = null,
+                resources = null,
+                task = null,
+                team = null,
+                location = entity.location?.let { LocationDto.toRequest(it) },
+                manager = null,
+            )
+        }
+
+        override fun toEntity(request: AgentDto): Agent {
+            val agent = Agent()
+            agent.profile = ProfileDto.toEntity(request.profile)
+            agent.contact = ContactDto.toEntity(request.contact)
+            agent.emergencyContact = request.emergencyContact?.let { ContactDto.toEntity(it) }
+            agent.user = UserDto.toEntity(request.user)
+            agent.location = request.location?.let { LocationDto.toEntity(it) }
+            return agent
+        }
+
+        override fun toTrimmedRequest(entity: Agent): AgentDto {
+            return toRequest(entity).apply {
+                manager = null
+                location = null
+                emergencyContact = null
+                task = null
+                team = null
+                clients = null
+                resources = null
+                profile.bankAccount = null
+                profile.virtualBankAccount = null
+            }
         }
     }
 
-    override fun toEntity(): Agent {
-        val agent = Agent()
-        agent.profile = profile.toEntity()
-        agent.contact = contact.toEntity()
-        agent.emergencyContact = emergencyContact?.toEntity()
-        agent.user = user.toEntity()
-        agent.location = location?.toEntity()
-        return agent
-    }
 
-    override fun toTrimmedRequest(entity: Agent): AgentDto {
-        return toRequest(entity).apply {
-            manager = null
-            location = null
-            emergencyContact = null
-            task = null
-            team = null
-            clients = null
-            resources = null
-            profile.bankAccount = null
-            profile.virtualBankAccount = null
-        }
-    }
 }
 

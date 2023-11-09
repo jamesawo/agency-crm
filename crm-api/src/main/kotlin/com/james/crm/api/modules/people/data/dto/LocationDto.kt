@@ -5,33 +5,50 @@ import com.james.crm.api.core.model.Mapper
 import com.james.crm.api.modules.people.domain.model.submodel.Location
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-class LocationDto(var id: String? = null) : Mapper<LocationDto, Location> {
-
+class LocationDto(var id: String? = null) {
     var longitude: String = ""
     var latitude: String = ""
     var title: String = ""
     var type: String = ""
     var timezone: String = ""
 
-    override fun toEntity(): Location {
-        val location = Location()
-        location.longitude = longitude
-        location.latitude = latitude
-        location.title = title
-        location.type = type
-        location.timezone = timezone
-        return location
+    constructor(
+        id: String? = null,
+        longitude: String = "",
+        latitude: String = "",
+        title: String = "",
+        type: String = "",
+        timezone: String = "",
+    ) : this(id) {
+        this.longitude = longitude
+        this.latitude = latitude
+        this.title = title
+        this.type = type
+        this.timezone = timezone
     }
 
-    override fun toRequest(entity: Location): LocationDto {
-        return this.apply {
-            id = entity.id
-            longitude = entity.longitude
-            latitude = entity.latitude
-            title = entity.title
-            type = entity.type
-            timezone = entity.timezone
+    companion object : Mapper<LocationDto, Location> {
+        override fun toRequest(entity: Location): LocationDto {
+            return LocationDto(
+                id = entity.id,
+                longitude = entity.longitude,
+                latitude = entity.latitude,
+                title = entity.title,
+                type = entity.type,
+                timezone = entity.timezone
+            )
+        }
+
+        override fun toEntity(request: LocationDto): Location {
+            val location = Location()
+            location.longitude = request.longitude
+            location.latitude = request.latitude
+            location.title = request.title
+            location.type = request.type
+            location.timezone = request.timezone
+            return location
         }
     }
+
 
 }
