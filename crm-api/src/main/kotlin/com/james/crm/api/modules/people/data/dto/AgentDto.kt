@@ -17,7 +17,7 @@ data class AgentDto(var id: String?) {
     var isActive: Boolean = true
     var profile: ProfileDto = ProfileDto()
     var contact: ContactDto = ContactDto()
-    var emergencyContact: ContactDto? = ContactDto()
+    var emergencyContact: EmergencyContactDto = EmergencyContactDto()
     var user: UserDto = UserDto()
     var clients: MutableList<ClientDto>? = mutableListOf()
     var resources: MutableList<ResourceDto>? = mutableListOf()
@@ -33,7 +33,7 @@ data class AgentDto(var id: String?) {
         isActive: Boolean,
         profile: ProfileDto,
         contact: ContactDto,
-        emergencyContact: ContactDto?,
+        emergencyContact: EmergencyContactDto,
         user: UserDto,
         clients: MutableList<ClientDto>?,
         resources: MutableList<ResourceDto>?,
@@ -64,7 +64,7 @@ data class AgentDto(var id: String?) {
                 isActive = entity.isActive,
                 profile = ProfileDto.toRequest(entity.profile),
                 contact = ContactDto.toRequest(entity.contact),
-                emergencyContact = entity.emergencyContact?.let { ContactDto.toRequest(it) },
+                emergencyContact = EmergencyContactDto.toRequest(entity.emergencyContact),
                 user = UserDto.toRequest(entity.user),
                 clients = null,
                 resources = null,
@@ -79,7 +79,7 @@ data class AgentDto(var id: String?) {
             val agent = Agent()
             agent.profile = ProfileDto.toEntity(request.profile)
             agent.contact = ContactDto.toEntity(request.contact)
-            agent.emergencyContact = request.emergencyContact?.let { ContactDto.toEntity(it) }
+            agent.emergencyContact = EmergencyContactDto.toEntity(request.emergencyContact)
             agent.user = UserDto.toEntity(request.user)
             agent.location = request.location?.let { LocationDto.toEntity(it) }
             return agent
@@ -89,7 +89,6 @@ data class AgentDto(var id: String?) {
             return toRequest(entity).apply {
                 manager = null
                 location = null
-                emergencyContact = null
                 task = null
                 team = null
                 clients = null

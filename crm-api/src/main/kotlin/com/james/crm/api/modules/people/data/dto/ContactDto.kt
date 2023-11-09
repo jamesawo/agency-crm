@@ -5,7 +5,7 @@ import com.james.crm.api.core.model.Mapper
 import com.james.crm.api.modules.people.domain.model.submodel.Contact
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-class ContactDto(var id: String?) {
+open class ContactDto(var id: String?) {
     var phone: String = ""
     var email: String = ""
     var secondaryPhone: String = ""
