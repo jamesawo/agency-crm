@@ -9,6 +9,6 @@ package com.james.crm.api.core.constant
 
 class Route {
     companion object {
-        const val BASE: String = "/api/v1"
+        const val API_VERSION: String = "/api/v1"
     }
 }
