@@ -13,6 +13,7 @@ class DatabaseTable {
         private const val PREFIX: String = "crm_"
         const val USER: String = PREFIX + "users"
         const val CONTACT: String = PREFIX + "contacts"
+        const val EMERGENCY_CONTACT: String = PREFIX + "emergency_contacts"
         const val CLIENT: String = PREFIX + "clients"
         const val AGENT: String = PREFIX + "agents"
         const val MANAGER: String = PREFIX + "managers"
