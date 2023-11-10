@@ -12,6 +12,6 @@ import org.springframework.http.ResponseEntity
 
 interface IAgentManagerUsecase {
     fun getManager(agentId: String): ResponseEntity<ManagerDto>
-    fun updateManager(agentId: String, managerDto: ManagerDto): ResponseEntity<ManagerDto>
+    fun updateManager(agentId: String, managerId: String): ResponseEntity<Boolean>
 
 }
