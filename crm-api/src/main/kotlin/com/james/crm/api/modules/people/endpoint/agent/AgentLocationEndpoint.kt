@@ -14,7 +14,7 @@ import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 
 @RestController
-@RequestMapping("${Route.BASE}/agents/{agentId}/location")
+@RequestMapping("${Route.API_VERSION}/agents/{agentId}/location")
 class AgentLocationEndpoint(
     private val locationUsecase: IAgentLocationUsecase
 ) {

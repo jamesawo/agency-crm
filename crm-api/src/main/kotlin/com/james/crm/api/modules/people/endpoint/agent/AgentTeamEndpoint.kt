@@ -14,11 +14,11 @@ import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 
 @RestController
-@RequestMapping("${Route.BASE}/agents/{agentId}/team")
+@RequestMapping("${Route.API_VERSION}/agents/{agentId}/team")
 class AgentTeamEndpoint(
     private val teamUsecase: IAgentTeamUsecase
 ) {
-    
+
     @GetMapping("/{id}/team")
     fun getTeam(@PathVariable id: String, @PathVariable agentId: String): ResponseEntity<TeamDto> {
         return teamUsecase.getTeam(id)

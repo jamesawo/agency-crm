@@ -7,14 +7,14 @@
 
 package com.james.crm.api.modules.people.endpoint.agent
 
-import com.james.crm.api.core.constant.Route
+import com.james.crm.api.core.constant.Route.Companion.API_VERSION
 import com.james.crm.api.modules.people.data.dto.AgentDto
 import com.james.crm.api.modules.people.data.usecase.contract.agent.IAgentUsecase
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 
 @RestController
-@RequestMapping("${Route.BASE}/agents/")
+@RequestMapping("$API_VERSION/agents/")
 class AgentEndpoint(
     private val usecase: IAgentUsecase
 ) {
@@ -23,4 +23,8 @@ class AgentEndpoint(
         return usecase.create(agentDto)
     }
 
+    @DeleteMapping("{id}")
+    fun delete(@PathVariable id: String): ResponseEntity<Boolean> {
+        return usecase.remove(id)
+    }
 }

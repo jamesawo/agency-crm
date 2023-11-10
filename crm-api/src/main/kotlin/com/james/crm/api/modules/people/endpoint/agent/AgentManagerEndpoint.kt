@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*
 
 
 @RestController
-@RequestMapping("${Route.BASE}/agents/{agentId}/manager")
+@RequestMapping("${Route.API_VERSION}/agents/{agentId}/manager")
 class AgentManagerEndpoint(
     private val managerUsecase: IAgentManagerUsecase
 ) {

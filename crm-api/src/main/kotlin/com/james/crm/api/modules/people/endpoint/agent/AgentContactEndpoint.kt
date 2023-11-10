@@ -1,26 +1,23 @@
-import com.james.crm.api.core.constant.Route
+package com.james.crm.api.modules.people.endpoint.agent
+
+import com.james.crm.api.core.constant.Route.Companion.API_VERSION
 import com.james.crm.api.modules.people.data.dto.ContactDto
 import com.james.crm.api.modules.people.data.usecase.contract.agent.IAgentContactUsecase
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 
 @RestController
-@RequestMapping("${Route.BASE}/agents/{agentId}/contact")
+@RequestMapping("$API_VERSION/agents/{agentId}/contact")
 class AgentContactEndpoint(
     private val contactUsecase: IAgentContactUsecase
 ) {
-    @GetMapping("/{id}/contact")
-    fun getContact(@PathVariable id: String, @PathVariable agentId: String): ResponseEntity<ContactDto> {
-        return contactUsecase.getContact(id)
-    }
+    @GetMapping
+    fun getContact(@PathVariable agentId: String): ResponseEntity<ContactDto> = contactUsecase.getContact(agentId)
 
-    @PutMapping("/{id}/contact")
+    @PutMapping()
     fun updateContact(
-        @PathVariable id: String,
         @RequestBody contactDto: ContactDto,
         @PathVariable agentId: String
-    ): ResponseEntity<ContactDto> {
-        return contactUsecase.updateContact(id, contactDto)
-    }
+    ): ResponseEntity<ContactDto> = contactUsecase.updateContact(agentId, contactDto)
 
 }

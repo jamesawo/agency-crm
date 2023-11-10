@@ -14,7 +14,7 @@ import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 
 @RestController
-@RequestMapping("${Route.BASE}/agents/{agentId}/task")
+@RequestMapping("${Route.API_VERSION}/agents/{agentId}/task")
 class AgentTaskEndpoint(
     private val taskUsecase: IAgentTaskUsecase
 ) {
