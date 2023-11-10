@@ -16,8 +16,7 @@ interface IManagerUsecase {
     fun create(manager: ManagerDto): ResponseEntity<ManagerDto>
 
     fun find(managerId: String): ResponseEntity<ManagerDto?>
-
-    fun update(manager: ManagerDto): ResponseEntity<ManagerDto>
-
+    
     fun findById(managerId: String): Optional<Manager>
+    fun remove(managerId: String): ResponseEntity<Boolean>
 }
