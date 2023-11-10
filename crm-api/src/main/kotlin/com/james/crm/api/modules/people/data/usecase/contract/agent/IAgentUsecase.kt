@@ -21,4 +21,6 @@ interface IAgentUsecase {
 
     fun find(): ResponseEntity<List<AgentDto>>
 
+    fun remove(id: String): ResponseEntity<Boolean>
+
 }
