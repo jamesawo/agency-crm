@@ -15,17 +15,17 @@ import jakarta.persistence.*
 
 @Entity
 @Table(name = MANAGER)
-class Manager: Base() {
+class Manager : Base() {
 
     @OneToOne(cascade = [CascadeType.ALL])
-    val profile: Profile = Profile()
+    var profile: Profile = Profile()
 
     @OneToOne(cascade = [CascadeType.ALL])
-    val contact: Contact = Contact()
+    var contact: Contact = Contact()
 
     @OneToOne(cascade = [CascadeType.ALL])
-    val user: User = User()
+    var user: User = User()
 
     @OneToMany(mappedBy = "manager", fetch = FetchType.LAZY)
-    val agents: List<Agent> = emptyList();
+    var agents: List<Agent> = emptyList()
 }
