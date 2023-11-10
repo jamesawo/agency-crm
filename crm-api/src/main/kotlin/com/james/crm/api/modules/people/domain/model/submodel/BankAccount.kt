@@ -15,7 +15,10 @@ import jakarta.persistence.Table
 @Entity
 @Table(name = BANK_ACCOUNT)
 class BankAccount(
+    id: String?,
     var accountName: String = "",
     var accountNumber: String = "",
     var bankName: String = "",
-) : Base()
+) : Base(id) {
+    constructor() : this(id = null)
+}

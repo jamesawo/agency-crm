@@ -21,7 +21,32 @@ class Contact(
     var secondaryPhone: String = "",
     var secondaryEmail: String = "",
     var address: String = "",
-) : Base()
+) : Base() {
+    constructor(
+        id: String? = null,
+        phone: String = "",
+        email: String = "",
+        secondaryPhone: String = "",
+        secondaryEmail: String = "",
+        address: String = "",
+    ) : this() {
+        this.id = id
+        this.phone = phone
+        this.email = email
+        this.secondaryPhone = secondaryPhone
+        this.secondaryEmail = secondaryEmail
+        this.address = address
+    }
+
+    override fun toString(): String {
+        return "id: ${this.id} \n" +
+                "phone: ${this.phone} \n" +
+                "email: ${this.email} \n" +
+                "secondaryPhone: ${this.secondaryPhone} \n" +
+                "secondaryEmail: ${this.secondaryEmail} \n" +
+                "address: ${this.address}  "
+    }
+}
 
 
 

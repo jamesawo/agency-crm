@@ -25,7 +25,28 @@ class EmergencyContact(
     var occupation: String = "",
     var identificationStatus: Boolean = false,
     var commitmentStatus: Boolean = false,
-) : Base()
-
-
-
+) : Base() {
+    constructor(
+        id: String? = null,
+        phone: String = "",
+        email: String = "",
+        homeAddress: String = "",
+        fullName: String = "",
+        workAddress: String = "",
+        relationship: String = "",
+        occupation: String = "",
+        identificationStatus: Boolean = false,
+        commitmentStatus: Boolean = false,
+    ) : this() {
+        this.id = id
+        this.phone = phone
+        this.email = email
+        this.homeAddress = homeAddress
+        this.fullName = fullName
+        this.workAddress = workAddress
+        this.relationship = relationship
+        this.occupation = occupation
+        this.identificationStatus = identificationStatus
+        this.commitmentStatus = commitmentStatus
+    }
+}

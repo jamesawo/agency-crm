@@ -14,16 +14,32 @@ import jakarta.persistence.PrePersist
 import jakarta.persistence.Table
 import java.time.LocalDate
 
-enum class UserTypeEnum { AGENT, ADMIN }
+enum class UserTypeEnum { USER, AGENT, MANAGER, ADMINISTRATOR }
 
 @Entity
 @Table(name = USER)
-class User : Base() {
+class User() : Base(id = null) {
     var username: String = ""
     var password: String = ""
     var isEnabled: Boolean = true
     var expiryDate: LocalDate = LocalDate.now().plusDays(30)
-    var userType: UserTypeEnum = UserTypeEnum.AGENT
+    var userType: UserTypeEnum = UserTypeEnum.USER
+
+    constructor(
+        id: String? = null,
+        username: String = "",
+        password: String = "",
+        isEnabled: Boolean = true,
+        expiryDate: LocalDate = LocalDate.now().plusDays(30),
+        userType: UserTypeEnum = UserTypeEnum.USER,
+    ) : this() {
+        this.id = id
+        this.username = username
+        this.password = password
+        this.isEnabled = isEnabled
+        this.expiryDate = expiryDate
+        this.userType = userType
+    }
 
     @PrePersist
     fun beforeSave() {
