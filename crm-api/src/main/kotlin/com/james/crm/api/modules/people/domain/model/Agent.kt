@@ -14,7 +14,7 @@ import jakarta.persistence.*
 
 @Entity
 @Table(name = AGENT)
-class Agent: Base(){
+class Agent : Base() {
 
     @OneToOne(cascade = [CascadeType.ALL])
     var profile: Profile = Profile()
@@ -23,9 +23,9 @@ class Agent: Base(){
     var contact: Contact = Contact()
 
     @OneToOne(fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
-    var emergencyContact: Contact? = null
+    var emergencyContact: EmergencyContact = EmergencyContact()
 
-    @OneToOne(fetch = FetchType.LAZY, cascade =  [CascadeType.ALL])
+    @OneToOne(fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
     var user: User = User()
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "agent", cascade = [CascadeType.ALL])
