@@ -10,12 +10,14 @@ package com.james.crm.api.modules.people.data.usecase.implementation.agent
 import com.james.crm.api.core.annotation.Usecase
 import com.james.crm.api.modules.people.data.dto.ProfileDto
 import com.james.crm.api.modules.people.data.usecase.contract.agent.IAgentProfileUsecase
+import com.james.crm.api.modules.people.data.usecase.contract.agent.IAgentUsecase
 import com.james.crm.api.modules.people.domain.repository.AgentDataRepository
 import org.springframework.http.ResponseEntity
 
 @Usecase
 class AgentProfileUsecase(
-    private val repository: AgentDataRepository
+    private val repository: AgentDataRepository,
+    private val usecase: IAgentUsecase
 ) : IAgentProfileUsecase {
     override fun getProfile(agentId: String): ResponseEntity<ProfileDto> {
         return repository.findById(agentId).map {

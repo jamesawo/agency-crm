@@ -8,17 +8,30 @@
 package com.james.crm.api.modules.people.data.usecase.implementation.agent
 
 import com.james.crm.api.core.annotation.Usecase
-import com.james.crm.api.modules.people.data.dto.ContactDto
+import com.james.crm.api.modules.people.data.dto.EmergencyContactDto
 import com.james.crm.api.modules.people.data.usecase.contract.agent.IAgentEmergencyContactUsecase
+import com.james.crm.api.modules.people.domain.repository.AgentDataRepository
 import org.springframework.http.ResponseEntity
 
 @Usecase
-class AgentEmergencyContactUsecase : IAgentEmergencyContactUsecase {
-    override fun getEmergencyContact(agentId: String): ResponseEntity<ContactDto> {
-        TODO()
+class AgentEmergencyContactUsecase(
+    private val repository: AgentDataRepository
+) : IAgentEmergencyContactUsecase {
+    override fun getEmergencyContact(agentId: String): ResponseEntity<EmergencyContactDto> {
+        return repository.findById(agentId).map {
+            ResponseEntity.ok().body(it.emergencyContact.let { it1 -> EmergencyContactDto.toRequest(it1) })
+        }.orElse(ResponseEntity.notFound().build())
     }
 
-    override fun updateEmergencyContact(agentId: String, contactDto: ContactDto): ResponseEntity<ContactDto> {
-        TODO()
+    override fun updateEmergencyContact(
+        agentId: String,
+        contactDto: EmergencyContactDto
+    ): ResponseEntity<EmergencyContactDto> {
+        val optional = repository.findById(agentId)
+        return optional.map {
+            it.emergencyContact = EmergencyContactDto.toEntity(contactDto)
+            val agent = repository.save(it)
+            ResponseEntity.ok(EmergencyContactDto.toRequest(it.emergencyContact))
+        }.orElse(ResponseEntity.notFound().build())
     }
 }
