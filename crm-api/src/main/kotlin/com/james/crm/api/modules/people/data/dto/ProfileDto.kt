@@ -4,12 +4,21 @@ import com.fasterxml.jackson.annotation.JsonInclude
 import com.james.crm.api.core.model.Mapper
 import com.james.crm.api.modules.people.domain.model.submodel.BankAccount
 import com.james.crm.api.modules.people.domain.model.submodel.Profile
+import jakarta.validation.constraints.NotBlank
+import jakarta.validation.constraints.NotEmpty
+
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 data class ProfileDto(var id: String? = null) {
+    @NotEmpty(message = "last name cannot be empty")
     var lastname: String = ""
+
+    @NotBlank(message = "first name cannot be empty")
     var firstName: String = ""
+
+    @NotBlank(message = "other name cannot be empty")
     var otherName: String = ""
+
     var dateOfBirth: String = ""
     var department: String = ""
     var bankAccount: BankAccountDto? = null
@@ -36,14 +45,13 @@ data class ProfileDto(var id: String? = null) {
 
     companion object : Mapper<ProfileDto, Profile> {
         override fun toEntity(request: ProfileDto): Profile {
-            val profile = Profile()
-            profile.lastname = request.lastname
-            profile.lastname = request.lastname
-            profile.firstName = request.firstName
-            profile.otherName = request.otherName
-            profile.dateOfBirth = request.dateOfBirth
-            profile.department = request.department
-            return profile
+            return Profile(
+                lastname = request.lastname,
+                firstName = request.firstName,
+                otherName = request.otherName,
+                dateOfBirth = request.dateOfBirth,
+                department = request.department,
+            )
         }
 
         override fun toRequest(entity: Profile): ProfileDto {
@@ -72,12 +80,8 @@ data class ProfileDto(var id: String? = null) {
         }
 
         override fun toTrimmedRequest(entity: Profile): ProfileDto {
-            return toRequest(entity).apply {
-                bankAccount = null
-                virtualBankAccount = null
-            }
+            return toRequest(entity).apply { bankAccount = null; virtualBankAccount = null }
         }
     }
-
 
 }

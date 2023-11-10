@@ -44,17 +44,18 @@ class EmergencyContactDto(var id: String?) {
 
     companion object : Mapper<EmergencyContactDto, EmergencyContact> {
         override fun toEntity(request: EmergencyContactDto): EmergencyContact {
-            val contact = EmergencyContact()
-            contact.phone = request.phone
-            contact.email = request.email
-            contact.homeAddress = request.homeAddress
-            contact.fullName = request.fullName
-            contact.workAddress = request.workAddress
-            contact.relationship = request.relationship
-            contact.occupation = request.occupation
-            contact.identificationStatus = request.identificationStatus
-            contact.commitmentStatus = request.commitmentStatus
-            return contact
+            return EmergencyContact(
+                id = request.id,
+                phone = request.phone,
+                email = request.email,
+                homeAddress = request.homeAddress,
+                fullName = request.fullName,
+                workAddress = request.workAddress,
+                relationship = request.relationship,
+                occupation = request.occupation,
+                identificationStatus = request.identificationStatus,
+                commitmentStatus = request.commitmentStatus,
+            )
         }
 
         override fun toRequest(entity: EmergencyContact): EmergencyContactDto {

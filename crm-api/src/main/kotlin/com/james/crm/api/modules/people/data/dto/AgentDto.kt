@@ -10,6 +10,7 @@ package com.james.crm.api.modules.people.data.dto
 import com.fasterxml.jackson.annotation.JsonInclude
 import com.james.crm.api.core.model.Mapper
 import com.james.crm.api.modules.people.domain.model.Agent
+import com.james.crm.api.modules.people.domain.model.UserTypeEnum
 
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -80,7 +81,7 @@ data class AgentDto(var id: String?) {
             agent.profile = ProfileDto.toEntity(request.profile)
             agent.contact = ContactDto.toEntity(request.contact)
             agent.emergencyContact = EmergencyContactDto.toEntity(request.emergencyContact)
-            agent.user = UserDto.toEntity(request.user)
+            agent.user = UserDto.toEntity(request.user).apply { userType = UserTypeEnum.AGENT }
             agent.location = request.location?.let { LocationDto.toEntity(it) }
             return agent
         }

@@ -3,11 +3,16 @@ package com.james.crm.api.modules.people.data.dto
 import com.fasterxml.jackson.annotation.JsonInclude
 import com.james.crm.api.core.model.Mapper
 import com.james.crm.api.modules.people.domain.model.submodel.Contact
+import jakarta.validation.constraints.NotBlank
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 open class ContactDto(var id: String?) {
+    @NotBlank(message = "phone is required")
     var phone: String = ""
+
+    @NotBlank(message = "email cannot be empty")
     var email: String = ""
+
     var secondaryPhone: String = ""
     var secondaryEmail: String = ""
     var address: String = ""
@@ -32,14 +37,15 @@ open class ContactDto(var id: String?) {
 
     companion object : Mapper<ContactDto, Contact> {
         override fun toEntity(request: ContactDto): Contact {
-            val contact = Contact()
-            contact.phone = request.phone
-            contact.email = request.email
-            contact.secondaryPhone = request.secondaryPhone
-            contact.secondaryEmail = request.secondaryEmail
-            contact.address = request.address
-
-            return contact
+            println(request)
+            return Contact(
+                id = request.id,
+                phone = request.phone,
+                email = request.email,
+                secondaryPhone = request.secondaryPhone,
+                secondaryEmail = request.secondaryEmail,
+                address = request.address,
+            )
         }
 
         override fun toRequest(entity: Contact): ContactDto {
@@ -52,6 +58,15 @@ open class ContactDto(var id: String?) {
                 address = entity.address
             )
         }
+    }
+
+    override fun toString(): String {
+        return "id: ${this.id} \n" +
+                "phone: ${this.phone} \n" +
+                "email: ${this.email} \n" +
+                "secondaryPhone: ${this.secondaryPhone} \n" +
+                "secondaryEmail: ${this.secondaryEmail} \n" +
+                "address: ${this.address}  "
     }
 
 }

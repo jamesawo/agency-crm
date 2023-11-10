@@ -5,17 +5,21 @@ import com.fasterxml.jackson.annotation.JsonProperty
 import com.james.crm.api.core.model.Mapper
 import com.james.crm.api.modules.people.domain.model.User
 import com.james.crm.api.modules.people.domain.model.UserTypeEnum
+import jakarta.validation.constraints.NotEmpty
 import java.time.LocalDate
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 class UserDto(var id: String?) {
+    @NotEmpty
     var username: String = ""
+
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @NotEmpty
+    var password: String = ""
+    
     var isEnabled: Boolean = true
     var expiryDate: LocalDate = LocalDate.now().plusDays(365)
     var userType: UserTypeEnum = UserTypeEnum.AGENT
-
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    var password: String = ""
 
     constructor() : this(id = null)
     constructor(
@@ -46,14 +50,15 @@ class UserDto(var id: String?) {
         }
 
         override fun toEntity(request: UserDto): User {
-            val user = User()
-            user.userType = request.userType
-            user.expiryDate = request.expiryDate
-            user.isEnabled = request.isEnabled
-            user.username = request.username
             //todo:: implement security
-            user.password = request.password
-            return user
+            return User(
+                id = request.id,
+                userType = request.userType,
+                expiryDate = request.expiryDate,
+                isEnabled = request.isEnabled,
+                username = request.username,
+                password = request.password,
+            )
         }
     }
 
