@@ -20,15 +20,8 @@ class AgentManagerEndpoint(
     private val managerUsecase: IAgentManagerUsecase
 ) {
 
-    @GetMapping("/{id}/manager")
-    fun getManager(@PathVariable id: String, @PathVariable agentId: String): ResponseEntity<ManagerDto> =
-        managerUsecase.getManager(id)
+    @GetMapping
+    fun getManager(@PathVariable agentId: String): ResponseEntity<ManagerDto> =
+        managerUsecase.getManager(agentId)
 
-    @PutMapping("/{id}/manager")
-    fun updateManager(
-        @PathVariable id: String,
-        @RequestBody managerDto: ManagerDto,
-        @PathVariable agentId: String
-    ): ResponseEntity<ManagerDto> =
-        managerUsecase.updateManager(id, managerDto)
 }
