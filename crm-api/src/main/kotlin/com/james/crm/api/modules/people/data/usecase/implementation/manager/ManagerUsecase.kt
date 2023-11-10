@@ -12,6 +12,7 @@ import com.james.crm.api.modules.people.data.dto.ManagerDto
 import com.james.crm.api.modules.people.data.usecase.contract.manager.IManagerUsecase
 import com.james.crm.api.modules.people.domain.model.Manager
 import com.james.crm.api.modules.people.domain.repository.ManagerDataRepository
+import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import java.util.*
 
@@ -21,18 +22,29 @@ class ManagerUsecase(
 ) : IManagerUsecase {
 
     override fun create(manager: ManagerDto): ResponseEntity<ManagerDto> {
-        TODO("Not yet implemented")
+        val saved = repository.save(ManagerDto.toEntity(manager))
+        return ResponseEntity.ok(ManagerDto.toTrimmedRequest(saved))
     }
 
     override fun find(managerId: String): ResponseEntity<ManagerDto?> {
-        TODO("Not yet implemented")
-    }
-
-    override fun update(manager: ManagerDto): ResponseEntity<ManagerDto> {
-        TODO("Not yet implemented")
+        return this.findById(managerId).map { ResponseEntity.ok(ManagerDto.toRequest(it)) }
+            .orElse(ResponseEntity.notFound().build())
     }
 
     override fun findById(managerId: String): Optional<Manager> = repository.findById(managerId)
+    override fun remove(managerId: String): ResponseEntity<Boolean> {
+        return try {
+            return this.findById(managerId)
+                .map { manager ->
+                    repository.delete(manager)
+                    ResponseEntity(true, HttpStatus.OK)
+                }
+                .orElse(ResponseEntity(false, HttpStatus.NOT_FOUND))
+        } catch (e: Exception) {
+            //log error
+            ResponseEntity(false, HttpStatus.NOT_FOUND)
+        }
+    }
 
 
 }
