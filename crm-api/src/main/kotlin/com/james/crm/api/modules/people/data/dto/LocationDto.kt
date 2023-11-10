@@ -40,13 +40,13 @@ class LocationDto(var id: String? = null) {
         }
 
         override fun toEntity(request: LocationDto): Location {
-            val location = Location()
-            location.longitude = request.longitude
-            location.latitude = request.latitude
-            location.title = request.title
-            location.type = request.type
-            location.timezone = request.timezone
-            return location
+            return Location(
+                longitude = request.longitude,
+                latitude = request.latitude,
+                title = request.title,
+                type = request.type,
+                timezone = request.timezone,
+            ).apply { id = request.id }
         }
     }
 

@@ -19,17 +19,16 @@ class AgentLocationEndpoint(
     private val locationUsecase: IAgentLocationUsecase
 ) {
 
-    @GetMapping("/{id}/location")
-    fun getLocation(@PathVariable id: String, @PathVariable agentId: String): ResponseEntity<LocationDto> =
-        locationUsecase.getLocation(id)
+    @GetMapping
+    fun getLocation(@PathVariable agentId: String): ResponseEntity<LocationDto> =
+        locationUsecase.getLocation(agentId)
 
-    @PutMapping("/{id}/location")
+    @PutMapping
     fun updateLocation(
-        @PathVariable id: String,
         @RequestBody locationDto: LocationDto,
         @PathVariable agentId: String
     ): ResponseEntity<LocationDto> {
-        return locationUsecase.updateLocation(id, locationDto)
+        return locationUsecase.updateLocation(agentId, locationDto)
     }
 
 }
