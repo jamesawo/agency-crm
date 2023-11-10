@@ -5,7 +5,7 @@
  * @Project: agent-crm
  */
 
-package com.james.crm.api.modules.people.data.usecase.implementation
+package com.james.crm.api.modules.people.data.usecase.implementation.agent
 
 import com.james.crm.api.core.annotation.Usecase
 import com.james.crm.api.modules.people.data.dto.AgentDto
@@ -50,6 +50,6 @@ class AgentUsecaseImpl(
             ResponseEntity(false, HttpStatus.NOT_FOUND)
         }
     }
-    
+
 }
 
