@@ -14,7 +14,9 @@ import jakarta.persistence.*
 
 @Entity
 @Table(name = AGENT)
-class Agent : Base() {
+class Agent(
+    id: String? = null
+) : Base(id) {
 
     @OneToOne(cascade = [CascadeType.ALL])
     var profile: Profile = Profile()
