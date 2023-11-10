@@ -18,19 +18,15 @@ import java.time.LocalDateTime
 
 @EntityListeners(AuditingEntityListener::class)
 @MappedSuperclass
-abstract class Base {
-    /*
-    @Id
-    @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    open val id: Long? = null
-    */
-
+abstract class Base(
     @Id
     @GeneratedValue(generator = "UUID")
     @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
     @Column(name = "id")
     open var id: String? = null
+) {
+
+    constructor() : this(null)
 
     @Column(name = "last_modified_at")
     @LastModifiedDate
