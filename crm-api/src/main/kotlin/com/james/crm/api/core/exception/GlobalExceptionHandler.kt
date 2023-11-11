@@ -12,10 +12,13 @@ import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.http.converter.HttpMessageNotReadableException
 import org.springframework.validation.FieldError
+import org.springframework.web.HttpRequestMethodNotSupportedException
 import org.springframework.web.bind.MethodArgumentNotValidException
 import org.springframework.web.bind.annotation.ExceptionHandler
 import org.springframework.web.bind.annotation.ResponseStatus
 import org.springframework.web.bind.annotation.RestControllerAdvice
+import java.util.*
+
 
 @RestControllerAdvice
 class GlobalExceptionHandler {
@@ -47,5 +50,16 @@ class GlobalExceptionHandler {
         // Default error message if the cause is not a JsonMappingException
         val defaultErrorMessage = "Malformed JSON request or invalid request body format."
         return ResponseEntity.badRequest().body(defaultErrorMessage)
+    }
+
+
+    @ExceptionHandler(HttpRequestMethodNotSupportedException::class)
+    fun handleError(e: HttpRequestMethodNotSupportedException): ResponseEntity<Map<String, String>>? {
+        val response: MutableMap<String, String> = HashMap()
+        response["status"] = false.toString()
+        response["code"] = HttpStatus.METHOD_NOT_ALLOWED.reasonPhrase
+        response["message"] = "It seems you're using the wrong HTTP method"
+        response["errors"] = "${e.message}"
+        return ResponseEntity.status(HttpStatus.METHOD_NOT_ALLOWED).body(response)
     }
 }
