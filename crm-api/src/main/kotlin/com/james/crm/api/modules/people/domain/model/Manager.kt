@@ -15,7 +15,7 @@ import jakarta.persistence.*
 
 @Entity
 @Table(name = MANAGER)
-class Manager : Base() {
+class Manager(id: String?) : Base(id) {
 
     @OneToOne(cascade = [CascadeType.ALL])
     var profile: Profile = Profile()
@@ -28,4 +28,6 @@ class Manager : Base() {
 
     @OneToMany(mappedBy = "manager", fetch = FetchType.LAZY)
     var agents: List<Agent> = emptyList()
+
+    constructor() : this(id = null)
 }

@@ -8,8 +8,8 @@
 package com.james.crm.api.modules.people.endpoint.agent
 
 import com.james.crm.api.core.constant.Route
-import com.james.crm.api.modules.people.data.dto.TeamDto
 import com.james.crm.api.modules.people.data.usecase.contract.agent.IAgentTeamUsecase
+import com.james.crm.api.modules.team.data.dto.TeamDto
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 

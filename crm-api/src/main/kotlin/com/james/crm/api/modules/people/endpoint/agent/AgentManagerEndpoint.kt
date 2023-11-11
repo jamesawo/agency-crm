@@ -21,8 +21,9 @@ class AgentManagerEndpoint(
 ) {
 
     @GetMapping
-    fun getManager(@PathVariable agentId: String): ResponseEntity<ManagerDto> =
-        managerUsecase.getManager(agentId)
+    fun getManager(@PathVariable agentId: String): ResponseEntity<ManagerDto> {
+        return managerUsecase.getManager(agentId)
+    }
 
     @PatchMapping("{managerId}")
     fun assignManager(@PathVariable agentId: String, @PathVariable managerId: String): ResponseEntity<Boolean> {
