@@ -41,14 +41,14 @@ class LocationDto(var id: String? = null) {
 
         override fun toEntity(request: LocationDto): Location {
             return Location(
+                id = request.id,
                 longitude = request.longitude,
                 latitude = request.latitude,
                 title = request.title,
                 type = request.type,
                 timezone = request.timezone,
-            ).apply { id = request.id }
+            )
         }
     }
-
 
 }

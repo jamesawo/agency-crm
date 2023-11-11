@@ -15,9 +15,10 @@ import jakarta.persistence.Table
 @Entity
 @Table(name = LOCATION)
 class Location(
+    id: String? = null,
     var longitude: String = "",
     var latitude: String = "",
     var title: String = "",
     var type: String = "",
     var timezone: String = "",
-) : Base()
+) : Base(id)

@@ -19,13 +19,13 @@ class AgentLocationUsecase(
 ) : IAgentLocationUsecase {
     override fun getLocation(agentId: String): ResponseEntity<LocationDto> {
         return repository.findById(agentId)
-            .map { ResponseEntity.ok(it.location?.let { it1 -> LocationDto.toRequest(it1) }) }
+            .map { ResponseEntity.ok(it.location?.let { location -> LocationDto.toRequest(location) }) }
             .orElse(ResponseEntity.notFound().build())
     }
 
     override fun updateLocation(agentId: String, locationDto: LocationDto): ResponseEntity<LocationDto> {
         return repository.findById(agentId).map {
-            it.location = LocationDto.toEntity(locationDto)
+            it.location = LocationDto.toEntity(locationDto.apply { id = it.location?.id })
             ResponseEntity.ok(repository.save(it).location?.let { it1 -> LocationDto.toTrimmedRequest(it1) })
         }.orElse(ResponseEntity.notFound().build())
     }
