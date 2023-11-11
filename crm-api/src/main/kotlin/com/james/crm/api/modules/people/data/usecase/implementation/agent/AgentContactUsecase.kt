@@ -24,11 +24,9 @@ class AgentContactUsecase(
     }
 
     override fun updateContact(agentId: String, contactDto: ContactDto): ResponseEntity<ContactDto> {
-        val optional = repository.findById(agentId)
-        return optional.map {
-            it.contact = ContactDto.toEntity(contactDto)
-            val agent = repository.save(it)
-            ResponseEntity.ok(ContactDto.toTrimmedRequest(agent.contact))
+        return repository.findById(agentId).map {
+            it.contact = ContactDto.toEntity(contactDto.apply { id = it.contact.id })
+            ResponseEntity.ok(ContactDto.toTrimmedRequest(repository.save(it).contact))
         }.orElse(ResponseEntity.notFound().build())
     }
 

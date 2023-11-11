@@ -29,5 +29,4 @@ class ManagerContactUsecase(
             ResponseEntity.ok(ContactDto.toTrimmedRequest(repository.save(it).contact))
         }.orElse(ResponseEntity.notFound().build())
     }
-
 }

@@ -17,27 +17,24 @@ import org.springframework.http.ResponseEntity
 
 @Usecase
 class AgentManagerUsecase(
-    private val repository: AgentDataRepository,
+    private val agentRepo: AgentDataRepository,
     private val managerUsecase: IManagerUsecase
 ) : IAgentManagerUsecase {
-    
+
     override fun getManager(agentId: String): ResponseEntity<ManagerDto> {
-        return repository.findById(agentId).map {
-            ResponseEntity.ok().body(it.manager?.let { it1 -> ManagerDto.toRequest(it1) })
+        return agentRepo.findById(agentId).map {
+            ResponseEntity.ok().body(it.manager?.let { it1 -> ManagerDto.toTrimmedRequest(it1) })
         }.orElse(ResponseEntity.notFound().build())
     }
 
     override fun updateManager(agentId: String, managerId: String): ResponseEntity<Boolean> {
-        val optManager = managerUsecase.findById(managerId)
-        val optAgent = repository.findById(agentId)
-
-        if (optManager.isPresent && optAgent.isPresent) {
-            val agent = optAgent.get()
-            agent.manager = optManager.get()
-            repository.save(agent)
-            return ResponseEntity(true, HttpStatus.OK)
-        }
-        return ResponseEntity(false, HttpStatus.NOT_FOUND)
+        return managerUsecase.findById(managerId).flatMap { manager ->
+            agentRepo.findById(agentId).map { agent ->
+                agent.manager = manager
+                agentRepo.save(agent)
+                ResponseEntity(true, HttpStatus.OK)
+            }
+        }.orElse(ResponseEntity(false, HttpStatus.NOT_FOUND))
     }
 
 }

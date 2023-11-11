@@ -24,11 +24,9 @@ class AgentProfileUsecase(
     }
 
     override fun updateProfile(agentId: String, profileDto: ProfileDto): ResponseEntity<ProfileDto> {
-        val optionalAgent = repository.findById(agentId)
-        return optionalAgent.map {
-            it.profile = ProfileDto.toEntity(profileDto)
-            val agent = repository.save(it)
-            ResponseEntity.ok(ProfileDto.toTrimmedRequest(agent.profile))
+        return repository.findById(agentId).map {
+            it.profile = ProfileDto.toEntity(profileDto.apply { id = it.profile.id })
+            ResponseEntity.ok(ProfileDto.toTrimmedRequest(repository.save(it).profile))
         }.orElse(ResponseEntity.notFound().build())
     }
 }

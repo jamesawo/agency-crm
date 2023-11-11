@@ -27,11 +27,11 @@ class AgentEmergencyContactUsecase(
         agentId: String,
         contactDto: EmergencyContactDto
     ): ResponseEntity<EmergencyContactDto> {
-        val optional = repository.findById(agentId)
-        return optional.map {
-            it.emergencyContact = EmergencyContactDto.toEntity(contactDto)
-            val agent = repository.save(it)
-            ResponseEntity.ok(EmergencyContactDto.toRequest(it.emergencyContact))
+        return repository.findById(agentId).map {
+            it.emergencyContact = EmergencyContactDto.toEntity(contactDto.apply { id = it.emergencyContact.id })
+            ResponseEntity.ok(EmergencyContactDto.toRequest(repository.save(it).emergencyContact))
         }.orElse(ResponseEntity.notFound().build())
+
+
     }
 }
