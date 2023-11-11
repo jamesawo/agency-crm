@@ -25,7 +25,7 @@ data class AgentDto(var id: String?) {
     var task: TaskDto? = TaskDto()
     var team: TeamDto? = TeamDto()
     var location: LocationDto? = LocationDto()
-    var manager: ManagerDto? = ManagerDto()
+    var manager: ManagerDto? = ManagerDto(null)
 
     constructor() : this(id = null)
 

@@ -16,7 +16,7 @@ class UserDto(var id: String?) {
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @NotEmpty
     var password: String = ""
-    
+
     var isEnabled: Boolean = true
     var expiryDate: LocalDate = LocalDate.now().plusDays(365)
     var userType: UserTypeEnum = UserTypeEnum.AGENT
@@ -61,6 +61,5 @@ class UserDto(var id: String?) {
             )
         }
     }
-
 
 }

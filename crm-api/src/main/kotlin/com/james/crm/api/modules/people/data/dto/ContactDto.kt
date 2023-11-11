@@ -37,7 +37,6 @@ open class ContactDto(var id: String?) {
 
     companion object : Mapper<ContactDto, Contact> {
         override fun toEntity(request: ContactDto): Contact {
-            println(request)
             return Contact(
                 id = request.id,
                 phone = request.phone,

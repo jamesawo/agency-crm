@@ -46,6 +46,7 @@ data class ProfileDto(var id: String? = null) {
     companion object : Mapper<ProfileDto, Profile> {
         override fun toEntity(request: ProfileDto): Profile {
             return Profile(
+                id = request.id,
                 lastname = request.lastname,
                 firstName = request.firstName,
                 otherName = request.otherName,
