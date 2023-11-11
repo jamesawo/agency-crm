@@ -3,8 +3,8 @@ package com.james.crm.api.modules.people.data.dto
 import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.james.crm.api.core.model.Mapper
+import com.james.crm.api.modules.people.domain.enums.UserTypeEnum
 import com.james.crm.api.modules.people.domain.model.User
-import com.james.crm.api.modules.people.domain.model.UserTypeEnum
 import jakarta.validation.constraints.NotEmpty
 import java.time.LocalDate
 
