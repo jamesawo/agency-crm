@@ -7,7 +7,5 @@
 
 package com.james.crm.api.modules.people.domain.enums
 
-enum class UserTypeEnum {
-    AGENT,
-    ADMIN
-}
+
+enum class UserTypeEnum { USER, AGENT, MANAGER, ADMINISTRATOR }

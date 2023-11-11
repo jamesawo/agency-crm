@@ -10,6 +10,7 @@ package com.james.crm.api.modules.people.domain.model
 import com.james.crm.api.core.constant.DatabaseTable.Companion.AGENT
 import com.james.crm.api.core.model.Base
 import com.james.crm.api.modules.people.domain.model.submodel.*
+import com.james.crm.api.modules.team.domain.Team
 import jakarta.persistence.*
 
 @Entity
