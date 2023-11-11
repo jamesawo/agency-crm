@@ -7,8 +7,8 @@
 
 package com.james.crm.api.modules.people.domain.model
 
+import com.james.crm.api.core.common.Base
 import com.james.crm.api.core.constant.DatabaseTable.Companion.CLIENT
-import com.james.crm.api.core.model.Base
 import jakarta.persistence.Entity
 import jakarta.persistence.FetchType
 import jakarta.persistence.ManyToOne

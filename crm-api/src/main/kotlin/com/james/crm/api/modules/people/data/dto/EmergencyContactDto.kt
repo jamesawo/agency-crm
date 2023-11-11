@@ -1,7 +1,7 @@
 package com.james.crm.api.modules.people.data.dto
 
 import com.fasterxml.jackson.annotation.JsonInclude
-import com.james.crm.api.core.model.Mapper
+import com.james.crm.api.core.common.Mapper
 import com.james.crm.api.modules.people.domain.model.submodel.EmergencyContact
 
 @JsonInclude(JsonInclude.Include.NON_NULL)

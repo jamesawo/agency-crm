@@ -7,8 +7,8 @@
 
 package com.james.crm.api.modules.people.domain.model
 
+import com.james.crm.api.core.common.Base
 import com.james.crm.api.core.constant.DatabaseTable.Companion.USER
-import com.james.crm.api.core.model.Base
 import com.james.crm.api.modules.people.domain.enums.UserTypeEnum
 import jakarta.persistence.Entity
 import jakarta.persistence.PrePersist

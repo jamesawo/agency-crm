@@ -7,9 +7,9 @@
 
 package com.james.crm.api.modules.team.domain
 
+import com.james.crm.api.core.common.Base
 import com.james.crm.api.core.constant.DatabaseTable.Companion.TEAM
 import com.james.crm.api.core.constant.DatabaseTable.Companion.TEAM_TASKS
-import com.james.crm.api.core.model.Base
 import com.james.crm.api.modules.people.domain.model.Agent
 import com.james.crm.api.modules.people.domain.model.Manager
 import com.james.crm.api.modules.people.domain.model.submodel.Location
