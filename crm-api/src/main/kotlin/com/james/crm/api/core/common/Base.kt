@@ -5,7 +5,7 @@
  * @Project: agent-crm
  */
 
-package com.james.crm.api.core.model
+package com.james.crm.api.core.common
 
 import jakarta.persistence.*
 import org.hibernate.annotations.GenericGenerator

@@ -2,7 +2,7 @@ package com.james.crm.api.modules.people.data.dto
 
 import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.annotation.JsonProperty
-import com.james.crm.api.core.model.Mapper
+import com.james.crm.api.core.common.Mapper
 import com.james.crm.api.modules.people.domain.enums.UserTypeEnum
 import com.james.crm.api.modules.people.domain.model.User
 import jakarta.validation.constraints.NotEmpty

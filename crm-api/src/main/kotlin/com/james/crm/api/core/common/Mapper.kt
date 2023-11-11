@@ -5,7 +5,7 @@
  * @Project: agent-crm
  */
 
-package com.james.crm.api.core.model
+package com.james.crm.api.core.common
 
 interface Mapper<R, E> {
     fun toEntity(request: R): E
