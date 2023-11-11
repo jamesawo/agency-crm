@@ -5,13 +5,15 @@
  * @Project: agent-crm
  */
 
-package com.james.crm.api.modules.people.domain.model.submodel
+package com.james.crm.api.modules.team.domain
 
 import com.james.crm.api.core.constant.DatabaseTable.Companion.TEAM
 import com.james.crm.api.core.constant.DatabaseTable.Companion.TEAM_TASKS
 import com.james.crm.api.core.model.Base
 import com.james.crm.api.modules.people.domain.model.Agent
 import com.james.crm.api.modules.people.domain.model.Manager
+import com.james.crm.api.modules.people.domain.model.submodel.Location
+import com.james.crm.api.modules.people.domain.model.submodel.Task
 import jakarta.persistence.*
 
 @Entity
@@ -24,7 +26,7 @@ class Team(id: String? = null) : Base(id) {
     var manager: Manager? = Manager()
 
     @OneToMany(mappedBy = "team", cascade = [CascadeType.ALL], fetch = FetchType.LAZY)
-    var agents: List<Agent>? = emptyList()
+    var agents: MutableList<Agent>? = mutableListOf()
 
     @OneToOne(cascade = [CascadeType.ALL])
     var location: Location? = Location()
@@ -37,6 +39,16 @@ class Team(id: String? = null) : Base(id) {
         joinColumns = [JoinColumn(name = "team_id")],
         inverseJoinColumns = [JoinColumn(name = "task_id")]
     )
-    var tasks: List<Task>? = mutableListOf()
+    var tasks: MutableList<Task>? = mutableListOf()
+
+    constructor(
+        title: String,
+        manager: Manager,
+        budget: Double
+    ) : this() {
+        this.title = title
+        this.manager = manager
+        this.budget = budget
+    }
 
 }
