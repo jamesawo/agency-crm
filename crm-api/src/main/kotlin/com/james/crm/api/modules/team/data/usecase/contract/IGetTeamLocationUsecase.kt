@@ -8,6 +8,6 @@
 package com.james.crm.api.modules.team.data.usecase.contract
 
 import com.james.crm.api.core.model.Usecase
-import com.james.crm.api.modules.team.data.dto.TeamDto
+import com.james.crm.api.modules.people.data.dto.LocationDto
 
-interface ISetTeamTaskUseCase : Usecase<Pair<String, String>, TeamDto>
+interface IGetTeamLocationUsecase : Usecase<Nothing, LocationDto>

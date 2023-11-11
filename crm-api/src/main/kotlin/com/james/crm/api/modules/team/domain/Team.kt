@@ -23,7 +23,7 @@ class Team(id: String? = null) : Base(id) {
     var title: String = ""
 
     @ManyToOne(cascade = [CascadeType.ALL], fetch = FetchType.LAZY)
-    var manager: Manager? = Manager()
+    var manager: Manager? = null
 
     @OneToMany(mappedBy = "team", cascade = [CascadeType.ALL], fetch = FetchType.LAZY)
     var agents: MutableList<Agent>? = mutableListOf()
@@ -43,7 +43,7 @@ class Team(id: String? = null) : Base(id) {
 
     constructor(
         title: String,
-        manager: Manager,
+        manager: Manager?,
         budget: Double
     ) : this() {
         this.title = title

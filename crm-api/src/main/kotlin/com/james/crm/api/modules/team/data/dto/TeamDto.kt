@@ -1,7 +1,11 @@
-package com.james.crm.api.modules.people.data.dto
+package com.james.crm.api.modules.team.data.dto
 
 import com.fasterxml.jackson.annotation.JsonInclude
 import com.james.crm.api.core.model.Mapper
+import com.james.crm.api.modules.people.data.dto.AgentDto
+import com.james.crm.api.modules.people.data.dto.LocationDto
+import com.james.crm.api.modules.people.data.dto.ManagerDto
+import com.james.crm.api.modules.people.data.dto.TaskDto
 import com.james.crm.api.modules.team.domain.Team
 
 
@@ -33,6 +37,12 @@ data class TeamDto(var id: String?) {
         this.tasks = tasks
     }
 
+    constructor(id: String?, title: String, budget: Double) : this(id) {
+        this.id = id
+        this.title = title
+        this.budget = budget
+    }
+
     companion object : Mapper<TeamDto, Team> {
 
         override fun toRequest(entity: Team): TeamDto {
@@ -51,19 +61,20 @@ data class TeamDto(var id: String?) {
             val team = Team()
             team.title = request.title
             team.manager = request.manager?.let { ManagerDto.toEntity(it) }
-            team.agents = request.agents?.map { AgentDto.toEntity(it) }
+            team.agents = request.agents?.map { AgentDto.toEntity(it) }?.toMutableList()
             team.location = request.location?.let { LocationDto.toEntity(it) }
             team.budget = request.budget
-            team.tasks = request.tasks?.map { TaskDto.toEntity(it) }
+            team.tasks = request.tasks?.map { TaskDto.toEntity(it) }?.toMutableList()
             return team
         }
 
         override fun toTrimmedRequest(entity: Team): TeamDto {
-            return toRequest(entity).apply {
-                agents = null
-                tasks = null
-                manager = null
-            }
+            return TeamDto(
+                id = entity.id,
+                title = entity.title,
+                budget = entity.budget,
+            )
         }
     }
+
 }

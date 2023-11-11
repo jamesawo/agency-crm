@@ -7,9 +7,16 @@
 
 package com.james.crm.api.modules.team.data.dto
 
+import jakarta.validation.constraints.Min
+import jakarta.validation.constraints.NotBlank
 
-data class TeamDetail(
-    val name: String,
-    val managerId: String,
-    val budget: Double,
+
+data class TeamDetailDto(
+    @NotBlank
+    val title: String,
+
+    val managerId: String?,
+
+    @Min(0)
+    val budget: Double = 0.00,
 )
