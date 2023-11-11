@@ -5,7 +5,7 @@
  * @Project: agent-crm
  */
 
-package com.james.crm.api.modules.people.domain.repository
+package com.james.crm.api.modules.team.data.repository
 
 import com.james.crm.api.modules.team.domain.Team
 import org.springframework.data.jpa.repository.JpaRepository
