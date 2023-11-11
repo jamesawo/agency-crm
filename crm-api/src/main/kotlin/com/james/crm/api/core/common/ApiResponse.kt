@@ -7,20 +7,35 @@
 
 package com.james.crm.api.core.common
 
+import org.springframework.http.HttpStatus
 
-sealed class ApiResponse<T>(
+
+sealed class ApiResponse<out T>(
     open val message: String?,
     open val status: Int
 )
 
-data class SuccessApiResponse<T>(
+
+data class SuccessResponse<out T>(
     override val message: String?,
     override val status: Int,
     val data: T
-) : ApiResponse<T>(message, status)
+) : ApiResponse<T>(message, status) {
+    constructor(status: HttpStatus, data: T) : this(
+        status = status.value(),
+        message = status.reasonPhrase,
+        data = data
+    )
+}
 
-data class ErrorApiResponse(
+data class ErrorResponse(
     override val message: String?,
     override val status: Int,
     val errors: List<String>
-) : ApiResponse<Nothing>(message, status)
+) : ApiResponse<Nothing>(message, status) {
+    constructor(status: HttpStatus, errors: List<String>) : this(
+        status = status.value(),
+        message = status.reasonPhrase,
+        errors = errors
+    )
+}

@@ -9,7 +9,7 @@ package com.james.crm.api.core.exception
 
 import com.fasterxml.jackson.databind.JsonMappingException
 import com.james.crm.api.core.common.ApiResponse
-import com.james.crm.api.core.common.ErrorApiResponse
+import com.james.crm.api.core.common.ErrorResponse
 import org.springframework.http.HttpStatus.BAD_REQUEST
 import org.springframework.http.HttpStatus.METHOD_NOT_ALLOWED
 import org.springframework.http.ResponseEntity
@@ -37,7 +37,7 @@ class GlobalExceptionHandler {
                 resolve[error.objectName] = error.defaultMessage ?: "failed validation"
             }
         }
-        val response = ErrorApiResponse(
+        val response: ApiResponse<Nothing> = ErrorResponse(
             message = BAD_REQUEST.reasonPhrase,
             status = BAD_REQUEST.value(),
             errors = resolve.map { entry: Map.Entry<String, String> -> "${entry.key} -> ${entry.value}" }
@@ -47,13 +47,13 @@ class GlobalExceptionHandler {
 
     @ExceptionHandler(HttpMessageNotReadableException::class)
     @ResponseStatus(BAD_REQUEST)
-    fun handleHttpMessageNotReadableException(ex: HttpMessageNotReadableException): ResponseEntity<ErrorApiResponse> {
+    fun handleHttpMessageNotReadableException(ex: HttpMessageNotReadableException): ResponseEntity<ErrorResponse> {
         if (ex.cause is JsonMappingException) {
             val jsonMappingException = ex.cause as JsonMappingException
             val fieldName = jsonMappingException.path.joinToString(".") { it.fieldName }
             val errorMessage = "Invalid value or format for field: '$fieldName'."
 
-            val response = ErrorApiResponse(
+            val response = ErrorResponse(
                 message = BAD_REQUEST.reasonPhrase,
                 status = BAD_REQUEST.value(), errors = listOf(errorMessage)
             )
@@ -62,7 +62,7 @@ class GlobalExceptionHandler {
 
         // Default error message if the cause is not a JsonMappingException
         val defaultErrorMessage = "Malformed JSON request or invalid request body format."
-        val response = ErrorApiResponse(
+        val response = ErrorResponse(
             message = BAD_REQUEST.reasonPhrase,
             status = BAD_REQUEST.value(),
             errors = listOf(defaultErrorMessage)
@@ -71,8 +71,8 @@ class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(HttpRequestMethodNotSupportedException::class)
-    fun handleError(e: HttpRequestMethodNotSupportedException): ResponseEntity<ErrorApiResponse> {
-        val apiErrorResponse = ErrorApiResponse(
+    fun handleError(e: HttpRequestMethodNotSupportedException): ResponseEntity<ErrorResponse> {
+        val apiErrorResponse = ErrorResponse(
             message = METHOD_NOT_ALLOWED.reasonPhrase,
             status = METHOD_NOT_ALLOWED.value(),
             errors = listOf("It seems you're using the wrong HTTP method: ${e.message}")
