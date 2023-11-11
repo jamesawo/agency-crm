@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonInclude
 import com.james.crm.api.core.model.Mapper
 import com.james.crm.api.modules.people.domain.enums.UserTypeEnum
 import com.james.crm.api.modules.people.domain.model.Agent
+import com.james.crm.api.modules.team.data.dto.TeamDto
 
 
 @JsonInclude(JsonInclude.Include.NON_NULL)

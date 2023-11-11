@@ -57,7 +57,7 @@ class ManagerDto(
                 profile = ProfileDto.toTrimmedRequest(entity.profile),
                 contact = ContactDto.toRequest(entity.contact),
                 user = null,
-                agents = mutableListOf()
+                agents = null
             )
         }
     }

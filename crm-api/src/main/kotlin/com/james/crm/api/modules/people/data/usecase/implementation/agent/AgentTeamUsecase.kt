@@ -8,8 +8,8 @@
 package com.james.crm.api.modules.people.data.usecase.implementation.agent
 
 import com.james.crm.api.core.annotation.Usecase
-import com.james.crm.api.modules.people.data.dto.TeamDto
 import com.james.crm.api.modules.people.data.usecase.contract.agent.IAgentTeamUsecase
+import com.james.crm.api.modules.team.data.dto.TeamDto
 import org.springframework.http.ResponseEntity
 
 @Usecase
