@@ -17,12 +17,15 @@ import jakarta.persistence.Table
 @Entity
 @Table(name = PROFILE)
 class Profile(
+    id: String? = null,
     var lastname: String = "",
     var firstName: String = "",
     var otherName: String = "",
     var dateOfBirth: String = "",
     var department: String = "",
-) : Base() {
+) : Base(id) {
+
+    constructor() : this(id = null)
 
     @OneToOne(cascade = [CascadeType.ALL])
     var bankAccount: BankAccount? = null
