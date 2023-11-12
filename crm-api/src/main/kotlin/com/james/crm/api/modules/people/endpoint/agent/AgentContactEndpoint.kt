@@ -1,5 +1,6 @@
 package com.james.crm.api.modules.people.endpoint.agent
 
+import com.james.crm.api.core.common.ApiResponse
 import com.james.crm.api.core.constant.Route.Companion.API_VERSION
 import com.james.crm.api.modules.people.data.dto.ContactDto
 import com.james.crm.api.modules.people.data.usecase.contract.agent.IAgentContactUsecase
@@ -12,12 +13,17 @@ class AgentContactEndpoint(
     private val contactUsecase: IAgentContactUsecase
 ) {
     @GetMapping
-    fun getContact(@PathVariable agentId: String): ResponseEntity<ContactDto> = contactUsecase.getContact(agentId)
+    fun getContact(@PathVariable agentId: String):
+            ResponseEntity<ApiResponse<ContactDto>> {
+        return contactUsecase.getContact(agentId)
+    }
 
     @PutMapping()
     fun updateContact(
         @RequestBody contactDto: ContactDto,
         @PathVariable agentId: String
-    ): ResponseEntity<ContactDto> = contactUsecase.updateContact(agentId, contactDto)
+    ): ResponseEntity<ApiResponse<ContactDto>> {
+        return contactUsecase.updateContact(agentId, contactDto)
+    }
 
 }
