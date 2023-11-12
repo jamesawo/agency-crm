@@ -16,12 +16,16 @@ import org.springframework.http.ResponseEntity
 class Util {
     companion object {
 
-        fun <T> toSuccess(status: HttpStatus, data: T): ResponseEntity<ApiResponse<T>> {
+        fun <T> successResponse(status: HttpStatus, data: T): ResponseEntity<ApiResponse<T>> {
             return ResponseEntity.status(status).body(SuccessResponse(status, data) as ApiResponse<T>)
         }
 
-        fun <T> toError(status: HttpStatus, errors: List<String>): ResponseEntity<ApiResponse<T>> {
+        fun <T> errorResponse(status: HttpStatus, errors: List<String>): ResponseEntity<ApiResponse<T>> {
             return ResponseEntity.status(status).body(ErrorResponse(status, errors) as ApiResponse<T>)
+        }
+
+        fun notFoundMessageAsList(modelName: String): List<String> {
+            return normalizeErrorMessages(notFoundMessage(modelName))
         }
 
         private fun normalizeErrorMessages(messages: Any): List<String> {
@@ -32,7 +36,7 @@ class Util {
             }
         }
 
-        fun notFoundMessage(modelName: String): String {
+        private fun notFoundMessage(modelName: String): String {
             val messages = listOf(
                 "Oops! It seems like the ${modelName.lowercase()} has gone missing.",
                 "Uh-oh! We couldn't find the requested ${modelName.lowercase()}.",
@@ -41,10 +45,6 @@ class Util {
                 "The ${modelName.lowercase()} you're searching for seems to be playing hide and seek. Can you double-check the information?"
             )
             return messages.random()
-        }
-
-        fun notFoundMessageList(modelName: String): List<String> {
-            return normalizeErrorMessages(notFoundMessage(modelName))
         }
     }
 }
