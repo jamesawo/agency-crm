@@ -43,18 +43,17 @@ class ManagerDto(
         override fun toRequest(entity: Manager): ManagerDto {
             return ManagerDto(
                 id = entity.id,
-                profile = ProfileDto.toTrimmedRequest(entity.profile),
+                profile = ProfileDto.toTrimRequest(entity.profile),
                 contact = ContactDto.toRequest(entity.contact),
                 user = UserDto.toRequest(entity.user),
                 agents = entity.agents.map { AgentDto.toRequest(it) }.toMutableList()
             )
         }
 
-        override fun toTrimmedRequest(entity: Manager): ManagerDto {
-
+        override fun toTrimRequest(entity: Manager): ManagerDto {
             return ManagerDto(
                 id = entity.id,
-                profile = ProfileDto.toTrimmedRequest(entity.profile),
+                profile = ProfileDto.toTrimRequest(entity.profile),
                 contact = ContactDto.toRequest(entity.contact),
                 user = null,
                 agents = null

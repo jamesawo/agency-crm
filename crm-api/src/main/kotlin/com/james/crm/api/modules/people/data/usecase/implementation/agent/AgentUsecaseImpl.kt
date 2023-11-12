@@ -22,7 +22,7 @@ class AgentUsecaseImpl(
 ) : IAgentUsecase {
     override fun create(agent: AgentDto): ResponseEntity<AgentDto> {
         val saved = repository.save(AgentDto.toEntity(agent))
-        return ResponseEntity.ok().body(AgentDto.toTrimmedRequest(saved))
+        return ResponseEntity.ok().body(AgentDto.toTrimRequest(saved))
     }
 
     override fun find(agentId: String): ResponseEntity<AgentDto?> {

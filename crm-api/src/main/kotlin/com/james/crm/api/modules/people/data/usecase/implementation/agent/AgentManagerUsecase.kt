@@ -11,6 +11,9 @@ import com.james.crm.api.core.annotation.Usecase
 import com.james.crm.api.core.common.ApiResponse
 import com.james.crm.api.core.common.ErrorResponse
 import com.james.crm.api.core.common.SuccessResponse
+import com.james.crm.api.core.util.Util.Companion.notFoundMessageList
+import com.james.crm.api.core.util.Util.Companion.toError
+import com.james.crm.api.core.util.Util.Companion.toSuccess
 import com.james.crm.api.modules.people.data.dto.ManagerDto
 import com.james.crm.api.modules.people.data.usecase.contract.agent.IAgentManagerUsecase
 import com.james.crm.api.modules.people.data.usecase.contract.manager.IManagerUsecase
@@ -27,14 +30,9 @@ class AgentManagerUsecase(
 
     override fun getManager(agentId: String): ResponseEntity<ApiResponse<ManagerDto?>> {
         return agentRepo.findById(agentId).map {
-            val response: ApiResponse<ManagerDto?> = SuccessResponse(
-                OK, it.manager?.let { manager -> ManagerDto.toTrimmedRequest(manager) }
-            )
-            ResponseEntity.ok().body(response)
-        }.orElse(
-            ResponseEntity.status(NOT_FOUND)
-                .body(ErrorResponse(NOT_FOUND, listOf("Couldn't find that agent")))
-        )
+            val data = it.manager?.let { manager -> ManagerDto.toTrimRequest(manager) }
+            toSuccess(OK, data)
+        }.orElse(toError(NOT_FOUND, notFoundMessageList("agent")))
     }
 
     override fun updateManager(agentId: String, managerId: String): ResponseEntity<ApiResponse<Boolean>> {
@@ -45,7 +43,7 @@ class AgentManagerUsecase(
                 ResponseEntity.ok().body(SuccessResponse(OK, true) as ApiResponse<Boolean>)
             }
         }.orElse(
-            ResponseEntity.status(NOT_FOUND).body(ErrorResponse(NOT_FOUND, listOf("The manager doesn't exist")))
+            ResponseEntity.status(NOT_FOUND).body(ErrorResponse(NOT_FOUND, notFoundMessageList("manager")))
         )
     }
 

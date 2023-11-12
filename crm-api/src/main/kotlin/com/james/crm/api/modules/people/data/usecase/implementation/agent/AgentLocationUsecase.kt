@@ -26,7 +26,7 @@ class AgentLocationUsecase(
     override fun updateLocation(agentId: String, locationDto: LocationDto): ResponseEntity<LocationDto> {
         return repository.findById(agentId).map {
             it.location = LocationDto.toEntity(locationDto.apply { id = it.location?.id })
-            ResponseEntity.ok(repository.save(it).location?.let { it1 -> LocationDto.toTrimmedRequest(it1) })
+            ResponseEntity.ok(repository.save(it).location?.let { it1 -> LocationDto.toTrimRequest(it1) })
         }.orElse(ResponseEntity.notFound().build())
     }
 }

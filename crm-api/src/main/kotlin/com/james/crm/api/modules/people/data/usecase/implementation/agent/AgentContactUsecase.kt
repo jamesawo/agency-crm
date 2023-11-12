@@ -23,7 +23,7 @@ class AgentContactUsecase(
 ) : IAgentContactUsecase {
     override fun getContact(agentId: String): ResponseEntity<ApiResponse<ContactDto>> {
         return repository.findById(agentId).map {
-            val response: ApiResponse<ContactDto> = SuccessResponse(OK, ContactDto.toTrimmedRequest(it.contact))
+            val response: ApiResponse<ContactDto> = SuccessResponse(OK, ContactDto.toTrimRequest(it.contact))
             ResponseEntity.ok().body(response)
         }.orElse(
             ResponseEntity.status(NOT_FOUND).body(ErrorResponse(NOT_FOUND, listOf("Invalid agent id")))
@@ -35,7 +35,7 @@ class AgentContactUsecase(
             return repository.findById(agentId).map {
                 it.contact = ContactDto.toEntity(contactDto.apply { id = it.contact.id })
                 val response: ApiResponse<ContactDto> =
-                    SuccessResponse(OK, ContactDto.toTrimmedRequest(repository.save(it).contact))
+                    SuccessResponse(OK, ContactDto.toTrimRequest(repository.save(it).contact))
                 ResponseEntity.status(OK).body(response)
             }.orElse(ResponseEntity.status(NOT_FOUND).body(ErrorResponse(NOT_FOUND, listOf("Invalid agent id"))))
         } catch (ex: Exception) {

@@ -80,7 +80,7 @@ data class ProfileDto(var id: String? = null) {
             )
         }
 
-        override fun toTrimmedRequest(entity: Profile): ProfileDto {
+        override fun toTrimRequest(entity: Profile): ProfileDto {
             return toRequest(entity).apply { bankAccount = null; virtualBankAccount = null }
         }
     }

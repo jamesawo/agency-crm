@@ -19,14 +19,14 @@ class ManagerProfileUsecase(
 ) : IManagerProfileUsecase {
     override fun getProfile(managerId: String): ResponseEntity<ProfileDto> {
         return repository.findById(managerId).map {
-            ResponseEntity.ok(ProfileDto.toTrimmedRequest(it.profile))
+            ResponseEntity.ok(ProfileDto.toTrimRequest(it.profile))
         }.orElse(ResponseEntity.notFound().build())
     }
 
     override fun updateProfile(managerId: String, profileDto: ProfileDto): ResponseEntity<ProfileDto> {
         return repository.findById(managerId).map {
             it.profile = ProfileDto.toEntity(profileDto.apply { id = it.profile.id })
-            ResponseEntity.ok(ProfileDto.toTrimmedRequest(repository.save(it).profile))
+            ResponseEntity.ok(ProfileDto.toTrimRequest(repository.save(it).profile))
         }.orElse(ResponseEntity.notFound().build())
     }
 }

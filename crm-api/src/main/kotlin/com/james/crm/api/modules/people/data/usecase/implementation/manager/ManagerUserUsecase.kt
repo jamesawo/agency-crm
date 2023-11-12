@@ -20,14 +20,14 @@ class ManagerUserUsecase(
 
     override fun getUser(managerId: String): ResponseEntity<UserDto> {
         return managerRepo.findById(managerId).map {
-            ResponseEntity.ok().body(UserDto.toTrimmedRequest(it.user))
+            ResponseEntity.ok().body(UserDto.toTrimRequest(it.user))
         }.orElse(ResponseEntity.notFound().build())
     }
 
     override fun updateUser(managerId: String, userDto: UserDto): ResponseEntity<UserDto> {
         return managerRepo.findById(managerId).map {
             it.user = UserDto.toEntity(userDto.apply { id = it.user.id; password = it.user.password })
-            ResponseEntity.ok(UserDto.toTrimmedRequest(managerRepo.save(it).user))
+            ResponseEntity.ok(UserDto.toTrimRequest(managerRepo.save(it).user))
         }.orElse(ResponseEntity.notFound().build())
     }
 }

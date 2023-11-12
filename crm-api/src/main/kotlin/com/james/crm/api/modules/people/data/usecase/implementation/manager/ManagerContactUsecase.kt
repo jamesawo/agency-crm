@@ -19,14 +19,14 @@ class ManagerContactUsecase(
 ) : IManagerContactUsecase {
     override fun getContact(managerId: String): ResponseEntity<ContactDto> {
         return repository.findById(managerId).map {
-            ResponseEntity.ok().body(ContactDto.toTrimmedRequest(it.contact))
+            ResponseEntity.ok().body(ContactDto.toTrimRequest(it.contact))
         }.orElse(ResponseEntity.notFound().build())
     }
 
     override fun updateContact(managerId: String, contactDto: ContactDto): ResponseEntity<ContactDto> {
         return repository.findById(managerId).map {
             it.contact = ContactDto.toEntity(contactDto.apply { id = it.contact.id })
-            ResponseEntity.ok(ContactDto.toTrimmedRequest(repository.save(it).contact))
+            ResponseEntity.ok(ContactDto.toTrimRequest(repository.save(it).contact))
         }.orElse(ResponseEntity.notFound().build())
     }
 }

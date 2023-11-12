@@ -23,7 +23,7 @@ class ManagerUsecase(
 
     override fun create(manager: ManagerDto): ResponseEntity<ManagerDto> {
         val saved = repository.save(ManagerDto.toEntity(manager))
-        return ResponseEntity.ok(ManagerDto.toTrimmedRequest(saved))
+        return ResponseEntity.ok(ManagerDto.toTrimRequest(saved))
     }
 
     override fun find(managerId: String): ResponseEntity<ManagerDto?> {
