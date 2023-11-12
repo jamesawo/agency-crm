@@ -15,7 +15,6 @@ sealed class ApiResponse<out T>(
     open val status: Int
 )
 
-
 data class SuccessResponse<out T>(
     override val message: String?,
     override val status: Int,

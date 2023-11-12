@@ -13,8 +13,9 @@ class AgentContactEndpoint(
     private val contactUsecase: IAgentContactUsecase
 ) {
     @GetMapping
-    fun getContact(@PathVariable agentId: String):
-            ResponseEntity<ApiResponse<ContactDto>> {
+    fun getContact(
+        @PathVariable agentId: String
+    ): ResponseEntity<ApiResponse<ContactDto>> {
         return contactUsecase.getContact(agentId)
     }
 

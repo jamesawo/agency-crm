@@ -7,6 +7,7 @@
 
 package com.james.crm.api.modules.people.endpoint.agent
 
+import com.james.crm.api.core.common.ApiResponse
 import com.james.crm.api.core.constant.Route
 import com.james.crm.api.modules.people.data.dto.EmergencyContactDto
 import com.james.crm.api.modules.people.data.usecase.contract.agent.IAgentEmergencyContactUsecase
@@ -20,14 +21,14 @@ class AgentEmergencyContactEndpoint(
 ) {
 
     @GetMapping()
-    fun getEmergencyContact(@PathVariable agentId: String): ResponseEntity<EmergencyContactDto> {
+    fun getEmergencyContact(@PathVariable agentId: String): ResponseEntity<ApiResponse<EmergencyContactDto>> {
         return emergencyContactUsecase.getEmergencyContact(agentId)
     }
 
     @PutMapping()
     fun updateEmergencyContact(
         @RequestBody contactDto: EmergencyContactDto, @PathVariable agentId: String
-    ): ResponseEntity<EmergencyContactDto> {
+    ): ResponseEntity<ApiResponse<EmergencyContactDto>> {
         return emergencyContactUsecase.updateEmergencyContact(agentId, contactDto)
     }
 

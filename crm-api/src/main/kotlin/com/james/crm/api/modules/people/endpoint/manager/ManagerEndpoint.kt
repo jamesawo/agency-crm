@@ -7,6 +7,7 @@
 
 package com.james.crm.api.modules.people.endpoint.manager
 
+import com.james.crm.api.core.common.ApiResponse
 import com.james.crm.api.core.constant.Route.Companion.API_VERSION
 import com.james.crm.api.modules.people.data.dto.ManagerDto
 import com.james.crm.api.modules.people.data.usecase.contract.manager.IManagerUsecase
@@ -22,17 +23,19 @@ class ManagerEndpoint(
 ) {
 
     @PostMapping()
-    fun create(@Valid @RequestBody manager: ManagerDto): ResponseEntity<ManagerDto> {
+    fun create(
+        @Valid @RequestBody manager: ManagerDto
+    ): ResponseEntity<ApiResponse<ManagerDto>> {
         return usecase.create(manager)
     }
 
     @GetMapping("{managerId}")
-    fun get(@PathVariable managerId: String): ResponseEntity<ManagerDto?> {
+    fun get(@PathVariable managerId: String): ResponseEntity<ApiResponse<ManagerDto>> {
         return usecase.find(managerId)
     }
 
     @DeleteMapping("{managerId}")
-    fun delete(@PathVariable managerId: String): ResponseEntity<Boolean> {
+    fun delete(@PathVariable managerId: String): ResponseEntity<ApiResponse<Boolean>> {
         return usecase.remove(managerId)
     }
 }

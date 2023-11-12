@@ -87,7 +87,7 @@ data class AgentDto(var id: String?) {
             return agent
         }
 
-        override fun toTrimmedRequest(entity: Agent): AgentDto {
+        override fun toTrimRequest(entity: Agent): AgentDto {
             return toRequest(entity).apply {
                 manager = null
                 location = null

@@ -10,5 +10,5 @@ package com.james.crm.api.core.common
 import org.springframework.http.ResponseEntity
 
 interface Usecase<Input, Output> {
-    fun execute(input: Input): ResponseEntity<Output>
+    fun execute(input: Input): ResponseEntity<ApiResponse<Output>>
 }

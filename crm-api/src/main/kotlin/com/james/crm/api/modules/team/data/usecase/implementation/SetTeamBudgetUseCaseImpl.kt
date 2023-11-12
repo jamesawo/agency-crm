@@ -8,6 +8,7 @@
 package com.james.crm.api.modules.team.data.usecase.implementation
 
 import com.james.crm.api.core.annotation.Usecase
+import com.james.crm.api.core.common.ApiResponse
 import com.james.crm.api.modules.team.data.dto.TeamDto
 import com.james.crm.api.modules.team.data.repository.TeamDataRepository
 import com.james.crm.api.modules.team.data.usecase.contract.ISetTeamBudgetUseCase
@@ -28,7 +29,7 @@ class SetTeamBudgetUseCaseImpl(
         return ResponseEntity.ok(TeamDto.toRequest(updatedTeam))*//*
         TODO()
     }*/
-    override fun execute(input: Pair<String, Double>): ResponseEntity<TeamDto> {
+    override fun execute(input: Pair<String, Double>): ResponseEntity<ApiResponse<TeamDto>> {
         TODO("Not yet implemented")
     }
 }

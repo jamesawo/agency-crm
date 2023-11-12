@@ -8,11 +8,15 @@
 package com.james.crm.api.modules.people.data.usecase.implementation.manager
 
 import com.james.crm.api.core.annotation.Usecase
+import com.james.crm.api.core.common.ApiResponse
+import com.james.crm.api.core.util.Util.Companion.errorResponse
+import com.james.crm.api.core.util.Util.Companion.notFoundMessageAsList
+import com.james.crm.api.core.util.Util.Companion.successResponse
 import com.james.crm.api.modules.people.data.dto.ManagerDto
 import com.james.crm.api.modules.people.data.usecase.contract.manager.IManagerUsecase
 import com.james.crm.api.modules.people.domain.model.Manager
 import com.james.crm.api.modules.people.domain.repository.ManagerDataRepository
-import org.springframework.http.HttpStatus
+import org.springframework.http.HttpStatus.*
 import org.springframework.http.ResponseEntity
 import java.util.*
 
@@ -21,30 +25,34 @@ class ManagerUsecase(
     private val repository: ManagerDataRepository
 ) : IManagerUsecase {
 
-    override fun create(manager: ManagerDto): ResponseEntity<ManagerDto> {
-        val saved = repository.save(ManagerDto.toEntity(manager))
-        return ResponseEntity.ok(ManagerDto.toTrimmedRequest(saved))
-    }
-
-    override fun find(managerId: String): ResponseEntity<ManagerDto?> {
-        return this.findById(managerId).map { ResponseEntity.ok(ManagerDto.toRequest(it)) }
-            .orElse(ResponseEntity.notFound().build())
-    }
-
-    override fun findById(managerId: String): Optional<Manager> = repository.findById(managerId)
-    override fun remove(managerId: String): ResponseEntity<Boolean> {
+    override fun create(manager: ManagerDto): ResponseEntity<ApiResponse<ManagerDto>> {
         return try {
-            return this.findById(managerId)
-                .map { manager ->
-                    repository.delete(manager)
-                    ResponseEntity(true, HttpStatus.OK)
-                }
-                .orElse(ResponseEntity(false, HttpStatus.NOT_FOUND))
-        } catch (e: Exception) {
-            //log error
-            ResponseEntity(false, HttpStatus.NOT_FOUND)
+            val saved = repository.save(ManagerDto.toEntity(manager))
+            successResponse(CREATED, ManagerDto.toTrimRequest(saved))
+        } catch (ex: Exception) {
+            errorResponse(INTERNAL_SERVER_ERROR, notFoundMessageAsList(ex.localizedMessage))
         }
     }
 
+    override fun find(managerId: String): ResponseEntity<ApiResponse<ManagerDto>> {
+        return this.findById(managerId).map { manager ->
+            successResponse(OK, ManagerDto.toRequest(manager))
+        }.orElse(errorResponse(NOT_FOUND, notFoundMessageAsList("manager")))
+    }
+
+    override fun findById(managerId: String): Optional<Manager> {
+        return repository.findById(managerId)
+    }
+
+    override fun remove(managerId: String): ResponseEntity<ApiResponse<Boolean>> {
+        return try {
+            this.findById(managerId).map { manager ->
+                repository.delete(manager)
+                successResponse(OK, true)
+            }.orElse(errorResponse(NOT_FOUND, notFoundMessageAsList("manager")))
+        } catch (ex: Exception) {
+            errorResponse(INTERNAL_SERVER_ERROR, notFoundMessageAsList(ex.localizedMessage))
+        }
+    }
 
 }

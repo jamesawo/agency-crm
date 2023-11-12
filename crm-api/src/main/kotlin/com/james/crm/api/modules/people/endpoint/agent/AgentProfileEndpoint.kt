@@ -7,6 +7,7 @@
 
 package com.james.crm.api.modules.people.endpoint.agent
 
+import com.james.crm.api.core.common.ApiResponse
 import com.james.crm.api.core.constant.Route.Companion.API_VERSION
 import com.james.crm.api.modules.people.data.dto.ProfileDto
 import com.james.crm.api.modules.people.data.usecase.contract.agent.IAgentProfileUsecase
@@ -20,13 +21,17 @@ class AgentProfileEndpoint(
     private val profileUsecase: IAgentProfileUsecase
 ) {
     @GetMapping
-    fun getProfile(@PathVariable agentId: String): ResponseEntity<ProfileDto> = profileUsecase.getProfile(agentId)
+    fun getProfile(@PathVariable agentId: String): ResponseEntity<ApiResponse<ProfileDto>> {
+        return profileUsecase.getProfile(agentId)
+    }
 
     @PutMapping
     fun updateProfile(
         @RequestBody profileDto: ProfileDto,
         @PathVariable agentId: String
-    ): ResponseEntity<ProfileDto> = profileUsecase.updateProfile(agentId, profileDto)
+    ): ResponseEntity<ApiResponse<ProfileDto>> {
+        return profileUsecase.updateProfile(agentId, profileDto)
+    }
 
 
 }

@@ -8,6 +8,7 @@
 package com.james.crm.api.modules.team.data.usecase.implementation
 
 import com.james.crm.api.core.annotation.Usecase
+import com.james.crm.api.core.common.ApiResponse
 import com.james.crm.api.modules.people.data.dto.LocationDto
 import com.james.crm.api.modules.team.data.repository.TeamDataRepository
 import com.james.crm.api.modules.team.data.usecase.contract.IGetTeamLocationUsecase
@@ -26,7 +27,7 @@ class GetTeamLocationUseCaseImpl(
           return ResponseEntity.ok(teamLocations)*//*
         TODO()
     }*/
-    override fun execute(input: Nothing): ResponseEntity<LocationDto> {
+    override fun execute(input: Nothing): ResponseEntity<ApiResponse<LocationDto>> {
         TODO("Not yet implemented")
     }
 }

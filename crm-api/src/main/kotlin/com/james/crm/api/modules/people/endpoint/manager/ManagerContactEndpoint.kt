@@ -1,5 +1,6 @@
 package com.james.crm.api.modules.people.endpoint.manager
 
+import com.james.crm.api.core.common.ApiResponse
 import com.james.crm.api.core.constant.Route.Companion.API_VERSION
 import com.james.crm.api.modules.people.data.dto.ContactDto
 import com.james.crm.api.modules.people.data.usecase.contract.manager.IManagerContactUsecase
@@ -12,12 +13,18 @@ class ManagerContactEndpoint(
     private val contactUsecase: IManagerContactUsecase
 ) {
     @GetMapping
-    fun getContact(@PathVariable managerId: String): ResponseEntity<ContactDto> = contactUsecase.getContact(managerId)
+    fun getContact(
+        @PathVariable managerId: String
+    ): ResponseEntity<ApiResponse<ContactDto>> {
+        return contactUsecase.getContact(managerId)
+    }
 
     @PutMapping()
     fun updateContact(
         @RequestBody contactDto: ContactDto,
         @PathVariable managerId: String
-    ): ResponseEntity<ContactDto> = contactUsecase.updateContact(managerId, contactDto)
+    ): ResponseEntity<ApiResponse<ContactDto>> {
+        return contactUsecase.updateContact(managerId, contactDto)
+    }
 
 }

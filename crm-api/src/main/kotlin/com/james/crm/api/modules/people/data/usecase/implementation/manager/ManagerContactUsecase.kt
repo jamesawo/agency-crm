@@ -8,25 +8,31 @@
 package com.james.crm.api.modules.people.data.usecase.implementation.manager
 
 import com.james.crm.api.core.annotation.Usecase
+import com.james.crm.api.core.common.ApiResponse
+import com.james.crm.api.core.util.Util
+import com.james.crm.api.core.util.Util.Companion.errorResponse
+import com.james.crm.api.core.util.Util.Companion.successResponse
 import com.james.crm.api.modules.people.data.dto.ContactDto
 import com.james.crm.api.modules.people.data.usecase.contract.manager.IManagerContactUsecase
 import com.james.crm.api.modules.people.domain.repository.ManagerDataRepository
+import org.springframework.http.HttpStatus.NOT_FOUND
+import org.springframework.http.HttpStatus.OK
 import org.springframework.http.ResponseEntity
 
 @Usecase
 class ManagerContactUsecase(
     private val repository: ManagerDataRepository
 ) : IManagerContactUsecase {
-    override fun getContact(managerId: String): ResponseEntity<ContactDto> {
+    override fun getContact(managerId: String): ResponseEntity<ApiResponse<ContactDto>> {
         return repository.findById(managerId).map {
-            ResponseEntity.ok().body(ContactDto.toTrimmedRequest(it.contact))
-        }.orElse(ResponseEntity.notFound().build())
+            successResponse(OK, ContactDto.toTrimRequest(it.contact))
+        }.orElse(errorResponse(NOT_FOUND, Util.notFoundMessageAsList("manager")))
     }
 
-    override fun updateContact(managerId: String, contactDto: ContactDto): ResponseEntity<ContactDto> {
+    override fun updateContact(managerId: String, contactDto: ContactDto): ResponseEntity<ApiResponse<ContactDto>> {
         return repository.findById(managerId).map {
             it.contact = ContactDto.toEntity(contactDto.apply { id = it.contact.id })
-            ResponseEntity.ok(ContactDto.toTrimmedRequest(repository.save(it).contact))
-        }.orElse(ResponseEntity.notFound().build())
+            successResponse(OK, ContactDto.toTrimRequest(repository.save(it).contact))
+        }.orElse(errorResponse(NOT_FOUND, Util.notFoundMessageAsList("manager")))
     }
 }

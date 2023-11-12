@@ -7,6 +7,7 @@
 
 package com.james.crm.api.modules.people.endpoint.agent
 
+import com.james.crm.api.core.common.ApiResponse
 import com.james.crm.api.core.constant.Route
 import com.james.crm.api.modules.people.data.dto.LocationDto
 import com.james.crm.api.modules.people.data.usecase.contract.agent.IAgentLocationUsecase
@@ -20,14 +21,14 @@ class AgentLocationEndpoint(
 ) {
 
     @GetMapping
-    fun getLocation(@PathVariable agentId: String): ResponseEntity<LocationDto> =
+    fun getLocation(@PathVariable agentId: String): ResponseEntity<ApiResponse<LocationDto?>> =
         locationUsecase.getLocation(agentId)
 
     @PutMapping
     fun updateLocation(
         @RequestBody locationDto: LocationDto,
         @PathVariable agentId: String
-    ): ResponseEntity<LocationDto> {
+    ): ResponseEntity<ApiResponse<LocationDto?>> {
         return locationUsecase.updateLocation(agentId, locationDto)
     }
 

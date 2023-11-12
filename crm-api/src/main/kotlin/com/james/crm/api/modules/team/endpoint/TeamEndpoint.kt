@@ -7,16 +7,14 @@
 
 package com.james.crm.api.modules.team.endpoint
 
+import com.james.crm.api.core.common.ApiResponse
 import com.james.crm.api.core.constant.Route
 import com.james.crm.api.modules.team.data.dto.TeamDetailDto
 import com.james.crm.api.modules.team.data.dto.TeamDto
 import com.james.crm.api.modules.team.data.usecase.contract.*
 import jakarta.validation.Valid
 import org.springframework.http.ResponseEntity
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.RequestBody
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("${Route.API_VERSION}/teams/")
@@ -29,9 +27,17 @@ class TeamEndpoint(
 ) {
 
     @PostMapping
-    fun createTeam(@Valid @RequestBody input: TeamDetailDto): ResponseEntity<TeamDto> {
+    fun createTeam(@Valid @RequestBody input: TeamDetailDto): ResponseEntity<ApiResponse<TeamDto>> {
         return createTeamUsecase.execute(input)
     }
 
-   
+    @PostMapping("{teamId}/assign-agent/{agentId}/")
+    fun assignAgentToTeam(
+        @PathVariable agentId: String,
+        @PathVariable teamId: String
+    ): ResponseEntity<ApiResponse<Boolean>> {
+        return assignAgentUsecase.execute(Pair(agentId, teamId))
+    }
+
+
 }

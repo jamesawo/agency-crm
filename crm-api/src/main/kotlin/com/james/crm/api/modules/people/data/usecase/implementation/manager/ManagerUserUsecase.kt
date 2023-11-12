@@ -8,9 +8,14 @@
 package com.james.crm.api.modules.people.data.usecase.implementation.manager
 
 import com.james.crm.api.core.annotation.Usecase
+import com.james.crm.api.core.common.ApiResponse
+import com.james.crm.api.core.util.Util.Companion.errorResponse
+import com.james.crm.api.core.util.Util.Companion.notFoundMessageAsList
+import com.james.crm.api.core.util.Util.Companion.successResponse
 import com.james.crm.api.modules.people.data.dto.UserDto
 import com.james.crm.api.modules.people.data.usecase.contract.manager.IManagerUserUsecase
 import com.james.crm.api.modules.people.domain.repository.ManagerDataRepository
+import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 
 @Usecase
@@ -18,16 +23,16 @@ class ManagerUserUsecase(
     private val managerRepo: ManagerDataRepository
 ) : IManagerUserUsecase {
 
-    override fun getUser(managerId: String): ResponseEntity<UserDto> {
+    override fun getUser(managerId: String): ResponseEntity<ApiResponse<UserDto>> {
         return managerRepo.findById(managerId).map {
-            ResponseEntity.ok().body(UserDto.toTrimmedRequest(it.user))
-        }.orElse(ResponseEntity.notFound().build())
+            successResponse(HttpStatus.OK, UserDto.toTrimRequest(it.user))
+        }.orElse(errorResponse(HttpStatus.NOT_FOUND, notFoundMessageAsList("manager")))
     }
 
-    override fun updateUser(managerId: String, userDto: UserDto): ResponseEntity<UserDto> {
+    override fun updateUser(managerId: String, userDto: UserDto): ResponseEntity<ApiResponse<UserDto>> {
         return managerRepo.findById(managerId).map {
             it.user = UserDto.toEntity(userDto.apply { id = it.user.id; password = it.user.password })
-            ResponseEntity.ok(UserDto.toTrimmedRequest(managerRepo.save(it).user))
-        }.orElse(ResponseEntity.notFound().build())
+            successResponse(HttpStatus.OK, UserDto.toTrimRequest(managerRepo.save(it).user))
+        }.orElse(errorResponse(HttpStatus.NOT_FOUND, notFoundMessageAsList("manager")))
     }
 }
