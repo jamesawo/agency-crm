@@ -7,6 +7,7 @@
 
 package com.james.crm.api.modules.people.endpoint.agent
 
+import com.james.crm.api.core.common.ApiResponse
 import com.james.crm.api.core.constant.Route
 import com.james.crm.api.modules.people.data.usecase.contract.agent.IAgentTeamUsecase
 import com.james.crm.api.modules.team.data.dto.TeamDto
@@ -20,7 +21,9 @@ class AgentTeamEndpoint(
 ) {
 
     @GetMapping("/{id}/team")
-    fun getTeam(@PathVariable id: String, @PathVariable agentId: String): ResponseEntity<TeamDto> {
+    fun getTeam(
+        @PathVariable id: String, @PathVariable agentId: String
+    ): ResponseEntity<ApiResponse<TeamDto>> {
         return teamUsecase.getTeam(id)
     }
 
@@ -29,7 +32,7 @@ class AgentTeamEndpoint(
         @PathVariable id: String,
         @RequestBody teamDto: TeamDto,
         @PathVariable agentId: String
-    ): ResponseEntity<TeamDto> {
+    ): ResponseEntity<ApiResponse<TeamDto>> {
         return teamUsecase.updateTeam(id, teamDto)
     }
 

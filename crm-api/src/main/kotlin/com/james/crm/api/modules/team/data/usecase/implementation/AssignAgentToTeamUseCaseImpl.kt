@@ -9,9 +9,9 @@ package com.james.crm.api.modules.team.data.usecase.implementation
 
 import com.james.crm.api.core.annotation.Usecase
 import com.james.crm.api.core.common.ApiResponse
-import com.james.crm.api.core.util.Util.Companion.notFoundMessageList
-import com.james.crm.api.core.util.Util.Companion.toError
-import com.james.crm.api.core.util.Util.Companion.toSuccess
+import com.james.crm.api.core.util.Util.Companion.errorResponse
+import com.james.crm.api.core.util.Util.Companion.notFoundMessageAsList
+import com.james.crm.api.core.util.Util.Companion.successResponse
 import com.james.crm.api.modules.people.domain.repository.AgentDataRepository
 import com.james.crm.api.modules.team.data.repository.TeamDataRepository
 import com.james.crm.api.modules.team.data.usecase.contract.IAssignAgentToTeamUseCase
@@ -31,8 +31,8 @@ class AssignAgentToTeamUseCaseImpl(
             agentRepository.findById(input.first).map { agent ->
                 agent.team = team
                 agentRepository.save(agent)
-                toSuccess(OK, true)
+                successResponse(OK, true)
             }
-        }.orElse(toError(NOT_FOUND, notFoundMessageList("team")))
+        }.orElse(errorResponse(NOT_FOUND, notFoundMessageAsList("team")))
     }
 }

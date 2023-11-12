@@ -9,11 +9,9 @@ package com.james.crm.api.modules.people.data.usecase.implementation.agent
 
 import com.james.crm.api.core.annotation.Usecase
 import com.james.crm.api.core.common.ApiResponse
-import com.james.crm.api.core.common.ErrorResponse
-import com.james.crm.api.core.common.SuccessResponse
-import com.james.crm.api.core.util.Util.Companion.notFoundMessageList
-import com.james.crm.api.core.util.Util.Companion.toError
-import com.james.crm.api.core.util.Util.Companion.toSuccess
+import com.james.crm.api.core.util.Util.Companion.errorResponse
+import com.james.crm.api.core.util.Util.Companion.notFoundMessageAsList
+import com.james.crm.api.core.util.Util.Companion.successResponse
 import com.james.crm.api.modules.people.data.dto.ManagerDto
 import com.james.crm.api.modules.people.data.usecase.contract.agent.IAgentManagerUsecase
 import com.james.crm.api.modules.people.data.usecase.contract.manager.IManagerUsecase
@@ -31,8 +29,8 @@ class AgentManagerUsecase(
     override fun getManager(agentId: String): ResponseEntity<ApiResponse<ManagerDto?>> {
         return agentRepo.findById(agentId).map {
             val data = it.manager?.let { manager -> ManagerDto.toTrimRequest(manager) }
-            toSuccess(OK, data)
-        }.orElse(toError(NOT_FOUND, notFoundMessageList("agent")))
+            successResponse(OK, data)
+        }.orElse(errorResponse(NOT_FOUND, notFoundMessageAsList("agent")))
     }
 
     override fun updateManager(agentId: String, managerId: String): ResponseEntity<ApiResponse<Boolean>> {
@@ -40,11 +38,9 @@ class AgentManagerUsecase(
             agentRepo.findById(agentId).map { agent ->
                 agent.manager = manager
                 agentRepo.save(agent)
-                ResponseEntity.ok().body(SuccessResponse(OK, true) as ApiResponse<Boolean>)
+                successResponse(OK, true)
             }
-        }.orElse(
-            ResponseEntity.status(NOT_FOUND).body(ErrorResponse(NOT_FOUND, notFoundMessageList("manager")))
-        )
+        }.orElse(errorResponse(NOT_FOUND, notFoundMessageAsList("manager")))
     }
 
 }

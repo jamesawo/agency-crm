@@ -7,6 +7,7 @@
 
 package com.james.crm.api.modules.people.endpoint.agent
 
+import com.james.crm.api.core.common.ApiResponse
 import com.james.crm.api.core.constant.Route.Companion.API_VERSION
 import com.james.crm.api.modules.people.data.dto.AgentDto
 import com.james.crm.api.modules.people.data.usecase.contract.agent.IAgentUsecase
@@ -19,12 +20,12 @@ class AgentEndpoint(
     private val usecase: IAgentUsecase
 ) {
     @PostMapping()
-    fun create(@RequestBody agentDto: AgentDto): ResponseEntity<AgentDto> {
+    fun create(@RequestBody agentDto: AgentDto): ResponseEntity<ApiResponse<AgentDto>> {
         return usecase.create(agentDto)
     }
 
     @DeleteMapping("{id}")
-    fun delete(@PathVariable id: String): ResponseEntity<Boolean> {
+    fun delete(@PathVariable id: String): ResponseEntity<ApiResponse<Boolean>> {
         return usecase.remove(id)
     }
 }

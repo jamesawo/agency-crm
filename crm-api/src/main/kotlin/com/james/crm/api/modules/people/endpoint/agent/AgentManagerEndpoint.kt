@@ -22,7 +22,9 @@ class AgentManagerEndpoint(
 ) {
 
     @GetMapping
-    fun getManager(@PathVariable agentId: String): ResponseEntity<ApiResponse<ManagerDto?>> {
+    fun getManager(
+        @PathVariable agentId: String
+    ): ResponseEntity<ApiResponse<ManagerDto?>> {
         return managerUsecase.getManager(agentId)
     }
 
