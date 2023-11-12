@@ -68,7 +68,7 @@ data class TeamDto(var id: String?) {
             return team
         }
 
-        override fun toTrimmedRequest(entity: Team): TeamDto {
+        override fun toTrimRequest(entity: Team): TeamDto {
             return TeamDto(
                 id = entity.id,
                 title = entity.title,
