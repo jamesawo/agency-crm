@@ -30,4 +30,17 @@ class Manager(id: String?) : Base(id) {
     var agents: List<Agent> = emptyList()
 
     constructor() : this(id = null)
+
+    constructor(
+        id: String?,
+        profile: Profile,
+        contact: Contact,
+        user: User,
+        agents: List<Agent>
+    ) : this(id) {
+        this.profile = profile
+        this.contact = contact
+        this.user = user
+        this.agents = agents
+    }
 }

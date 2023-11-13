@@ -12,6 +12,7 @@ import com.james.crm.api.core.common.ApiResponse
 import com.james.crm.api.core.common.CatchableError
 import com.james.crm.api.core.util.Util.Companion.errorResponse
 import com.james.crm.api.core.util.Util.Companion.successResponse
+import com.james.crm.api.modules.people.domain.model.Manager
 import com.james.crm.api.modules.people.domain.repository.ManagerDataRepository
 import com.james.crm.api.modules.team.data.dto.TeamDetailDto
 import com.james.crm.api.modules.team.data.dto.TeamDto
@@ -31,11 +32,14 @@ class CreateTeamUseCaseImpl(
 
     override fun execute(input: TeamDetailDto): ResponseEntity<ApiResponse<TeamDto>> {
         return try {
-            val manager = input.managerId?.let { managerRepository.findById(it) }
-            val savedTeam = teamRepository.save(Team(input.title, manager?.orElse(null), input.budget))
+            val savedTeam = teamRepository.save(Team(input.title, lookupManager(input), input.budget))
             successResponse(CREATED, toTrimRequest(savedTeam))
         } catch (ex: Exception) {
             errorResponse(INTERNAL_SERVER_ERROR, CatchableError(INTERNAL_SERVER_ERROR, listOf(ex.localizedMessage), ex))
         }
+    }
+
+    private fun lookupManager(input: TeamDetailDto): Manager? {
+        return input.manager?.let { dto -> dto.id?.let { id -> managerRepository.findById(id) } }?.orElse(null)
     }
 }

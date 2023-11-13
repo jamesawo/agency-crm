@@ -14,6 +14,7 @@ import com.james.crm.api.modules.people.data.dto.LocationDto
 import com.james.crm.api.modules.team.data.dto.TeamDetailDto
 import com.james.crm.api.modules.team.data.dto.TeamDto
 import com.james.crm.api.modules.team.data.usecase.contract.*
+import com.james.crm.api.modules.team.data.usecase.implementation.GetTeamDetailUsecaseImpl
 import jakarta.validation.Valid
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
@@ -24,7 +25,8 @@ class TeamEndpoint(
     private var createTeamUsecase: ICreateTeamUsecase,
     private var getLocationUsecase: IGetAllTeamLocationUsecase,
     private var setTeamBudgetUsecase: ISetTeamBudgetUseCase,
-    private var setTeamTaskUseCase: ISetTeamTaskUseCase
+    private var setTeamTaskUseCase: ISetTeamTaskUseCase,
+    private var getTeamDetailUsecaseImpl: GetTeamDetailUsecaseImpl
 ) {
 
     @PostMapping
@@ -53,6 +55,13 @@ class TeamEndpoint(
         @PathVariable(required = true) taskId: String,
     ): ResponseEntity<ApiResponse<TeamDto>> {
         return setTeamTaskUseCase.execute(Pair(teamId, taskId))
+    }
+
+    @GetMapping("{teamId}")
+    fun getTeamDetail(
+        @PathVariable(required = true) teamId: String
+    ): ResponseEntity<ApiResponse<TeamDetailDto>> {
+        return getTeamDetailUsecaseImpl.execute(teamId)
     }
 
 }
