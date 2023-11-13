@@ -11,6 +11,7 @@ import com.james.crm.api.core.common.ApiResponse
 import com.james.crm.api.core.common.Empty
 import com.james.crm.api.core.common.Paginate
 import com.james.crm.api.core.constant.Route
+import com.james.crm.api.modules.people.data.dto.AgentDto
 import com.james.crm.api.modules.people.data.dto.LocationDto
 import com.james.crm.api.modules.team.data.dto.TeamDetailDto
 import com.james.crm.api.modules.team.data.dto.TeamDto
@@ -31,9 +32,10 @@ class TeamEndpoint(
     private var setTeamBudgetUsecase: ISetTeamBudgetUseCase,
     private var setTeamTaskUseCase: ISetTeamTaskUseCase,
     private var getTeamDetailUsecaseImpl: GetTeamDetailUsecaseImpl,
-    private var getTeamsUsecase: IGetTeamsUsecase,
+    private var getTeamsUsecase: IGetTeamUsecase,
     private var setTeamLocation: ISetTeamLocationUsecase,
-    private var setTeamManager: ISetTeamManagerUsecase
+    private var setTeamManager: ISetTeamManagerUsecase,
+    private var getTeamAgentUsecase: IGetTeamAgentUsecase
 ) {
 
     @PostMapping
@@ -94,6 +96,11 @@ class TeamEndpoint(
         @PathVariable(required = true) managerId: String,
     ): ResponseEntity<ApiResponse<TeamDetailDto>> {
         return setTeamManager.execute(Pair(teamId, managerId))
+    }
+
+    @GetMapping("{teamId}/agents")
+    fun getTeamAgents(@PathVariable(required = true) teamId: String): ResponseEntity<ApiResponse<List<AgentDto>>> {
+        return getTeamAgentUsecase.execute(teamId)
     }
 
 }

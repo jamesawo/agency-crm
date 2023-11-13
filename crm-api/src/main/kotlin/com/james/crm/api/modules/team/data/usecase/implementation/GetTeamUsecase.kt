@@ -15,7 +15,7 @@ import com.james.crm.api.core.util.Util.Companion.errorResponse
 import com.james.crm.api.core.util.Util.Companion.successResponse
 import com.james.crm.api.modules.team.data.dto.TeamDetailDto
 import com.james.crm.api.modules.team.data.repository.TeamDataRepository
-import com.james.crm.api.modules.team.data.usecase.contract.IGetTeamsUsecase
+import com.james.crm.api.modules.team.data.usecase.contract.IGetTeamUsecase
 import org.springframework.data.domain.PageImpl
 import org.springframework.data.domain.Pageable
 import org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR
@@ -23,9 +23,9 @@ import org.springframework.http.HttpStatus.OK
 import org.springframework.http.ResponseEntity
 
 @Usecase
-class GetTeamsUsecase(
+class GetTeamUsecase(
     private val teamRepo: TeamDataRepository
-) : IGetTeamsUsecase {
+) : IGetTeamUsecase {
 
     override fun execute(input: Pageable): ResponseEntity<ApiResponse<Paginate<TeamDetailDto>>> {
         return try {

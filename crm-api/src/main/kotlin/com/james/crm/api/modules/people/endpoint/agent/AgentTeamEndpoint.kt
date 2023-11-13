@@ -29,7 +29,8 @@ class AgentTeamEndpoint(
 
     @PutMapping("/{teamId}")
     fun updateTeam(
-        @PathVariable teamId: String, @PathVariable agentId: String
+        @PathVariable agentId: String,
+        @PathVariable teamId: String
     ): ResponseEntity<ApiResponse<Boolean>> {
         return teamUsecase.updateTeam(agentId, teamId)
     }

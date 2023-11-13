@@ -34,11 +34,11 @@ class AgentTeamUsecase(
 
     override fun updateTeam(agentId: String, teamId: String): ResponseEntity<ApiResponse<Boolean>> {
         return repository.findById(agentId).flatMap { agent ->
-            teamRepository.findById(agentId).map { team ->
+            teamRepository.findById(teamId).map { team ->
                 agent.team = team
                 repository.save(agent)
                 successResponse(OK, true)
             }
-        }.orElse(errorResponse(NOT_FOUND, notFoundMessageAsList("agent")))
+        }.orElse(errorResponse(NOT_FOUND, notFoundMessageAsList("agent/team")))
     }
 }
