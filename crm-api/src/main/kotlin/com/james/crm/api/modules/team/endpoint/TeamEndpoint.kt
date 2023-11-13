@@ -11,6 +11,7 @@ import com.james.crm.api.core.common.ApiResponse
 import com.james.crm.api.core.common.Empty
 import com.james.crm.api.core.common.Paginate
 import com.james.crm.api.core.constant.Route
+import com.james.crm.api.modules.people.data.dto.LocationDto
 import com.james.crm.api.modules.team.data.dto.TeamDetailDto
 import com.james.crm.api.modules.team.data.dto.TeamDto
 import com.james.crm.api.modules.team.data.dto.TeamLocationDto
@@ -30,8 +31,23 @@ class TeamEndpoint(
     private var setTeamBudgetUsecase: ISetTeamBudgetUseCase,
     private var setTeamTaskUseCase: ISetTeamTaskUseCase,
     private var getTeamDetailUsecaseImpl: GetTeamDetailUsecaseImpl,
-    private var getTeamsUsecase: IGetTeamsUsecase
+    private var getTeamsUsecase: IGetTeamsUsecase,
+    private var setTeamLocation: ISetTeamLocationUsecase
 ) {
+
+    @PostMapping
+    fun createTeam(
+        @Valid @RequestBody input: TeamDetailDto
+    ): ResponseEntity<ApiResponse<TeamDto>> {
+        return createTeamUsecase.execute(input)
+    }
+
+    @GetMapping("{teamId}")
+    fun getTeamDetail(
+        @PathVariable(required = true) teamId: String
+    ): ResponseEntity<ApiResponse<TeamDetailDto>> {
+        return getTeamDetailUsecaseImpl.execute(teamId)
+    }
 
     @GetMapping("/all")
     fun getAllTeams(
@@ -42,16 +58,17 @@ class TeamEndpoint(
         return getTeamsUsecase.execute(PageRequest.of(page - 1, size, Sort.by(sort, "title")))
     }
 
-    @PostMapping
-    fun createTeam(
-        @Valid @RequestBody input: TeamDetailDto
-    ): ResponseEntity<ApiResponse<TeamDto>> {
-        return createTeamUsecase.execute(input)
-    }
-
     @GetMapping("/all-locations")
     fun getTeamLocation(): ResponseEntity<ApiResponse<List<TeamLocationDto>>> {
         return getLocationUsecase.execute(Empty())
+    }
+
+    @PutMapping("{teamId}/set-location")
+    fun setTeamLocation(
+        @PathVariable(required = true) teamId: String,
+        @RequestBody location: LocationDto
+    ): ResponseEntity<ApiResponse<TeamLocationDto>> {
+        return setTeamLocation.execute(Pair(teamId, location))
     }
 
     @PutMapping("{teamId}/set-budget")
@@ -68,13 +85,6 @@ class TeamEndpoint(
         @PathVariable(required = true) taskId: String,
     ): ResponseEntity<ApiResponse<TeamDto>> {
         return setTeamTaskUseCase.execute(Pair(teamId, taskId))
-    }
-
-    @GetMapping("{teamId}")
-    fun getTeamDetail(
-        @PathVariable(required = true) teamId: String
-    ): ResponseEntity<ApiResponse<TeamDetailDto>> {
-        return getTeamDetailUsecaseImpl.execute(teamId)
     }
 
 }
