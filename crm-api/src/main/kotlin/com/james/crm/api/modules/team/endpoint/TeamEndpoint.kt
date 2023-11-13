@@ -8,7 +8,9 @@
 package com.james.crm.api.modules.team.endpoint
 
 import com.james.crm.api.core.common.ApiResponse
+import com.james.crm.api.core.common.Empty
 import com.james.crm.api.core.constant.Route
+import com.james.crm.api.modules.people.data.dto.LocationDto
 import com.james.crm.api.modules.team.data.dto.TeamDetailDto
 import com.james.crm.api.modules.team.data.dto.TeamDto
 import com.james.crm.api.modules.team.data.usecase.contract.*
@@ -19,25 +21,38 @@ import org.springframework.web.bind.annotation.*
 @RestController
 @RequestMapping("${Route.API_VERSION}/teams/")
 class TeamEndpoint(
-    private var assignAgentUsecase: IAssignAgentToTeamUseCase,
     private var createTeamUsecase: ICreateTeamUsecase,
-    private var getTeamsLocation: IGetTeamLocationUsecase,
-    private var setTeamBudget: ISetTeamBudgetUseCase,
+    private var getLocationUsecase: IGetAllTeamLocationUsecase,
+    private var setTeamBudgetUsecase: ISetTeamBudgetUseCase,
     private var setTeamTaskUseCase: ISetTeamTaskUseCase
 ) {
 
     @PostMapping
-    fun createTeam(@Valid @RequestBody input: TeamDetailDto): ResponseEntity<ApiResponse<TeamDto>> {
+    fun createTeam(
+        @Valid @RequestBody input: TeamDetailDto
+    ): ResponseEntity<ApiResponse<TeamDto>> {
         return createTeamUsecase.execute(input)
     }
 
-    @PostMapping("{teamId}/assign-agent/{agentId}/")
-    fun assignAgentToTeam(
-        @PathVariable agentId: String,
-        @PathVariable teamId: String
-    ): ResponseEntity<ApiResponse<Boolean>> {
-        return assignAgentUsecase.execute(Pair(agentId, teamId))
+    @GetMapping("/all-locations")
+    fun getTeamLocation(): ResponseEntity<ApiResponse<List<LocationDto>>> {
+        return getLocationUsecase.execute(Empty())
     }
 
+    @PutMapping("{teamId}/set-budget")
+    fun setTeamBudget(
+        @PathVariable(required = true) teamId: String,
+        @RequestParam(required = true) budget: Double
+    ): ResponseEntity<ApiResponse<TeamDto>> {
+        return setTeamBudgetUsecase.execute(Pair(teamId, budget))
+    }
+
+    @PutMapping("{teamId}/set-task/{taskId}")
+    fun setTeamTask(
+        @PathVariable(required = true) teamId: String,
+        @PathVariable(required = true) taskId: String,
+    ): ResponseEntity<ApiResponse<TeamDto>> {
+        return setTeamTaskUseCase.execute(Pair(teamId, taskId))
+    }
 
 }
