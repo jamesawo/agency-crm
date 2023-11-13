@@ -17,12 +17,12 @@ import jakarta.validation.constraints.NotBlank
 
 data class TeamDetailDto(
     @NotBlank
-    val title: String,
+    var title: String,
 
-    val manager: ManagerDto?,
+    var manager: ManagerDto?,
 
     @Min(0)
-    val budget: Double = 0.00,
+    var budget: Double = 0.00,
 ) {
 
     var location: LocationDto? = null
