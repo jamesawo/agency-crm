@@ -32,7 +32,8 @@ class TeamEndpoint(
     private var setTeamTaskUseCase: ISetTeamTaskUseCase,
     private var getTeamDetailUsecaseImpl: GetTeamDetailUsecaseImpl,
     private var getTeamsUsecase: IGetTeamsUsecase,
-    private var setTeamLocation: ISetTeamLocationUsecase
+    private var setTeamLocation: ISetTeamLocationUsecase,
+    private var setTeamManager: ISetTeamManagerUsecase
 ) {
 
     @PostMapping
@@ -85,6 +86,14 @@ class TeamEndpoint(
         @PathVariable(required = true) taskId: String,
     ): ResponseEntity<ApiResponse<TeamDto>> {
         return setTeamTaskUseCase.execute(Pair(teamId, taskId))
+    }
+
+    @PutMapping("{teamId}/set-manager/{managerId}")
+    fun setTeamManager(
+        @PathVariable(required = true) teamId: String,
+        @PathVariable(required = true) managerId: String,
+    ): ResponseEntity<ApiResponse<TeamDetailDto>> {
+        return setTeamManager.execute(Pair(teamId, managerId))
     }
 
 }
