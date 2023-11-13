@@ -16,6 +16,7 @@ import com.james.crm.api.modules.people.data.dto.UserDto
 import com.james.crm.api.modules.people.data.usecase.contract.manager.IManagerUserUsecase
 import com.james.crm.api.modules.people.domain.repository.ManagerDataRepository
 import org.springframework.http.HttpStatus
+import org.springframework.http.HttpStatus.NOT_FOUND
 import org.springframework.http.ResponseEntity
 
 @Usecase
@@ -26,13 +27,13 @@ class ManagerUserUsecase(
     override fun getUser(managerId: String): ResponseEntity<ApiResponse<UserDto>> {
         return managerRepo.findById(managerId).map {
             successResponse(HttpStatus.OK, UserDto.toTrimRequest(it.user))
-        }.orElse(errorResponse(HttpStatus.NOT_FOUND, notFoundMessageAsList("manager")))
+        }.orElse(errorResponse(NOT_FOUND, notFoundMessageAsList("manager")))
     }
 
     override fun updateUser(managerId: String, userDto: UserDto): ResponseEntity<ApiResponse<UserDto>> {
         return managerRepo.findById(managerId).map {
             it.user = UserDto.toEntity(userDto.apply { id = it.user.id; password = it.user.password })
             successResponse(HttpStatus.OK, UserDto.toTrimRequest(managerRepo.save(it).user))
-        }.orElse(errorResponse(HttpStatus.NOT_FOUND, notFoundMessageAsList("manager")))
+        }.orElse(errorResponse(NOT_FOUND, notFoundMessageAsList("manager")))
     }
 }

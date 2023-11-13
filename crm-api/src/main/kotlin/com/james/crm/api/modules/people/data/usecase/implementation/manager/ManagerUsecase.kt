@@ -9,6 +9,7 @@ package com.james.crm.api.modules.people.data.usecase.implementation.manager
 
 import com.james.crm.api.core.annotation.Usecase
 import com.james.crm.api.core.common.ApiResponse
+import com.james.crm.api.core.common.CatchableError
 import com.james.crm.api.core.util.Util.Companion.errorResponse
 import com.james.crm.api.core.util.Util.Companion.notFoundMessageAsList
 import com.james.crm.api.core.util.Util.Companion.successResponse
@@ -30,13 +31,13 @@ class ManagerUsecase(
             val saved = repository.save(ManagerDto.toEntity(manager))
             successResponse(CREATED, ManagerDto.toTrimRequest(saved))
         } catch (ex: Exception) {
-            errorResponse(INTERNAL_SERVER_ERROR, notFoundMessageAsList(ex.localizedMessage))
+            errorResponse(INTERNAL_SERVER_ERROR, CatchableError(INTERNAL_SERVER_ERROR, listOf(ex.localizedMessage), ex))
         }
     }
 
     override fun find(managerId: String): ResponseEntity<ApiResponse<ManagerDto>> {
         return this.findById(managerId).map { manager ->
-            successResponse(OK, ManagerDto.toRequest(manager))
+            successResponse(OK, ManagerDto.toTrimRequest(manager))
         }.orElse(errorResponse(NOT_FOUND, notFoundMessageAsList("manager")))
     }
 
@@ -51,7 +52,7 @@ class ManagerUsecase(
                 successResponse(OK, true)
             }.orElse(errorResponse(NOT_FOUND, notFoundMessageAsList("manager")))
         } catch (ex: Exception) {
-            errorResponse(INTERNAL_SERVER_ERROR, notFoundMessageAsList(ex.localizedMessage))
+            errorResponse(INTERNAL_SERVER_ERROR, CatchableError(INTERNAL_SERVER_ERROR, listOf(ex.localizedMessage), ex))
         }
     }
 
