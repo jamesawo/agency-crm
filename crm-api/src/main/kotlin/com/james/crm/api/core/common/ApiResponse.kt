@@ -61,7 +61,8 @@ data class CatchableError(
     }
 
     private fun log(logger: Logger = LoggerFactory.getLogger(this.javaClass)) {
-        // logger.error("CatchableErrorResponse: Status=$status, Message=$message, Errors=$errors", exception)
-        logger.error("notify logger service: $message ${exception?.localizedMessage}")
+        logger.error("notify logger service: Status=$status, Errors=$errors, $message ${exception?.localizedMessage} ")
+        // if (exception != null) throw exception
+
     }
 }
