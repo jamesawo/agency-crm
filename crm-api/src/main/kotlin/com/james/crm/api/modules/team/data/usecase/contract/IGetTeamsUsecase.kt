@@ -7,7 +7,10 @@
 
 package com.james.crm.api.modules.team.data.usecase.contract
 
+import com.james.crm.api.core.common.Paginate
 import com.james.crm.api.core.common.Usecase
 import com.james.crm.api.modules.team.data.dto.TeamDetailDto
+import org.springframework.data.domain.Pageable
 
-interface IGetTeamDetailUsecase : Usecase<String, TeamDetailDto>
+
+interface IGetTeamsUsecase : Usecase<Pageable, Paginate<TeamDetailDto>>

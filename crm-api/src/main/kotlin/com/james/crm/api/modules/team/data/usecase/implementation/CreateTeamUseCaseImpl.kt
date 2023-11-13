@@ -24,12 +24,13 @@ import org.springframework.http.HttpStatus.CREATED
 import org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR
 import org.springframework.http.ResponseEntity
 
+
 @Usecase
 class CreateTeamUseCaseImpl(
     private val teamRepository: TeamDataRepository,
     private val managerRepository: ManagerDataRepository
 ) : ICreateTeamUsecase {
-
+    
     override fun execute(input: TeamDetailDto): ResponseEntity<ApiResponse<TeamDto>> {
         return try {
             val savedTeam = teamRepository.save(Team(input.title, lookupManager(input), input.budget))
