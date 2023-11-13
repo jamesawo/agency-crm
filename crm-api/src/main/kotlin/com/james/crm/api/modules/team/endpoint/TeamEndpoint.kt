@@ -112,7 +112,7 @@ class TeamEndpoint(
         return getTeamAgentUsecase.execute(teamId)
     }
 
-    @GetMapping("{teamId}")
+    @GetMapping("{teamId}/performance")
     fun getTeamPerformance(
         @PathVariable(required = true) teamId: String
     ): ResponseEntity<ApiResponse<TeamPerformanceDto>> {
