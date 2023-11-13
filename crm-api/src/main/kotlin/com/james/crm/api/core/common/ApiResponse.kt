@@ -7,6 +7,9 @@
 
 package com.james.crm.api.core.common
 
+import com.fasterxml.jackson.annotation.JsonIgnore
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
 import org.springframework.http.HttpStatus
 
 
@@ -37,4 +40,28 @@ data class ErrorResponse(
         message = status.reasonPhrase,
         errors = errors
     )
+}
+
+data class CatchableError(
+    override val message: String?,
+    override val status: Int,
+    val errors: List<String>,
+    @JsonIgnore
+    val exception: Throwable? = null
+) : ApiResponse<Nothing>(message, status) {
+    constructor(status: HttpStatus, errors: List<String>, exception: Throwable? = null) : this(
+        status = status.value(),
+        message = status.reasonPhrase,
+        errors = errors,
+        exception = exception
+    )
+
+    init {
+        log()
+    }
+
+    private fun log(logger: Logger = LoggerFactory.getLogger(this.javaClass)) {
+        // logger.error("CatchableErrorResponse: Status=$status, Message=$message, Errors=$errors", exception)
+        logger.error("notify logger service: $message ${exception?.localizedMessage}")
+    }
 }

@@ -8,6 +8,7 @@
 package com.james.crm.api.core.util
 
 import com.james.crm.api.core.common.ApiResponse
+import com.james.crm.api.core.common.CatchableError
 import com.james.crm.api.core.common.ErrorResponse
 import com.james.crm.api.core.common.SuccessResponse
 import org.springframework.http.HttpStatus
@@ -24,11 +25,18 @@ class Util {
             return ResponseEntity.status(status).body(ErrorResponse(status, errors) as ApiResponse<T>)
         }
 
+        fun <T> errorResponse(
+            status: HttpStatus,
+            error: CatchableError
+        ): ResponseEntity<ApiResponse<T>> {
+            return ResponseEntity.status(status).body(error as ApiResponse<T>)
+        }
+
         fun notFoundMessageAsList(modelName: String): List<String> {
             return normalizeErrorMessages(notFoundMessage(modelName))
         }
 
-        private fun normalizeErrorMessages(messages: Any): List<String> {
+        fun normalizeErrorMessages(messages: Any): List<String> {
             return when (messages) {
                 is String -> listOf(messages)
                 is List<*> -> messages.filterIsInstance<String>()

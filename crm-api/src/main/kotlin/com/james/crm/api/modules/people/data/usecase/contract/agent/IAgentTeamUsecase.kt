@@ -12,6 +12,6 @@ import com.james.crm.api.modules.team.data.dto.TeamDto
 import org.springframework.http.ResponseEntity
 
 interface IAgentTeamUsecase {
-    fun getTeam(agentId: String): ResponseEntity<ApiResponse<TeamDto>>
-    fun updateTeam(agentId: String, teamDto: TeamDto): ResponseEntity<ApiResponse<TeamDto>>
+    fun getTeam(agentId: String): ResponseEntity<ApiResponse<TeamDto?>>
+    fun updateTeam(agentId: String, teamId: String): ResponseEntity<ApiResponse<Boolean>>
 }
