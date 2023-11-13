@@ -20,20 +20,18 @@ class AgentTeamEndpoint(
     private val teamUsecase: IAgentTeamUsecase
 ) {
 
-    @GetMapping("/{id}/team")
+    @GetMapping
     fun getTeam(
-        @PathVariable id: String, @PathVariable agentId: String
-    ): ResponseEntity<ApiResponse<TeamDto>> {
-        return teamUsecase.getTeam(id)
+        @PathVariable agentId: String
+    ): ResponseEntity<ApiResponse<TeamDto?>> {
+        return teamUsecase.getTeam(agentId)
     }
 
-    @PutMapping("/{id}/team")
+    @PutMapping("/{teamId}")
     fun updateTeam(
-        @PathVariable id: String,
-        @RequestBody teamDto: TeamDto,
-        @PathVariable agentId: String
-    ): ResponseEntity<ApiResponse<TeamDto>> {
-        return teamUsecase.updateTeam(id, teamDto)
+        @PathVariable teamId: String, @PathVariable agentId: String
+    ): ResponseEntity<ApiResponse<Boolean>> {
+        return teamUsecase.updateTeam(agentId, teamId)
     }
 
 }
