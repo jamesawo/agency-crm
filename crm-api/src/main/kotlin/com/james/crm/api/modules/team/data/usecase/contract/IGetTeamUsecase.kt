@@ -13,4 +13,4 @@ import com.james.crm.api.modules.team.data.dto.TeamDetailDto
 import org.springframework.data.domain.Pageable
 
 
-interface IGetTeamsUsecase : Usecase<Pageable, Paginate<TeamDetailDto>>
+interface IGetTeamUsecase : Usecase<Pageable, Paginate<TeamDetailDto>>
