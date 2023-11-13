@@ -32,12 +32,13 @@ class ManagerDto(
 
     companion object : Mapper<ManagerDto, Manager> {
         override fun toEntity(request: ManagerDto): Manager {
-            val manager = Manager()
-            manager.profile = ProfileDto.toEntity(request.profile)
-            manager.contact = ContactDto.toEntity(request.contact)
-            manager.user = UserDto.toEntity(request.user ?: UserDto()).apply { userType = UserTypeEnum.MANAGER }
-            manager.agents = request.agents?.map { Agent(id = it.id) } ?: emptyList()
-            return manager
+            return Manager(
+                id = request.id,
+                profile = ProfileDto.toEntity(request.profile),
+                contact = ContactDto.toEntity(request.contact),
+                user = UserDto.toEntity(request.user ?: UserDto()).apply { userType = UserTypeEnum.MANAGER },
+                agents = request.agents?.map { Agent(id = it.id) } ?: emptyList(),
+            )
         }
 
         override fun toRequest(entity: Manager): ManagerDto {
