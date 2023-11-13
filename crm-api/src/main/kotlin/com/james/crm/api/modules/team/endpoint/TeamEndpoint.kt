@@ -16,6 +16,7 @@ import com.james.crm.api.modules.people.data.dto.LocationDto
 import com.james.crm.api.modules.team.data.dto.TeamDetailDto
 import com.james.crm.api.modules.team.data.dto.TeamDto
 import com.james.crm.api.modules.team.data.dto.TeamLocationDto
+import com.james.crm.api.modules.team.data.dto.TeamPerformanceDto
 import com.james.crm.api.modules.team.data.usecase.contract.*
 import com.james.crm.api.modules.team.data.usecase.implementation.GetTeamDetailUsecaseImpl
 import jakarta.validation.Valid
@@ -35,7 +36,8 @@ class TeamEndpoint(
     private var getTeamsUsecase: IGetTeamUsecase,
     private var setTeamLocation: ISetTeamLocationUsecase,
     private var setTeamManager: ISetTeamManagerUsecase,
-    private var getTeamAgentUsecase: IGetTeamAgentUsecase
+    private var getTeamAgentUsecase: IGetTeamAgentUsecase,
+    private var getTeamPerformanceUsecase: IGetTeamPerformanceUsecase
 ) {
 
     @PostMapping
@@ -58,7 +60,12 @@ class TeamEndpoint(
         @RequestParam(defaultValue = "10") size: Int,
         @RequestParam(defaultValue = "ASC", required = false) sort: Sort.Direction
     ): ResponseEntity<ApiResponse<Paginate<TeamDetailDto>>> {
-        return getTeamsUsecase.execute(PageRequest.of(page - 1, size, Sort.by(sort, "title")))
+        return getTeamsUsecase.execute(
+            PageRequest.of(
+                page - 1, size,
+                Sort.by(sort, "title")
+            )
+        )
     }
 
     @GetMapping("/all-locations")
@@ -99,8 +106,17 @@ class TeamEndpoint(
     }
 
     @GetMapping("{teamId}/agents")
-    fun getTeamAgents(@PathVariable(required = true) teamId: String): ResponseEntity<ApiResponse<List<AgentDto>>> {
+    fun getTeamAgents(
+        @PathVariable(required = true) teamId: String
+    ): ResponseEntity<ApiResponse<List<AgentDto>>> {
         return getTeamAgentUsecase.execute(teamId)
+    }
+
+    @GetMapping("{teamId}")
+    fun getTeamPerformance(
+        @PathVariable(required = true) teamId: String
+    ): ResponseEntity<ApiResponse<TeamPerformanceDto>> {
+        return getTeamPerformanceUsecase.execute(teamId)
     }
 
 }
