@@ -7,4 +7,7 @@
 
 package com.james.crm.api.modules.pipeline.data.usecase.contract.stage
 
-interface IAddStagesUsecase
+import com.james.crm.api.core.common.Usecase
+import com.james.crm.api.modules.pipeline.data.dto.StageDto
+
+interface IAddStagesUsecase : Usecase<StageDto, StageDto>
