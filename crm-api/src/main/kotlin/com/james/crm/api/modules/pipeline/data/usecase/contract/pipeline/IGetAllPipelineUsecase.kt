@@ -7,4 +7,9 @@
 
 package com.james.crm.api.modules.pipeline.data.usecase.contract.pipeline
 
-interface IGetAllPipelineUsecase
+import com.james.crm.api.core.common.Paginate
+import com.james.crm.api.core.common.Usecase
+import com.james.crm.api.modules.pipeline.data.dto.PipelineDto
+import org.springframework.data.domain.Pageable
+
+interface IGetAllPipelineUsecase : Usecase<Pageable, Paginate<PipelineDto>>

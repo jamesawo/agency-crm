@@ -7,4 +7,7 @@
 
 package com.james.crm.api.modules.pipeline.data.usecase.contract.pipeline
 
-interface IUpdatePipelineUsecase
+import com.james.crm.api.core.common.Usecase
+import com.james.crm.api.modules.pipeline.data.dto.PipelineDto
+
+interface IUpdatePipelineUsecase : Usecase<Pair<String, PipelineDto>, Boolean>
