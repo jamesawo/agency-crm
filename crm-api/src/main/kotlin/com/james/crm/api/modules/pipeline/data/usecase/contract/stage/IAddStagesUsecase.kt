@@ -10,4 +10,4 @@ package com.james.crm.api.modules.pipeline.data.usecase.contract.stage
 import com.james.crm.api.core.common.Usecase
 import com.james.crm.api.modules.pipeline.data.dto.StageDto
 
-interface IAddStagesUsecase : Usecase<StageDto, StageDto>
+interface IAddStagesUsecase : Usecase<Pair<String, StageDto>, StageDto>

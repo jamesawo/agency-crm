@@ -21,12 +21,10 @@ data class PipelineDto(
     @NotNull
     var hierarchy: Int = 0
 ) {
-
-
+    
     var stages: List<StageDto> = emptyList()
 
     constructor() : this(id = null)
-
     constructor(
         id: String?,
         title: String,

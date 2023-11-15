@@ -27,7 +27,8 @@ class GetAllStagesUsecaseImpl(
 ) : IGetAllStagesUsecase {
     override fun execute(input: String): ResponseEntity<ApiResponse<List<StageDto>>> {
         return pipelineRepo.findById(input).map { pipeline ->
-            val stageDtoList = pipeline.stages.filterNotNull().map { StageDto.toRequest(it) }
+            val stageList = stageRepo.findAllByPipeline(pipeline)
+            val stageDtoList = stageList.map { StageDto.toRequest(it) }
             successResponse(OK, stageDtoList)
         }.orElse(errorResponse(NOT_FOUND, notFoundMessageAsList("pipeline")))
     }
