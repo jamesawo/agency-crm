@@ -56,6 +56,13 @@ data class CatchableError(
         exception = exception
     )
 
+    constructor(status: HttpStatus, exception: Throwable) : this(
+        status = status.value(),
+        message = status.reasonPhrase,
+        errors = listOf(exception.localizedMessage),
+        exception = exception
+    )
+
     init {
         log()
     }
