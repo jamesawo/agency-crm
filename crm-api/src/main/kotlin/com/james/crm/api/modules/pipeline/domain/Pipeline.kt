@@ -18,7 +18,6 @@ class Pipeline(id: String?) : Base(id) {
 
     @OneToMany(mappedBy = "pipeline", cascade = [CascadeType.ALL], fetch = FetchType.LAZY)
     var stages: List<Stage> = emptyList()
-
     var hierarchy: Int = 0
 
     constructor() : this(id = null)
