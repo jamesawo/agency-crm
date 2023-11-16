@@ -38,13 +38,14 @@ class Stage(id: String?) : Base(id) {
         id: String?,
         title: String,
         action: StageAction,
-        hierarchy: Int
+        hierarchy: Int,
+        status: StageStatus
     ) : this(id) {
         this.id = id
         this.title = title
         this.action = action
         this.reviewType = StageReviewType.AUTO
-        this.status = StageStatus.CLOSE
+        this.status = status
         this.hierarchy = hierarchy
     }
 

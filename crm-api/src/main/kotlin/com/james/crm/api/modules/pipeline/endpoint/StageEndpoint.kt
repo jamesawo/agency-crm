@@ -26,7 +26,7 @@ class StageEndpoint(
     private val getStageUsecase: IGetStageUsecase,
     private val updateStageUsecase: IUpdateStageUsecase
 ) {
-    @PutMapping("/{pipelineId}")
+    @PostMapping("/pipeline/{pipelineId}")
     fun addStageToPipeline(
         @PathVariable pipelineId: String,
         @RequestBody stageDto: StageDto
@@ -34,7 +34,7 @@ class StageEndpoint(
         return addStageUsecase.execute(Pair(pipelineId, stageDto))
     }
 
-    @GetMapping("/{pipelineId}")
+    @GetMapping("/pipeline/{pipelineId}")
     fun getAllStageInPipeline(
         @PathVariable pipelineId: String
     ): ResponseEntity<ApiResponse<List<StageDto>>> {
