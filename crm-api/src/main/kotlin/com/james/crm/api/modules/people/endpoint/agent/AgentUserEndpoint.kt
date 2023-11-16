@@ -19,21 +19,19 @@ import org.springframework.web.bind.annotation.*
 class AgentUserEndpoint(
     private val userUsecase: IAgentUserUsecase
 ) {
-    // Users
-    @GetMapping("/{id}/user")
+    @GetMapping
     fun getUser(
-        @PathVariable id: String, @PathVariable agentId: String
+        @PathVariable agentId: String
     ): ResponseEntity<ApiResponse<UserDto>> {
-        return userUsecase.getUser(id)
+        return userUsecase.getUser(agentId)
     }
 
-    @PutMapping("/{id}/user")
+    @PutMapping
     fun updateUser(
-        @PathVariable id: String,
         @RequestBody userDto: UserDto,
         @PathVariable agentId: String
     ): ResponseEntity<ApiResponse<UserDto>> {
-        return userUsecase.updateUser(id, userDto)
+        return userUsecase.updateUser(agentId, userDto)
     }
 
 }

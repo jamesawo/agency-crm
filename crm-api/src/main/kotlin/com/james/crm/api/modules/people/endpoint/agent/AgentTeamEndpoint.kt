@@ -27,7 +27,7 @@ class AgentTeamEndpoint(
         return teamUsecase.getTeam(agentId)
     }
 
-    @PutMapping("/{teamId}")
+    @PatchMapping("/{teamId}")
     fun updateTeam(
         @PathVariable agentId: String,
         @PathVariable teamId: String

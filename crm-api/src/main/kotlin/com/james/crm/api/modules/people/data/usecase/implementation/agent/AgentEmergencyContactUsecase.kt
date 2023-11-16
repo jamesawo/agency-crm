@@ -26,17 +26,18 @@ class AgentEmergencyContactUsecase(
     override fun getEmergencyContact(agentId: String): ResponseEntity<ApiResponse<EmergencyContactDto>> {
         return repository.findById(agentId).map {
             val dto = it.emergencyContact.let { it1 -> EmergencyContactDto.toRequest(it1) }
-            successResponse(OK, dto)
+            successResponse(OK, dto.apply { id = null })
         }.orElse(errorResponse(NOT_FOUND, notFoundMessageAsList("agent")))
     }
 
     override fun updateEmergencyContact(
         agentId: String,
         contactDto: EmergencyContactDto
-    ): ResponseEntity<ApiResponse<EmergencyContactDto>> {
+    ): ResponseEntity<ApiResponse<Boolean>> {
         return repository.findById(agentId).map {
             it.emergencyContact = EmergencyContactDto.toEntity(contactDto.apply { id = it.emergencyContact.id })
-            successResponse(OK, EmergencyContactDto.toRequest(repository.save(it).emergencyContact))
+            repository.save(it)
+            successResponse(OK, true)
         }.orElse(errorResponse(NOT_FOUND, notFoundMessageAsList("agent")))
     }
 }

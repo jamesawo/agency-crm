@@ -25,18 +25,19 @@ class AgentContactUsecase(
 ) : IAgentContactUsecase {
     override fun getContact(agentId: String): ResponseEntity<ApiResponse<ContactDto>> {
         return repository.findById(agentId).map {
-            successResponse(OK, ContactDto.toTrimRequest(it.contact))
+            successResponse(OK, ContactDto.toTrimRequest(it.contact).apply { id = null })
         }.orElse(errorResponse(NOT_FOUND, notFoundMessageAsList("agent")))
     }
 
-    override fun updateContact(agentId: String, contactDto: ContactDto): ResponseEntity<ApiResponse<ContactDto>> {
+    override fun updateContact(agentId: String, contactDto: ContactDto): ResponseEntity<ApiResponse<Boolean>> {
         return try {
             return repository.findById(agentId).map {
                 it.contact = ContactDto.toEntity(contactDto.apply { id = it.contact.id })
-                successResponse(OK, ContactDto.toTrimRequest(repository.save(it).contact))
+                repository.save(it)
+                successResponse(OK, true)
             }.orElse(errorResponse(NOT_FOUND, notFoundMessageAsList("agent")))
         } catch (ex: Exception) {
-            errorResponse(INTERNAL_SERVER_ERROR, CatchableError(INTERNAL_SERVER_ERROR, listOf(ex.localizedMessage), ex))
+            errorResponse(INTERNAL_SERVER_ERROR, CatchableError(INTERNAL_SERVER_ERROR, ex))
         }
     }
 

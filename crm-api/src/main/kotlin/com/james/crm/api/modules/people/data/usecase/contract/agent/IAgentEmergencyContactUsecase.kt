@@ -16,5 +16,5 @@ interface IAgentEmergencyContactUsecase {
     fun updateEmergencyContact(
         agentId: String,
         contactDto: EmergencyContactDto
-    ): ResponseEntity<ApiResponse<EmergencyContactDto>>
+    ): ResponseEntity<ApiResponse<Boolean>>
 }
