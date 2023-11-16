@@ -9,7 +9,11 @@ package com.james.crm.api.modules.people.domain.model
 
 import com.james.crm.api.core.common.Base
 import com.james.crm.api.core.constant.DatabaseTable.Companion.AGENT
-import com.james.crm.api.modules.people.domain.model.submodel.*
+import com.james.crm.api.modules.people.domain.model.submodel.Contact
+import com.james.crm.api.modules.people.domain.model.submodel.EmergencyContact
+import com.james.crm.api.modules.people.domain.model.submodel.Location
+import com.james.crm.api.modules.people.domain.model.submodel.Profile
+import com.james.crm.api.modules.task.domain.Task
 import com.james.crm.api.modules.team.domain.Team
 import jakarta.persistence.*
 
