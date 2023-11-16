@@ -31,7 +31,7 @@ class GetAllAllTeamLocationUseCaseImpl(
                 .map { TeamLocationDto.toTrimRequest(it) }
             successResponse(HttpStatus.OK, dtoList)
         } catch (ex: Exception) {
-            errorResponse(INTERNAL_SERVER_ERROR, CatchableError(INTERNAL_SERVER_ERROR, listOf(ex.localizedMessage), ex))
+            errorResponse(INTERNAL_SERVER_ERROR, CatchableError(INTERNAL_SERVER_ERROR, ex))
         }
     }
 }
