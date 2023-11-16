@@ -40,21 +40,7 @@ class TeamEndpoint(
     private var getTeamPerformanceUsecase: IGetTeamPerformanceUsecase
 ) {
 
-    @PostMapping
-    fun createTeam(
-        @Valid @RequestBody input: TeamDetailDto
-    ): ResponseEntity<ApiResponse<TeamDto>> {
-        return createTeamUsecase.execute(input)
-    }
-
-    @GetMapping("{teamId}")
-    fun getTeamDetail(
-        @PathVariable(required = true) teamId: String
-    ): ResponseEntity<ApiResponse<TeamDetailDto>> {
-        return getTeamDetailUsecaseImpl.execute(teamId)
-    }
-
-    @GetMapping("/all")
+    @GetMapping
     fun getAllTeams(
         @RequestParam(defaultValue = "1") page: Int,
         @RequestParam(defaultValue = "10") size: Int,
@@ -68,9 +54,28 @@ class TeamEndpoint(
         )
     }
 
+
+    /*TODO::
+        consider merging this into GET ALL api route above
+        ie. can use query params to filter/structure the response
+     */
     @GetMapping("/all-locations")
     fun getTeamLocation(): ResponseEntity<ApiResponse<List<TeamLocationDto>>> {
         return getLocationUsecase.execute(Empty())
+    }
+
+    @PostMapping
+    fun createTeam(
+        @Valid @RequestBody input: TeamDetailDto
+    ): ResponseEntity<ApiResponse<TeamDto>> {
+        return createTeamUsecase.execute(input)
+    }
+
+    @GetMapping("{teamId}")
+    fun getTeamDetail(
+        @PathVariable(required = true) teamId: String
+    ): ResponseEntity<ApiResponse<TeamDetailDto>> {
+        return getTeamDetailUsecaseImpl.execute(teamId)
     }
 
     @PutMapping("{teamId}/set-location")
