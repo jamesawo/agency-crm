@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.*
 
 
 @RestController
-@RequestMapping("$API_VERSION/managers/")
+@RequestMapping("$API_VERSION/managers")
 class ManagerEndpoint(
     private val usecase: IManagerUsecase
 ) {

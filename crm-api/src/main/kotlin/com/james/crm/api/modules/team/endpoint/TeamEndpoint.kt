@@ -16,6 +16,7 @@ import com.james.crm.api.modules.people.data.dto.LocationDto
 import com.james.crm.api.modules.team.data.dto.TeamDetailDto
 import com.james.crm.api.modules.team.data.dto.TeamDto
 import com.james.crm.api.modules.team.data.dto.TeamLocationDto
+import com.james.crm.api.modules.team.data.dto.TeamPerformanceDto
 import com.james.crm.api.modules.team.data.usecase.contract.*
 import com.james.crm.api.modules.team.data.usecase.implementation.GetTeamDetailUsecaseImpl
 import jakarta.validation.Valid
@@ -35,8 +36,33 @@ class TeamEndpoint(
     private var getTeamsUsecase: IGetTeamUsecase,
     private var setTeamLocation: ISetTeamLocationUsecase,
     private var setTeamManager: ISetTeamManagerUsecase,
-    private var getTeamAgentUsecase: IGetTeamAgentUsecase
+    private var getTeamAgentUsecase: IGetTeamAgentUsecase,
+    private var getTeamPerformanceUsecase: IGetTeamPerformanceUsecase
 ) {
+
+    @GetMapping
+    fun getAllTeams(
+        @RequestParam(defaultValue = "1") page: Int,
+        @RequestParam(defaultValue = "10") size: Int,
+        @RequestParam(defaultValue = "ASC", required = false) sort: Sort.Direction
+    ): ResponseEntity<ApiResponse<Paginate<TeamDetailDto>>> {
+        return getTeamsUsecase.execute(
+            PageRequest.of(
+                page - 1, size,
+                Sort.by(sort, "title")
+            )
+        )
+    }
+
+
+    /*TODO::
+        consider merging this into GET ALL api route above
+        ie. can use query params to filter/structure the response
+     */
+    @GetMapping("/all-locations")
+    fun getTeamLocation(): ResponseEntity<ApiResponse<List<TeamLocationDto>>> {
+        return getLocationUsecase.execute(Empty())
+    }
 
     @PostMapping
     fun createTeam(
@@ -50,20 +76,6 @@ class TeamEndpoint(
         @PathVariable(required = true) teamId: String
     ): ResponseEntity<ApiResponse<TeamDetailDto>> {
         return getTeamDetailUsecaseImpl.execute(teamId)
-    }
-
-    @GetMapping("/all")
-    fun getAllTeams(
-        @RequestParam(defaultValue = "1") page: Int,
-        @RequestParam(defaultValue = "10") size: Int,
-        @RequestParam(defaultValue = "ASC", required = false) sort: Sort.Direction
-    ): ResponseEntity<ApiResponse<Paginate<TeamDetailDto>>> {
-        return getTeamsUsecase.execute(PageRequest.of(page - 1, size, Sort.by(sort, "title")))
-    }
-
-    @GetMapping("/all-locations")
-    fun getTeamLocation(): ResponseEntity<ApiResponse<List<TeamLocationDto>>> {
-        return getLocationUsecase.execute(Empty())
     }
 
     @PutMapping("{teamId}/set-location")
@@ -99,8 +111,17 @@ class TeamEndpoint(
     }
 
     @GetMapping("{teamId}/agents")
-    fun getTeamAgents(@PathVariable(required = true) teamId: String): ResponseEntity<ApiResponse<List<AgentDto>>> {
+    fun getTeamAgents(
+        @PathVariable(required = true) teamId: String
+    ): ResponseEntity<ApiResponse<List<AgentDto>>> {
         return getTeamAgentUsecase.execute(teamId)
+    }
+
+    @GetMapping("{teamId}/performance")
+    fun getTeamPerformance(
+        @PathVariable(required = true) teamId: String
+    ): ResponseEntity<ApiResponse<TeamPerformanceDto>> {
+        return getTeamPerformanceUsecase.execute(teamId)
     }
 
 }

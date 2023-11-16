@@ -1,0 +1,15 @@
+### GET MANAGER CONTACT
+GET {{base_url}}/managers/{{manager_id}}/contact
+Accept: application/json
+
+### UPDATE MANAGER CONTACT
+PUT {{base_url}}/managers/{{manager_id}}/contact
+Content-Type: application/json
+
+{
+  "phone": "+43-1920-19201",
+  "email": "MANAGER@EXAMPLE.COM",
+  "secondaryPhone": "+43-1920-19201",
+  "secondaryEmail": "MANAGER2@EXAMPLE.COM",
+  "address": "ST LUKE CITY, LONDON"
+}

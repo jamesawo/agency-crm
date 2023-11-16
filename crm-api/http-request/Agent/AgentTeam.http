@@ -1,0 +1,7 @@
+### GET AGENT TEAM
+GET {{base_url}}/agents/{{agent_id}}/team
+Accept: application/json
+
+### UPDATE AGENT TEAM
+PATCH {{base_url}}/agents/{{agent_id}}/team/{{team_id}}
+Accept: application/json

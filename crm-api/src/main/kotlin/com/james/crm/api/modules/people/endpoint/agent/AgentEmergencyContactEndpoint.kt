@@ -20,15 +20,15 @@ class AgentEmergencyContactEndpoint(
     private val emergencyContactUsecase: IAgentEmergencyContactUsecase
 ) {
 
-    @GetMapping()
+    @GetMapping
     fun getEmergencyContact(@PathVariable agentId: String): ResponseEntity<ApiResponse<EmergencyContactDto>> {
         return emergencyContactUsecase.getEmergencyContact(agentId)
     }
 
-    @PutMapping()
+    @PutMapping
     fun updateEmergencyContact(
         @RequestBody contactDto: EmergencyContactDto, @PathVariable agentId: String
-    ): ResponseEntity<ApiResponse<EmergencyContactDto>> {
+    ): ResponseEntity<ApiResponse<Boolean>> {
         return emergencyContactUsecase.updateEmergencyContact(agentId, contactDto)
     }
 

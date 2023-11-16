@@ -1,0 +1,22 @@
+### GET AGENT PROFILE
+GET {{base_url}}/agents/{{agent_id}}/profile
+Accept: application/json
+
+### UPDATE AGENT PROFILE
+PUT {{base_url}}/agents/{{agent_id}}/profile
+Accept: application/json
+Content-Type: application/json
+
+{
+  "lastname": "Smith",
+  "firstName": "Emma",
+  "otherName": "Grace",
+  "dateOfBirth": "1985-05-24",
+  "department": "Health Services",
+  "bankAccount": {
+    "accountName": "Emma G. Smith",
+    "accountNumber": "123456789",
+    "bankName": "City Bank"
+  },
+  "virtualBankAccount": {}
+}

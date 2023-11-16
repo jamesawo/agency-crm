@@ -1,0 +1,16 @@
+### GET AGENT LOCATION DETAILS
+GET {{base_url}}/agents/{{agent_id}}/location
+Accept: application/json
+
+### UPDATE AGENT CONTACT
+PUT {{base_url}}/agents/{{agent_id}}/location
+Accept: application/json
+Content-Type: application/json
+
+{
+  "longitude": "-117.1611",
+  "latitude": "32.7157",
+  "title": "San Diego",
+  "type": "City",
+  "timezone": "UTC-8"
+}

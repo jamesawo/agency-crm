@@ -1,0 +1,41 @@
+### CREATE MANAGER
+POST {{base_url}}/managers
+Accept: application/json
+Content-Type: application/json
+
+{
+  "id": "",
+  "contact": {
+    "phone": "+43-0390-39203",
+    "email": "MANAGER1@EXAMPLE.COM",
+    "secondaryPhone": "+43-0390-39203",
+    "secondaryEmail": "MANAGER10@EXAMPLE.COM",
+    "address": "MANAGER ADDRESS, LONDON"
+  },
+  "profile": {
+    "lastname": "MANAGER",
+    "firstName": "ONE",
+    "otherName": "DOE",
+    "dateOfBirth": "1992-10-12",
+    "department": "HEALTH",
+    "bankAccount": {
+      "accountName": "MANAGER ONE DOE",
+      "accountNumber": "03202390232",
+      "bankName": "BANK OF AUSTRIA"
+    },
+    "virtualBankAccount": {}
+  },
+  "user": {
+    "username": "manager1",
+    "password": "12345"
+  },
+  "agents": []
+}
+
+### GET MANAGER BY ID
+GET {{base_url}}/managers/{{manager_id}}
+Accept: application/json
+
+### DELETE MANAGER BY ID
+DELETE {{base_url}}/managers/{{manager_id}}
+Accept: application/json

@@ -1,0 +1,49 @@
+### CREATE AGENT
+POST {{base_url}}/agents
+Accept: application/json
+Content-Type: application/json
+
+{
+  "isActive": true,
+  "profile": {
+    "lastname": "AGENT",
+    "firstName": "ONE",
+    "otherName": "DOE",
+    "dateOfBirth": "1992-10-12",
+    "department": "HEALTH",
+    "bankAccount": {
+      "accountName": "AGENT ONE DOE",
+      "accountNumber": "03202390232",
+      "bankName": "BANK OF AUSTRIA"
+    },
+    "virtualBankAccount": {}
+  },
+  "contact": {
+    "phone": "+43-0390-39203",
+    "email": "AGENT1@EXAMPLE.COM",
+    "secondaryPhone": "+43-0390-39203",
+    "secondaryEmail": "AGENT10@EXAMPLE.COM",
+    "address": "AGENT ADDRESS, LONDON"
+  },
+  "emergencyContact": {
+    "phone": "+43-0390-39203",
+    "email": "AGENT1@EXAMPLE.COM",
+    "secondaryPhone": "+43-0390-39203",
+    "secondaryEmail": "AGENT10@EXAMPLE.COM",
+    "address": "AGENT ADDRESS, LONDON"
+  },
+  "user": {
+    "username": "manager1",
+    "password": "12345"
+  },
+  "clients": [],
+  "resources": [],
+  "task": null,
+  "team": null,
+  "location": null,
+  "manager": {}
+}
+
+### DELETE AGENT BY ID
+DELETE {{base_url}}/agents/{{agent_id}}
+Accept: application/json

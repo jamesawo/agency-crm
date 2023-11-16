@@ -56,6 +56,13 @@ data class CatchableError(
         exception = exception
     )
 
+    constructor(status: HttpStatus, exception: Throwable) : this(
+        status = status.value(),
+        message = status.reasonPhrase,
+        errors = listOf(exception.localizedMessage),
+        exception = exception
+    )
+
     init {
         log()
     }
@@ -63,6 +70,5 @@ data class CatchableError(
     private fun log(logger: Logger = LoggerFactory.getLogger(this.javaClass)) {
         logger.error("notify logger service: Status=$status, Errors=$errors, $message ${exception?.localizedMessage} ")
         // if (exception != null) throw exception
-
     }
 }

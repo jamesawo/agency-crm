@@ -23,6 +23,7 @@ class AgentTaskEndpoint(
     fun getTasks(
         @PathVariable id: String, @PathVariable agentId: String
     ): ResponseEntity<ApiResponse<List<TaskDto>>> {
+        // WIP
         return taskUsecase.getTasks(id)
     }
 
@@ -32,6 +33,7 @@ class AgentTaskEndpoint(
         @RequestBody taskDto: TaskDto,
         @PathVariable agentId: String
     ): ResponseEntity<ApiResponse<TaskDto>> {
+        // WIP
         return taskUsecase.assignTask(id, taskDto)
     }
 

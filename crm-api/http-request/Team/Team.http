@@ -1,0 +1,53 @@
+### GET ALL TEAMS
+GET {{base_url}}/teams/
+Accept: application/json
+
+### GET ALL TEAM (LOCATION)
+GET {{base_url}}/teams/all-location
+
+### CREATE TEAM (PARTIAL)
+POST {{base_url}}/teams/
+Content-Type: application/json
+
+{
+  "title": "TEAM ONE",
+  "budget": 20.0
+}
+
+### GET TEAM BY ID
+GET {{base_url}}/teams/{{team_id}}
+Content-Type: application/json
+
+### SET TEAM LOCATION
+PUT {{base_url}}/teams/{{team_id}}/set-location
+Accept: application/json
+Content-Type: application/json
+
+{
+  "longitude": "123.456",
+  "latitude": "78.901",
+  "title": "Sample Location",
+  "type": "City",
+  "timezone": "UTC+02:00"
+}
+
+
+### SET TEAM BUDGET
+PUT {{base_url}}/teams/{{team_id}}/set-budget?budget=1200.0
+Accept: application/json
+
+### SET TEAM TASK
+PUT {{base_url}}/teams/{{team_id}}/set-task/{{task_id}}
+Accept: application/json
+
+### SET TEAM MANAGER
+PUT {{base_url}}/teams/{{team_id}}/set-task/{{manager_id}}
+Accept: application/json
+
+### GET AGENTS IN TEAM
+GET {{base_url}}/teams/{{team_id}}/agents
+Accept: application/json
+
+### GET TEAM PERFORMANCE
+GET {{base_url}}/teams/{{team_id}}/performance
+Accept: application/json

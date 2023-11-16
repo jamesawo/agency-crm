@@ -13,5 +13,5 @@ import org.springframework.http.ResponseEntity
 
 interface IAgentContactUsecase {
     fun getContact(agentId: String): ResponseEntity<ApiResponse<ContactDto>>
-    fun updateContact(agentId: String, contactDto: ContactDto): ResponseEntity<ApiResponse<ContactDto>>
+    fun updateContact(agentId: String, contactDto: ContactDto): ResponseEntity<ApiResponse<Boolean>>
 }

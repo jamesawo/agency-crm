@@ -23,7 +23,7 @@ class AgentContactEndpoint(
     fun updateContact(
         @RequestBody contactDto: ContactDto,
         @PathVariable agentId: String
-    ): ResponseEntity<ApiResponse<ContactDto>> {
+    ): ResponseEntity<ApiResponse<Boolean>> {
         return contactUsecase.updateContact(agentId, contactDto)
     }
 

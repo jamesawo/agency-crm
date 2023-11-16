@@ -24,5 +24,9 @@ class DatabaseTable {
         const val TEAM: String = PREFIX + "teams"
         const val TEAM_TASKS: String = PREFIX + "team_tasks"
         const val BANK_ACCOUNT: String = PREFIX + "bank_accounts"
+        const val PIPELINE: String = PREFIX + "pipelines"
+        const val STAGE: String = PREFIX + "stages"
+
+
     }
 }

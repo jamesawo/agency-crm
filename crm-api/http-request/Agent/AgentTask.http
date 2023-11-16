@@ -1,0 +1,9 @@
+### GET AGENT TASK
+GET {{base_url}}/agents/{{agent_id}}/task
+Accept: application/json
+
+### UPDATE AGENT TASK
+PUT {{base_url}}/agents/{{agent_id}}/task
+Accept: application/json
+Content-Type: application/json
+
