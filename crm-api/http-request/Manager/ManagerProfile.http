@@ -1,0 +1,21 @@
+### GET MANAGER PROFILE
+GET {{base_url}}/managers/{{manager_id}}/profile
+Accept: application/json
+
+### UPDATE MANAGER PROFILE
+PUT {{base_url}}/managers/{{manager_id}}/profile
+Content-Type: application/json
+
+{
+  "lastname": "MANAGER",
+  "firstName": "ONE",
+  "otherName": "DOE",
+  "dateOfBirth": "1992-10-19",
+  "department": "BUSINESS",
+  "bankAccount": {
+    "accountName": "MANAGER ONE DOE",
+    "accountNumber": "03202390232",
+    "bankName": "BANK OF AUSTRIA"
+  },
+  "virtualBankAccount": {}
+}

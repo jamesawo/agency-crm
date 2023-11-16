@@ -1,0 +1,16 @@
+### GET AGENT EMERGENCY CONTACT DETAILS
+GET {{base_url}}/agents/{{agent_id}}/emergency-contact
+Accept: application/json
+
+### UPDATE AGENT EMERGENCY CONTACT
+PUT {{base_url}}/agents/{{agent_id}}/emergency-contact
+Accept: application/json
+Content-Type: application/json
+
+{
+  "phone": "+43-0390-39203",
+  "email": "agentone-emer@example.com",
+  "secondaryPhone": "+43-0390-39203",
+  "secondaryEmail": "",
+  "address": "Agent one updated emergency contact address"
+}

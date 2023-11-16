@@ -1,0 +1,13 @@
+### GET MANAGER USER
+GET {{base_url}}/managers/{{manager_id}}/user
+Accept: application/json
+
+### UPDATE MANAGER USER
+PUT {{base_url}}/managers/{{manager_id}}/user
+Content-Type: application/json
+
+{
+  "username": "manager2",
+  "password": "12345678",
+  "userType": "MANAGER"
+}

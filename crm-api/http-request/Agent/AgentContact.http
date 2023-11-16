@@ -1,0 +1,16 @@
+### GET AGENT CONTACT DETAILS
+GET {{base_url}}/agents/{{agent_id}}/contact
+Accept: application/json
+
+### UPDATE AGENT CONTACT
+PUT {{base_url}}/agents/{{agent_id}}/contact
+Accept: application/json
+Content-Type: application/json
+
+{
+  "phone": "+43-0390-39203",
+  "email": "agentone-updated@example.com",
+  "secondaryPhone": "+43-0390-39203",
+  "secondaryEmail": "",
+  "address": "Agent one updated address"
+}

@@ -1,0 +1,7 @@
+### GET AGENT MANAGER DETAILS
+GET {{base_url}}/agents/{{agent_id}}/manager
+Accept: application/json
+
+### UPDATE AGENT MANAGER
+PATCH {{base_url}}/agents/{{agent_id}}/manager/{{manager_id}}
+Accept: application/json
