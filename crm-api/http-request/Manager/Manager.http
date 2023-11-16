@@ -1,4 +1,4 @@
-### CREATE MANAGER
+### create manager
 POST {{base_url}}/managers
 Accept: application/json
 Content-Type: application/json
@@ -32,10 +32,10 @@ Content-Type: application/json
   "agents": []
 }
 
-### GET MANAGER BY ID
+### get manager by id
 GET {{base_url}}/managers/{{manager_id}}
 Accept: application/json
 
-### DELETE MANAGER BY ID
+### delete manager by id
 DELETE {{base_url}}/managers/{{manager_id}}
 Accept: application/json

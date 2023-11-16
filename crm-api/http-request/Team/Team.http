@@ -1,11 +1,11 @@
-### GET ALL TEAMS
+### get all teams
 GET {{base_url}}/teams/
 Accept: application/json
 
-### GET ALL TEAM (LOCATION)
+### get all team (location)
 GET {{base_url}}/teams/all-location
 
-### CREATE TEAM (PARTIAL)
+### create team (partial)
 POST {{base_url}}/teams/
 Content-Type: application/json
 
@@ -14,11 +14,11 @@ Content-Type: application/json
   "budget": 20.0
 }
 
-### GET TEAM BY ID
+### get team by id
 GET {{base_url}}/teams/{{team_id}}
 Content-Type: application/json
 
-### SET TEAM LOCATION
+### set team location
 PUT {{base_url}}/teams/{{team_id}}/set-location
 Accept: application/json
 Content-Type: application/json
@@ -32,22 +32,22 @@ Content-Type: application/json
 }
 
 
-### SET TEAM BUDGET
+### set team budget
 PUT {{base_url}}/teams/{{team_id}}/set-budget?budget=1200.0
 Accept: application/json
 
-### SET TEAM TASK
+### set team task
 PUT {{base_url}}/teams/{{team_id}}/set-task/{{task_id}}
 Accept: application/json
 
-### SET TEAM MANAGER
+### set team manager
 PUT {{base_url}}/teams/{{team_id}}/set-task/{{manager_id}}
 Accept: application/json
 
-### GET AGENTS IN TEAM
+### get agents in team
 GET {{base_url}}/teams/{{team_id}}/agents
 Accept: application/json
 
-### GET TEAM PERFORMANCE
+### get team performance
 GET {{base_url}}/teams/{{team_id}}/performance
 Accept: application/json
