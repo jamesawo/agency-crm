@@ -13,7 +13,7 @@ import com.james.crm.api.core.constant.DatabaseTable.Companion.TEAM_TASKS
 import com.james.crm.api.modules.people.domain.model.Agent
 import com.james.crm.api.modules.people.domain.model.Manager
 import com.james.crm.api.modules.people.domain.model.submodel.Location
-import com.james.crm.api.modules.people.domain.model.submodel.Task
+import com.james.crm.api.modules.task.domain.Task
 import jakarta.persistence.*
 
 @Entity
