@@ -1,19 +1,51 @@
-package com.james.crm.api.modules.people.data.dto
+package com.james.crm.api.modules.task.data.dto
 
 import com.fasterxml.jackson.annotation.JsonInclude
 import com.james.crm.api.core.common.Mapper
-import com.james.crm.api.modules.people.domain.model.submodel.Task
+import com.james.crm.api.modules.pipeline.domain.Pipeline
+import com.james.crm.api.modules.task.domain.Task
+import com.james.crm.api.modules.task.domain.enums.CommissionType
+import com.james.crm.api.modules.task.domain.enums.TaskStatus
+import java.time.LocalDate
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-class TaskDto {
+class TaskDto(
+    var title: String = "",
+    var startDate: LocalDate? = null,
+    var endDate: LocalDate? = null,
+    var budget: Double = 0.00,
+    var commissionType: CommissionType? = null,
+    var commissionRate: Double = 0.00,
+    var status: TaskStatus? = null,
+    var pipelineId: String? = null
+) {
 
     companion object : Mapper<TaskDto, Task> {
         override fun toEntity(request: TaskDto): Task {
-            TODO("Not yet implemented")
+            return Task(
+                title = request.title,
+                startDate = request.startDate,
+                endDate = request.endDate,
+                budget = request.budget,
+                commissionType = request.commissionType,
+                commissionRate = request.commissionRate,
+                status = request.status,
+                pipeline = if (request.pipelineId != null) Pipeline(id = request.pipelineId) else null
+            )
         }
 
         override fun toRequest(entity: Task): TaskDto {
-            TODO("Not yet implemented")
+            return TaskDto(
+                title = entity.title,
+                startDate = entity.startDate,
+                endDate = entity.endDate,
+                budget = entity.budget,
+                commissionType = entity.commissionType,
+                commissionRate = entity.commissionRate,
+                status = entity.status,
+                pipelineId = entity.pipeline?.id
+            )
         }
     }
 }
+
