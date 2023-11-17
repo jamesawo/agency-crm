@@ -18,19 +18,14 @@ import java.time.LocalDate
 @Entity
 @Table(name = DatabaseTable.TASK)
 class Task(id: String? = null) : Base(id) {
-
     var title: String = ""
-
     var startDate: LocalDate? = null
-
     var endDate: LocalDate? = null
-
     var budget: Double = 0.00
+    var commissionRate: Double = 0.00
 
     @Enumerated(EnumType.STRING)
     var commissionType: CommissionType? = null
-
-    var commissionRate: Double = 0.00
 
     @Enumerated(EnumType.STRING)
     var status: TaskStatus? = null

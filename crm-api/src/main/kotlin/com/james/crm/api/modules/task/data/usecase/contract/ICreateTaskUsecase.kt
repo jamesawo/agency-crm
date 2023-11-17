@@ -7,7 +7,8 @@
 
 package com.james.crm.api.modules.task.data.usecase.contract
 
+import com.james.crm.api.core.common.ResourceId
 import com.james.crm.api.core.common.Usecase
 import com.james.crm.api.modules.task.data.dto.TaskDto
 
-interface ICreateTaskUsecase : Usecase<TaskDto, TaskDto>
+interface ICreateTaskUsecase : Usecase<TaskDto, ResourceId>

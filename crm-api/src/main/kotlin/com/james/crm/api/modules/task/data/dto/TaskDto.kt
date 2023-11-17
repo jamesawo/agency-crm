@@ -46,6 +46,17 @@ class TaskDto(
                 pipelineId = entity.pipeline?.id
             )
         }
+
+        fun setTaskParameter(taskId: String?, input: SetTaskParametersInput): Task {
+            val task = Task()
+            task.id = taskId
+            task.startDate = input.startDate
+            task.endDate = input.endDate
+            task.budget = input.budget
+            task.commissionType = input.commissionType
+            task.commissionRate = input.commissionRate
+            return task
+        }
     }
 }
 

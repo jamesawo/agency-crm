@@ -10,6 +10,7 @@ package com.james.crm.api.modules.task.data.usecase.implementation
 import com.james.crm.api.core.annotation.Usecase
 import com.james.crm.api.core.common.ApiResponse
 import com.james.crm.api.core.common.CatchableError
+import com.james.crm.api.core.common.ResourceId
 import com.james.crm.api.core.util.Util.Companion.errorResponse
 import com.james.crm.api.core.util.Util.Companion.successResponse
 import com.james.crm.api.modules.task.data.dto.TaskDto
@@ -24,12 +25,12 @@ class CreateTaskUseCaseImpl(
     private val taskRepository: TaskDataRepository,
 ) : ICreateTaskUsecase {
 
-    override fun execute(input: TaskDto): ResponseEntity<ApiResponse<TaskDto>> {
+    override fun execute(input: TaskDto): ResponseEntity<ApiResponse<ResourceId>> {
         return try {
             val savedTask = taskRepository.save(TaskDto.toEntity(input))
-            successResponse(CREATED, TaskDto.toRequest(savedTask))
+            successResponse(CREATED, ResourceId(savedTask.id))
         } catch (ex: Exception) {
-            errorResponse(INTERNAL_SERVER_ERROR, CatchableError(INTERNAL_SERVER_ERROR, listOf(ex.localizedMessage), ex))
+            errorResponse(INTERNAL_SERVER_ERROR, CatchableError(INTERNAL_SERVER_ERROR, ex))
         }
     }
 }

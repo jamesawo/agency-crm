@@ -8,6 +8,7 @@
 package com.james.crm.api.modules.task.endpoint
 
 import com.james.crm.api.core.common.ApiResponse
+import com.james.crm.api.core.common.ResourceId
 import com.james.crm.api.core.constant.Route
 import com.james.crm.api.modules.pipeline.data.dto.PipelineDto
 import com.james.crm.api.modules.task.data.dto.*
@@ -35,7 +36,7 @@ class TaskEndpoint(
     @PostMapping
     fun createTask(
         @Valid @RequestBody input: TaskDto
-    ): ResponseEntity<ApiResponse<TaskDto>> {
+    ): ResponseEntity<ApiResponse<ResourceId>> {
         return createTaskUsecase.execute(input)
     }
 
@@ -43,7 +44,7 @@ class TaskEndpoint(
     fun setTaskParameters(
         @PathVariable(required = true) taskId: String,
         @RequestBody input: SetTaskParametersInput
-    ): ResponseEntity<ApiResponse<TaskDto>> {
+    ): ResponseEntity<ApiResponse<Boolean>> {
         return setTaskParametersUsecase.execute(input)
     }
 
