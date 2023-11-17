@@ -26,7 +26,7 @@ class ViewTaskListUseCaseImpl(
 
     override fun execute(input: Unit): ResponseEntity<ApiResponse<List<TaskDto>>> {
         return try {
-            val tasks = taskRepository.findAll().map { TaskDto.Companion.toRequest(it) }
+            val tasks = taskRepository.findAll().map { TaskDto.toRequest(it) }
             successResponse(OK, tasks)
         } catch (ex: Exception) {
             errorResponse(INTERNAL_SERVER_ERROR, CatchableError(INTERNAL_SERVER_ERROR, listOf(ex.localizedMessage), ex))

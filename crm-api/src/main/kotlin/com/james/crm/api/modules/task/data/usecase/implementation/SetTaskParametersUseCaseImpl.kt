@@ -28,11 +28,9 @@ class SetTaskParametersUseCaseImpl(
     override fun execute(input: SetTaskParametersInput): ResponseEntity<ApiResponse<Boolean>> {
         return try {
             taskRepository.findById(input.taskId).map { task ->
-                taskRepository.save(TaskDto.setTaskParameter(task.id, input))
+                taskRepository.save(TaskDto.setTaskParameter(task, input))
                 successResponse(OK, true)
-            }.orElse(
-                errorResponse(NOT_FOUND, notFoundMessageAsList("task"))
-            )
+            }.orElse(errorResponse(NOT_FOUND, notFoundMessageAsList("task")))
         } catch (ex: Exception) {
             errorResponse(INTERNAL_SERVER_ERROR, CatchableError(INTERNAL_SERVER_ERROR, ex))
         }

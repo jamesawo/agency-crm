@@ -47,9 +47,7 @@ class TaskDto(
             )
         }
 
-        fun setTaskParameter(taskId: String?, input: SetTaskParametersInput): Task {
-            val task = Task()
-            task.id = taskId
+        fun setTaskParameter(task: Task, input: SetTaskParametersInput): Task {
             task.startDate = input.startDate
             task.endDate = input.endDate
             task.budget = input.budget

@@ -52,16 +52,16 @@ class TaskEndpoint(
     fun setTaskStatus(
         @PathVariable(required = true) taskId: String,
         @RequestBody input: SetTaskStatusInput
-    ): ResponseEntity<ApiResponse<TaskDto>> {
+    ): ResponseEntity<ApiResponse<Boolean>> {
         return setTaskStatusUsecase.execute(input)
     }
 
-    @PutMapping("{taskId}/assign-pipeline")
+    @PutMapping("{taskId}/assign-pipeline/{pipelineId}")
     fun assignPipelineToTask(
         @PathVariable(required = true) taskId: String,
-        @RequestBody input: AssignPipelineToTaskInput
-    ): ResponseEntity<ApiResponse<TaskDto>> {
-        return assignPipelineToTaskUsecase.execute(input)
+        @PathVariable(required = true) pipelineId: String,
+    ): ResponseEntity<ApiResponse<Boolean>> {
+        return assignPipelineToTaskUsecase.execute(Pair(taskId, pipelineId))
     }
 
     @GetMapping("{taskId}/associated-pipelines")
@@ -79,14 +79,14 @@ class TaskEndpoint(
     @GetMapping("{taskId}/monitor-budget")
     fun monitorTaskBudget(
         @PathVariable(required = true) taskId: String
-    ): ResponseEntity<ApiResponse<Double>> {
+    ): ResponseEntity<ApiResponse<TaskBudgetDto>> {
         return monitorTaskBudgetUsecase.execute(taskId)
     }
 
     @GetMapping("{taskId}/track-commission")
     fun trackTaskCommission(
         @PathVariable(required = true) taskId: String
-    ): ResponseEntity<ApiResponse<Double>> {
+    ): ResponseEntity<ApiResponse<TaskCommissionDto>> {
         return trackTaskCommissionUsecase.execute(taskId)
     }
 
@@ -94,7 +94,7 @@ class TaskEndpoint(
     fun manageTaskTimelines(
         @PathVariable(required = true) taskId: String,
         @RequestBody input: ManageTaskTimelinesInput
-    ): ResponseEntity<ApiResponse<TaskDto>> {
+    ): ResponseEntity<ApiResponse<Boolean>> {
         return manageTaskTimelinesUsecase.execute(input)
     }
 

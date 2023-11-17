@@ -10,6 +10,7 @@ data class TaskPerformanceDto(
     val startDate: LocalDate?,
     val endDate: LocalDate?,
     val completionPercentage: Double,
+    val completionAmount: Double,
     val comments: List<String>
 )
 
