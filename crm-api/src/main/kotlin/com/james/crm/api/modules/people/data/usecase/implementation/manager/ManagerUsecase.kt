@@ -13,7 +13,7 @@ import com.james.crm.api.core.common.CatchableError
 import com.james.crm.api.core.util.Util.Companion.errorResponse
 import com.james.crm.api.core.util.Util.Companion.notFoundMessageAsList
 import com.james.crm.api.core.util.Util.Companion.successResponse
-import com.james.crm.api.modules.people.data.dto.ManagerDto
+import com.james.crm.api.modules.people.data.dto.manager.ManagerDto
 import com.james.crm.api.modules.people.data.usecase.contract.manager.IManagerUsecase
 import com.james.crm.api.modules.people.domain.model.Manager
 import com.james.crm.api.modules.people.domain.repository.ManagerDataRepository

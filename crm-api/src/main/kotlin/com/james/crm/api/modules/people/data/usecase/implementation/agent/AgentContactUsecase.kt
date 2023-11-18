@@ -13,7 +13,7 @@ import com.james.crm.api.core.common.CatchableError
 import com.james.crm.api.core.util.Util.Companion.errorResponse
 import com.james.crm.api.core.util.Util.Companion.notFoundMessageAsList
 import com.james.crm.api.core.util.Util.Companion.successResponse
-import com.james.crm.api.modules.people.data.dto.ContactDto
+import com.james.crm.api.modules.people.data.dto.other.ContactDto
 import com.james.crm.api.modules.people.data.usecase.contract.agent.IAgentContactUsecase
 import com.james.crm.api.modules.people.domain.repository.AgentDataRepository
 import org.springframework.http.HttpStatus.*

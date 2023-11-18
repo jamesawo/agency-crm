@@ -8,7 +8,7 @@
 package com.james.crm.api.modules.people.data.usecase.contract.agent
 
 import com.james.crm.api.core.common.ApiResponse
-import com.james.crm.api.modules.people.data.dto.ManagerDto
+import com.james.crm.api.modules.people.data.dto.manager.ManagerDto
 import org.springframework.http.ResponseEntity
 
 interface IAgentManagerUsecase {
