@@ -59,13 +59,4 @@ open class ContactDto(var id: String?) {
         }
     }
 
-    override fun toString(): String {
-        return "id: ${this.id} \n" +
-                "phone: ${this.phone} \n" +
-                "email: ${this.email} \n" +
-                "secondaryPhone: ${this.secondaryPhone} \n" +
-                "secondaryEmail: ${this.secondaryEmail} \n" +
-                "address: ${this.address}  "
-    }
-
 }
