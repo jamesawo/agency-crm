@@ -11,8 +11,8 @@ import com.james.crm.api.core.common.ApiResponse
 import com.james.crm.api.core.common.Empty
 import com.james.crm.api.core.common.Paginate
 import com.james.crm.api.core.constant.Route
-import com.james.crm.api.modules.people.data.dto.AgentDto
-import com.james.crm.api.modules.people.data.dto.LocationDto
+import com.james.crm.api.modules.people.data.dto.agent.AgentDto
+import com.james.crm.api.modules.people.data.dto.other.LocationDto
 import com.james.crm.api.modules.team.data.dto.TeamDetailDto
 import com.james.crm.api.modules.team.data.dto.TeamDto
 import com.james.crm.api.modules.team.data.dto.TeamLocationDto

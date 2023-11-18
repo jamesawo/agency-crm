@@ -9,7 +9,7 @@ package com.james.crm.api.modules.people.endpoint.agent
 
 import com.james.crm.api.core.common.ApiResponse
 import com.james.crm.api.core.constant.Route
-import com.james.crm.api.modules.people.data.dto.UserDto
+import com.james.crm.api.modules.people.data.dto.other.UserDto
 import com.james.crm.api.modules.people.data.usecase.contract.agent.IAgentUserUsecase
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*

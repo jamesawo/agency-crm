@@ -10,6 +10,7 @@ import java.time.LocalDate
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 class TaskDto(
+    var id: String? = null,
     var title: String = "",
     var startDate: LocalDate? = null,
     var endDate: LocalDate? = null,

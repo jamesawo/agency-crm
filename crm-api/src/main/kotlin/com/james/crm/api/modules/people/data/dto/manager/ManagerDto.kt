@@ -1,7 +1,11 @@
-package com.james.crm.api.modules.people.data.dto
+package com.james.crm.api.modules.people.data.dto.manager
 
 import com.fasterxml.jackson.annotation.JsonInclude
 import com.james.crm.api.core.common.Mapper
+import com.james.crm.api.modules.people.data.dto.agent.AgentDto
+import com.james.crm.api.modules.people.data.dto.other.ContactDto
+import com.james.crm.api.modules.people.data.dto.other.ProfileDto
+import com.james.crm.api.modules.people.data.dto.other.UserDto
 import com.james.crm.api.modules.people.domain.enums.UserTypeEnum
 import com.james.crm.api.modules.people.domain.model.Agent
 import com.james.crm.api.modules.people.domain.model.Manager

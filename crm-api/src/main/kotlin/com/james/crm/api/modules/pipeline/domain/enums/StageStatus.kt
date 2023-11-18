@@ -10,5 +10,6 @@ package com.james.crm.api.modules.pipeline.domain.enums
 enum class StageStatus {
     OPEN,
     PENDING,
-    CLOSE
+    CLOSE,
+    COMPLETED
 }

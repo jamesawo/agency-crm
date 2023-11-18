@@ -2,7 +2,7 @@ package com.james.crm.api.modules.people.endpoint.manager
 
 import com.james.crm.api.core.common.ApiResponse
 import com.james.crm.api.core.constant.Route.Companion.API_VERSION
-import com.james.crm.api.modules.people.data.dto.ContactDto
+import com.james.crm.api.modules.people.data.dto.other.ContactDto
 import com.james.crm.api.modules.people.data.usecase.contract.manager.IManagerContactUsecase
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*

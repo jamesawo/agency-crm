@@ -9,7 +9,7 @@ package com.james.crm.api.modules.people.endpoint.manager
 
 import com.james.crm.api.core.common.ApiResponse
 import com.james.crm.api.core.constant.Route.Companion.API_VERSION
-import com.james.crm.api.modules.people.data.dto.ManagerDto
+import com.james.crm.api.modules.people.data.dto.manager.ManagerDto
 import com.james.crm.api.modules.people.data.usecase.contract.manager.IManagerUsecase
 import jakarta.validation.Valid
 import org.springframework.http.ResponseEntity

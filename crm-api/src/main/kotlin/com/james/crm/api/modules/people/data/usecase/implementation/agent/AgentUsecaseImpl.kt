@@ -14,7 +14,7 @@ import com.james.crm.api.core.common.ResourceId
 import com.james.crm.api.core.util.Util.Companion.errorResponse
 import com.james.crm.api.core.util.Util.Companion.notFoundMessageAsList
 import com.james.crm.api.core.util.Util.Companion.successResponse
-import com.james.crm.api.modules.people.data.dto.AgentDto
+import com.james.crm.api.modules.people.data.dto.agent.AgentDto
 import com.james.crm.api.modules.people.data.usecase.contract.agent.IAgentUsecase
 import com.james.crm.api.modules.people.domain.repository.AgentDataRepository
 import org.springframework.http.HttpStatus.*

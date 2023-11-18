@@ -7,8 +7,10 @@
 
 package com.james.crm.api.modules.people.domain.repository
 
+import com.james.crm.api.modules.people.domain.model.Agent
 import com.james.crm.api.modules.people.domain.model.Client
 import org.springframework.data.jpa.repository.JpaRepository
 
-interface ClientRepository: JpaRepository<Client, String> {
+interface ClientDataRepository : JpaRepository<Client, String> {
+    fun findAllByAgent(agent: Agent): List<Client>
 }

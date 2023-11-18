@@ -5,10 +5,14 @@
  * @Project: agent-crm
  */
 
-package com.james.crm.api.modules.people.data.dto
+package com.james.crm.api.modules.people.data.dto.agent
 
 import com.fasterxml.jackson.annotation.JsonInclude
 import com.james.crm.api.core.common.Mapper
+import com.james.crm.api.modules.people.data.dto.*
+import com.james.crm.api.modules.people.data.dto.client.ClientDto
+import com.james.crm.api.modules.people.data.dto.manager.ManagerDto
+import com.james.crm.api.modules.people.data.dto.other.*
 import com.james.crm.api.modules.people.domain.enums.UserTypeEnum
 import com.james.crm.api.modules.people.domain.model.Agent
 import com.james.crm.api.modules.task.data.dto.TaskDto

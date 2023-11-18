@@ -10,7 +10,7 @@ package com.james.crm.api.modules.people.endpoint.agent
 import com.james.crm.api.core.common.ApiResponse
 import com.james.crm.api.core.common.ResourceId
 import com.james.crm.api.core.constant.Route.Companion.API_VERSION
-import com.james.crm.api.modules.people.data.dto.AgentDto
+import com.james.crm.api.modules.people.data.dto.agent.AgentDto
 import com.james.crm.api.modules.people.data.usecase.contract.agent.IAgentUsecase
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*

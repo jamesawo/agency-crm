@@ -12,7 +12,7 @@ import com.james.crm.api.core.common.ApiResponse
 import com.james.crm.api.core.util.Util.Companion.errorResponse
 import com.james.crm.api.core.util.Util.Companion.notFoundMessageAsList
 import com.james.crm.api.core.util.Util.Companion.successResponse
-import com.james.crm.api.modules.people.data.dto.LocationDto
+import com.james.crm.api.modules.people.data.dto.other.LocationDto
 import com.james.crm.api.modules.people.data.usecase.contract.agent.IAgentLocationUsecase
 import com.james.crm.api.modules.people.domain.repository.AgentDataRepository
 import org.springframework.http.HttpStatus.NOT_FOUND

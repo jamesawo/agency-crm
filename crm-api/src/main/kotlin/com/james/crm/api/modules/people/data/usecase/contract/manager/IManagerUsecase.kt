@@ -8,7 +8,7 @@
 package com.james.crm.api.modules.people.data.usecase.contract.manager
 
 import com.james.crm.api.core.common.ApiResponse
-import com.james.crm.api.modules.people.data.dto.ManagerDto
+import com.james.crm.api.modules.people.data.dto.manager.ManagerDto
 import com.james.crm.api.modules.people.domain.model.Manager
 import org.springframework.http.ResponseEntity
 import java.util.*

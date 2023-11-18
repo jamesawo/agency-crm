@@ -8,8 +8,8 @@
 package com.james.crm.api.modules.team.data.dto
 
 import com.james.crm.api.core.common.Mapper
-import com.james.crm.api.modules.people.data.dto.LocationDto
-import com.james.crm.api.modules.people.data.dto.ManagerDto
+import com.james.crm.api.modules.people.data.dto.manager.ManagerDto
+import com.james.crm.api.modules.people.data.dto.other.LocationDto
 import com.james.crm.api.modules.team.domain.Team
 import jakarta.validation.constraints.Min
 import jakarta.validation.constraints.NotBlank
