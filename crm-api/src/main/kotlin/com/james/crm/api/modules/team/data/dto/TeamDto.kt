@@ -2,9 +2,9 @@ package com.james.crm.api.modules.team.data.dto
 
 import com.fasterxml.jackson.annotation.JsonInclude
 import com.james.crm.api.core.common.Mapper
-import com.james.crm.api.modules.people.data.dto.AgentDto
-import com.james.crm.api.modules.people.data.dto.LocationDto
-import com.james.crm.api.modules.people.data.dto.ManagerDto
+import com.james.crm.api.modules.people.data.dto.agent.AgentDto
+import com.james.crm.api.modules.people.data.dto.manager.ManagerDto
+import com.james.crm.api.modules.people.data.dto.other.LocationDto
 import com.james.crm.api.modules.task.data.dto.TaskDto
 import com.james.crm.api.modules.team.domain.Team
 

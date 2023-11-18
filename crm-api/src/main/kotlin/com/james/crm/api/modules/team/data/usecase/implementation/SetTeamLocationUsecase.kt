@@ -13,7 +13,7 @@ import com.james.crm.api.core.common.CatchableError
 import com.james.crm.api.core.util.Util
 import com.james.crm.api.core.util.Util.Companion.errorResponse
 import com.james.crm.api.core.util.Util.Companion.successResponse
-import com.james.crm.api.modules.people.data.dto.LocationDto
+import com.james.crm.api.modules.people.data.dto.other.LocationDto
 import com.james.crm.api.modules.team.data.dto.TeamLocationDto
 import com.james.crm.api.modules.team.data.repository.TeamDataRepository
 import com.james.crm.api.modules.team.data.usecase.contract.ISetTeamLocationUsecase
