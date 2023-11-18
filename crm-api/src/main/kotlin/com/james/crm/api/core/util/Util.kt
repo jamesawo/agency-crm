@@ -36,7 +36,7 @@ class Util {
             return normalizeErrorMessages(notFoundMessage(modelName))
         }
 
-        fun normalizeErrorMessages(messages: Any): List<String> {
+        private fun normalizeErrorMessages(messages: Any): List<String> {
             return when (messages) {
                 is String -> listOf(messages)
                 is List<*> -> messages.filterIsInstance<String>()
