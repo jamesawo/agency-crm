@@ -30,14 +30,7 @@ class PipelineEndpoint(
     private val updatePipelineUsecase: IUpdatePipelineUsecase
 
 ) {
-    @PostMapping
-    fun createPipeline(
-        @Valid @RequestBody pipelineDto: PipelineDto
-    ): ResponseEntity<ApiResponse<PipelineDto>> {
-        return createPipelineUsecase.execute(pipelineDto)
-    }
-
-    @GetMapping("/all")
+    @GetMapping
     fun getAllPipeline(
         @RequestParam(defaultValue = "1") page: Int,
         @RequestParam(defaultValue = "10") size: Int,
@@ -49,6 +42,13 @@ class PipelineEndpoint(
                 Sort.by(sort, "hierarchy")
             )
         )
+    }
+
+    @PostMapping
+    fun createPipeline(
+        @Valid @RequestBody pipelineDto: PipelineDto
+    ): ResponseEntity<ApiResponse<PipelineDto>> {
+        return createPipelineUsecase.execute(pipelineDto)
     }
 
     @GetMapping("/{pipelineId}")

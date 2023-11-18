@@ -48,7 +48,8 @@ data class StageDto(var id: String? = null) {
                 id = request.id,
                 title = request.title,
                 action = request.action,
-                hierarchy = request.hierarchy
+                hierarchy = request.hierarchy,
+                status = request.status
             )
         }
 

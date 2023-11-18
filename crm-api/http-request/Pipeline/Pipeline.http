@@ -1,0 +1,27 @@
+### create pipeline
+POST {{base_url}}/pipelines
+Accept: application/json
+Content-Type: application/json
+
+{
+  "id": null,
+  "title": "SALES PIPELINE 2",
+  "hierarchy": 2
+}
+
+
+### get all pipelines
+GET {{base_url}}/pipelines?page=1&size=10&sort=ASC
+
+### get one pipeline
+GET {{base_url}}/pipelines/{{pipeline_id}}
+
+### update pipeline
+PUT {{base_url}}/pipelines/{{pipeline_id}}
+Accept: application/json
+Content-Type: application/json
+
+{
+  "title": "UPDATED SALES PIPELINE",
+  "hierarchy": 1
+}

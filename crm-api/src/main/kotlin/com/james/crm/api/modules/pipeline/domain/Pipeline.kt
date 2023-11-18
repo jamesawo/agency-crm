@@ -19,6 +19,8 @@ class Pipeline(id: String?) : Base(id) {
     @OneToMany(mappedBy = "pipeline", cascade = [CascadeType.ALL], fetch = FetchType.LAZY)
     var stages: List<Stage> = emptyList()
     var hierarchy: Int = 0
+    // todo add functionality to group pipeline together and remove then add hierarchy to the grouped pipeline
+    
 
     constructor() : this(id = null)
     constructor(

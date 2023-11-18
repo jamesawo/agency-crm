@@ -1,0 +1,36 @@
+### add statge to pipeline
+POST {{base_url}}/stages/pipeline/{{pipeline_id}}
+Accept: application/json
+Content-Type: application/json
+
+{
+  "title": "Data Processing",
+  "action": "FILE_UPLOAD",
+  "reviewType": "AUTO",
+  "status": "CLOSE",
+  "hierarchy": 1,
+  "pipeline": {
+    "id": null,
+    "title": "Data Pipeline",
+    "hierarchy": 0
+  }
+}
+
+### get all stages in pipeline
+GET {{base_url}}/stages/pipeline/{{pipeline_id}}
+
+### get one stage
+GET {{base_url}}/stages/{{stage_id}}
+
+### update stage
+PUT {{base_url}}/stages/{{stage_id}}
+Accept: application/json
+Content-Type: application/json
+
+{
+  "title": "Data Processing Stage",
+  "action": "FILE_UPLOAD",
+  "reviewType": "AUTO",
+  "status": "PENDING",
+  "hierarchy": 2
+}
