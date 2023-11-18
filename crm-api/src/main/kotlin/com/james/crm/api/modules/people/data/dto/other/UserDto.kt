@@ -1,4 +1,4 @@
-package com.james.crm.api.modules.people.data.dto
+package com.james.crm.api.modules.people.data.dto.other
 
 import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.annotation.JsonProperty
