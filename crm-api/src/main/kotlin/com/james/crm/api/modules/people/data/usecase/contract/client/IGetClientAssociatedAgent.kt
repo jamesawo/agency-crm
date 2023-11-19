@@ -1,6 +1,6 @@
 /*
  * @Author: james.aworo
- * @Date: 11/18/23
+ * @Date: 11/19/23
  *
  * @Project: agent-crm
  */
@@ -8,6 +8,6 @@
 package com.james.crm.api.modules.people.data.usecase.contract.client
 
 import com.james.crm.api.core.common.Usecase
-import com.james.crm.api.modules.people.domain.enums.ClientStatus
+import com.james.crm.api.modules.people.data.dto.agent.AgentDto
 
-interface ISetClientStatusUsecase : Usecase<Pair<String, ClientStatus>, Boolean>
+interface IGetClientAssociatedAgent : Usecase<String, AgentDto>

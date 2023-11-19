@@ -29,7 +29,7 @@ class CreateClientUseCaseImpl(
 
     override fun execute(input: Pair<String, ClientDto>): ResponseEntity<ApiResponse<ResourceId>> {
         return try {
-            agentRepository.findById(input.first).map { agent ->
+            agentRepository.findById(input.first).map {
                 val newClient = clientRepository.save(ClientDto.toEntity(input.second))
                 successResponse(CREATED, ResourceId(newClient.id))
             }.orElse(errorResponse(NOT_FOUND, notFoundMessageAsList("agent")))
