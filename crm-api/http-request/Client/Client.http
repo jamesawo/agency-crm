@@ -1,0 +1,140 @@
+### Create Client
+POST {{base_url}}/clients/{{agent_id}}
+Content-Type: application/json
+
+{
+  "firstName": "John",
+  "lastName": "Doe",
+  "businessName": "ABC Corporation",
+  "email": "john.doe@example.com",
+  "phone": "123-456-7890",
+  "address": "123 Main Street",
+  "industry": "Technology",
+  "notes": "Important client",
+  "status": "ACTIVE",
+  "revenue": 1000000.0,
+  "lastInteractionDate": "2023-11-19",
+  "preferredContactMethod": "EMAIL",
+  "task": {
+    "id": "{{task_id}}",
+    "description": "Follow up meeting",
+    "dueDate": "2023-12-01",
+    "completed": false
+  },
+  "tags": [
+    "important",
+    "VIP"
+  ],
+  "agent": {
+    "id": "{{agent_id}}"
+  }
+}
+
+### Quick Draft Client
+POST {{base_url}}/clients/quick-draft/{{agent_id}}
+Accept: application/json
+Content-Type: application/json
+
+{
+  "firstName": "",
+  "lastName": "",
+  "businessName": "",
+  "email": "",
+  "phone": "",
+  "address": "",
+  "industry": ""
+}
+
+### Update Client Information
+PUT {{base_url}}/clients/{{client_id}}/update-information
+Content-Type: application/json
+
+{
+  "id": "123456",
+  "firstName": "UPDATED",
+  "lastName": "NAME",
+  "businessName": "ABC Corporation UPDATED",
+  "email": "john.doe@example.com",
+  "phone": "123-456-7890-90",
+  "address": "123 Main Street UPDATED",
+  "industry": "HEALTH-CARE",
+  "notes": "Important client NOTICE",
+  "status": "ACTIVE",
+  "revenue": 2000000.0,
+  "lastInteractionDate": "2023-11-20",
+  "preferredContactMethod": "EMAIL",
+  "task": {
+    "id": "{{task_id}}"
+  },
+  "tags": ["VIP"],
+  "agent": {
+    "id": "{{agent_id}}"
+  }
+}
+
+### View Client Details
+GET {{base_url}}/clients/{{client_id}}
+Content-Type: application/json
+
+### Associate Client with Agent
+PUT {{base_url}}/clients/{{client_id}}/associate-with-agent/{{agent_id}}
+Content-Type: application/json
+
+### Search and Filter Clients
+POST {{base_url}}/clients/search-and-filter
+Content-Type: application/json
+
+{
+  "searchInput": {}
+}
+
+### Track Client Interaction
+POST {{base_url}}/clients/{{client_id}}/track-interaction
+Content-Type: application/json
+
+### Categorize Client
+POST {{base_url}}/clients/{{client_id}}/categorize
+Content-Type: application/json
+
+{
+  "category": "Category Name",
+  "tags": [
+    "PROSPECT"
+  ]
+}
+
+### Set Client Status
+PUT {{base_url}}/clients/{{client_id}}/set-status
+Content-Type: application/json
+
+{
+  "status": "Active"
+}
+
+### Retrieve Clients Associated with Agent
+GET {{base_url}}/clients/agent/{{agent_id}}
+Content-Type: application/json
+
+### View Assigned Stages for Client
+GET {{base_url}}/clients/{{client_id}}/assigned-stages
+Content-Type: application/json
+
+### Complete Stage for Client
+POST {{base_url}}/clients/{{client_id}}/complete-stage/{{stage_id}}
+Content-Type: application/json
+
+
+### View Task Details for Client
+GET {{base_url}}/clients/{{client_id}}/task-details
+Content-Type: application/json
+
+### View Client Categories
+GET {{base_url}}/clients/{{client_id}}/categories
+Content-Type: application/json
+
+
+### View Client Associated Agent
+GET {{base_url}}/clients/{{client_id}}/associated-agent
+Content-Type: application/json
+
+
