@@ -105,6 +105,25 @@ class Client(id: String? = null) : Base(id) {
         this.lastInteractionDate = lastInteractionDate
         this.preferredContactMethod = preferredContactMethod
         this.tags = tags
+    }
 
+    constructor(
+        id: String?,
+        firstName: String,
+        lastName: String,
+        businessName: String,
+        email: String,
+        phone: String,
+        address: String,
+        industry: String,
+    ) : this() {
+        this.id = id
+        this.firstName = firstName
+        this.lastName = lastName
+        this.businessName = businessName
+        this.email = email
+        this.phone = phone
+        this.address = address
+        this.industry = industry
     }
 }
