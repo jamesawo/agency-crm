@@ -13,11 +13,13 @@ import com.james.crm.api.core.common.CatchableError
 import com.james.crm.api.core.util.Util.Companion.errorResponse
 import com.james.crm.api.core.util.Util.Companion.notFoundMessageAsList
 import com.james.crm.api.core.util.Util.Companion.successResponse
+import com.james.crm.api.modules.people.data.dto.client.SearchCriteriaDto
 import com.james.crm.api.modules.people.data.dto.client.StageCompletionDto
 import com.james.crm.api.modules.people.data.usecase.contract.client.ICompleteStageForClientUsecase
 import com.james.crm.api.modules.people.domain.repository.ClientDataRepository
 import com.james.crm.api.modules.pipeline.data.repository.StageDataRepository
 import com.james.crm.api.modules.pipeline.domain.enums.StageStatus
+import org.springframework.data.domain.PageRequest
 import org.springframework.http.HttpStatus.*
 import org.springframework.http.ResponseEntity
 
@@ -28,7 +30,7 @@ class CompleteStageForClientUseCaseImpl(
     private val stageRepository: StageDataRepository
 ) : ICompleteStageForClientUsecase {
 
-    override fun execute(input: StageCompletionDto): ResponseEntity<ApiResponse<Boolean>> {
+    override fun execute(input: Pair<PageRequest, SearchCriteriaDto>): ResponseEntity<ApiResponse<Boolean>> {
         return try {
             clientRepository.findById(input.clientId).map { client ->
                 val completedStage = client.task?.pipeline?.stages?.find { it.id == input.stageId }

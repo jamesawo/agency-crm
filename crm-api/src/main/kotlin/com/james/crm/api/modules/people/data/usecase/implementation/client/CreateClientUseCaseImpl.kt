@@ -37,4 +37,5 @@ class CreateClientUseCaseImpl(
             errorResponse(INTERNAL_SERVER_ERROR, CatchableError(INTERNAL_SERVER_ERROR, ex))
         }
     }
+    
 }

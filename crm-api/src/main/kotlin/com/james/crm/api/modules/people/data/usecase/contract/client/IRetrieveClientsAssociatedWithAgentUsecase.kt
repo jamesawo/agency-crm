@@ -7,7 +7,9 @@
 
 package com.james.crm.api.modules.people.data.usecase.contract.client
 
+import com.james.crm.api.core.common.Paginate
 import com.james.crm.api.core.common.Usecase
 import com.james.crm.api.modules.people.data.dto.client.ClientDto
+import org.springframework.data.domain.Pageable
 
-interface IRetrieveClientsAssociatedWithAgentUsecase : Usecase<String, List<ClientDto>>
+interface IRetrieveClientsAssociatedWithAgentUsecase : Usecase<Pair<String, Pageable>, Paginate<ClientDto>>

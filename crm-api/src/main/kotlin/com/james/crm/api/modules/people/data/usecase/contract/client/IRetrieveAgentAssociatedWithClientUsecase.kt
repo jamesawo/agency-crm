@@ -8,5 +8,6 @@
 package com.james.crm.api.modules.people.data.usecase.contract.client
 
 import com.james.crm.api.core.common.Usecase
+import com.james.crm.api.modules.people.data.dto.agent.AgentDto
 
-interface ICompleteStageForClientUsecase : Usecase<Unit, Boolean>
+interface IRetrieveAgentAssociatedWithClientUsecase : Usecase<String, AgentDto>

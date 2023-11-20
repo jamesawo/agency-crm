@@ -32,6 +32,10 @@ Content-Type: application/json
   "agents": []
 }
 
+> {%
+    client.global.set("manager_id", response.body.data.id);
+%}
+
 ### get manager by id
 GET {{base_url}}/managers/{{manager_id}}
 Accept: application/json

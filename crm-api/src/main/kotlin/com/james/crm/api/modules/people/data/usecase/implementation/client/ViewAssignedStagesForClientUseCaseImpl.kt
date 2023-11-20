@@ -13,9 +13,11 @@ import com.james.crm.api.core.common.CatchableError
 import com.james.crm.api.core.util.Util.Companion.errorResponse
 import com.james.crm.api.core.util.Util.Companion.notFoundMessageAsList
 import com.james.crm.api.core.util.Util.Companion.successResponse
+import com.james.crm.api.modules.people.data.dto.client.SearchCriteriaDto
 import com.james.crm.api.modules.people.data.usecase.contract.client.IViewAssignedStagesForClientUsecase
 import com.james.crm.api.modules.people.domain.repository.ClientDataRepository
 import com.james.crm.api.modules.pipeline.data.dto.StageDto
+import org.springframework.data.domain.PageRequest
 import org.springframework.http.HttpStatus.*
 import org.springframework.http.ResponseEntity
 
@@ -25,7 +27,7 @@ class ViewAssignedStagesForClientUseCaseImpl(
     private val clientRepository: ClientDataRepository
 ) : IViewAssignedStagesForClientUsecase {
 
-    override fun execute(input: String): ResponseEntity<ApiResponse<List<StageDto>>> {
+    override fun execute(input: Pair<PageRequest, SearchCriteriaDto>): ResponseEntity<ApiResponse<List<StageDto>>> {
         return try {
             clientRepository.findById(input).map { client ->
                 val assignedStages = client.task?.pipeline?.stages ?: emptyList()

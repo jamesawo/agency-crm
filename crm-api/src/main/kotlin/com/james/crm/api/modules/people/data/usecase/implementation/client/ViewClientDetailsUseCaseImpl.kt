@@ -14,8 +14,10 @@ import com.james.crm.api.core.util.Util.Companion.errorResponse
 import com.james.crm.api.core.util.Util.Companion.notFoundMessageAsList
 import com.james.crm.api.core.util.Util.Companion.successResponse
 import com.james.crm.api.modules.people.data.dto.client.ClientDetailDto
+import com.james.crm.api.modules.people.data.dto.client.SearchCriteriaDto
 import com.james.crm.api.modules.people.data.usecase.contract.client.IViewClientDetailsUsecase
 import com.james.crm.api.modules.people.domain.repository.ClientDataRepository
+import org.springframework.data.domain.PageRequest
 import org.springframework.http.HttpStatus.*
 import org.springframework.http.ResponseEntity
 
@@ -24,7 +26,7 @@ class ViewClientDetailsUseCaseImpl(
     private val clientRepository: ClientDataRepository
 ) : IViewClientDetailsUsecase {
 
-    override fun execute(input: String): ResponseEntity<ApiResponse<ClientDetailDto>> {
+    override fun execute(input: Pair<PageRequest, SearchCriteriaDto>): ResponseEntity<ApiResponse<ClientDetailDto>> {
         return try {
             clientRepository.findById(input).map { client ->
                 successResponse(OK, ClientDetailDto.toRequest(client))

@@ -44,6 +44,10 @@ Content-Type: application/json
   "manager": {}
 }
 
+> {%
+    client.global.set("agent_id", response.body.data.id);
+%}
+
 ### DELETE AGENT BY ID
 DELETE {{base_url}}/agents/{{agent_id}}
 Accept: application/json

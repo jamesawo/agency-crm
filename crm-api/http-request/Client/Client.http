@@ -30,6 +30,10 @@ Content-Type: application/json
   }
 }
 
+> {%
+    client.global.set("client_id", response.body.data.id)
+%}
+
 ### Quick Draft Client
 POST {{base_url}}/clients/quick-draft/{{agent_id}}
 Accept: application/json
@@ -44,6 +48,10 @@ Content-Type: application/json
   "address": "",
   "industry": ""
 }
+
+> {%
+    client.global.set("client_id", response.body.data.id)
+%}
 
 ### Update Client Information
 PUT {{base_url}}/clients/{{client_id}}/update-information
@@ -92,49 +100,5 @@ Content-Type: application/json
 POST {{base_url}}/clients/{{client_id}}/track-interaction
 Content-Type: application/json
 
-### Categorize Client
-POST {{base_url}}/clients/{{client_id}}/categorize
-Content-Type: application/json
-
-{
-  "category": "Category Name",
-  "tags": [
-    "PROSPECT"
-  ]
-}
-
-### Set Client Status
-PUT {{base_url}}/clients/{{client_id}}/set-status
-Content-Type: application/json
-
-{
-  "status": "Active"
-}
-
-### Retrieve Clients Associated with Agent
-GET {{base_url}}/clients/agent/{{agent_id}}
-Content-Type: application/json
-
-### View Assigned Stages for Client
-GET {{base_url}}/clients/{{client_id}}/assigned-stages
-Content-Type: application/json
-
-### Complete Stage for Client
-POST {{base_url}}/clients/{{client_id}}/complete-stage/{{stage_id}}
-Content-Type: application/json
-
-
-### View Task Details for Client
-GET {{base_url}}/clients/{{client_id}}/task-details
-Content-Type: application/json
-
-### View Client Categories
-GET {{base_url}}/clients/{{client_id}}/categories
-Content-Type: application/json
-
-
-### View Client Associated Agent
-GET {{base_url}}/clients/{{client_id}}/associated-agent
-Content-Type: application/json
 
 
