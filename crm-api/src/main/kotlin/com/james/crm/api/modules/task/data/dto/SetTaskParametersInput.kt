@@ -15,6 +15,6 @@ data class SetTaskParametersInput(
     val startDate: LocalDate?,
     val endDate: LocalDate?,
     val budget: Double,
-    val commissionType: CommissionType?,
+    val commissionType: CommissionType = CommissionType.FLAT_RATE,
     val commissionRate: Double
 )
