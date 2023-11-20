@@ -8,7 +8,6 @@
 package com.james.crm.api.modules.team.endpoint
 
 import com.james.crm.api.core.common.ApiResponse
-import com.james.crm.api.core.common.Empty
 import com.james.crm.api.core.common.Paginate
 import com.james.crm.api.core.constant.Route
 import com.james.crm.api.modules.people.data.dto.agent.AgentDto
@@ -61,7 +60,7 @@ class TeamEndpoint(
      */
     @GetMapping("/all-locations")
     fun getTeamLocation(): ResponseEntity<ApiResponse<List<TeamLocationDto>>> {
-        return getLocationUsecase.execute(Empty())
+        return getLocationUsecase.execute(Unit)
     }
 
     @PostMapping

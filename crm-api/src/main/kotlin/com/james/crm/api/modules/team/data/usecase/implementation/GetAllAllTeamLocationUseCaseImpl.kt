@@ -10,7 +10,6 @@ package com.james.crm.api.modules.team.data.usecase.implementation
 import com.james.crm.api.core.annotation.Usecase
 import com.james.crm.api.core.common.ApiResponse
 import com.james.crm.api.core.common.CatchableError
-import com.james.crm.api.core.common.Empty
 import com.james.crm.api.core.util.Util.Companion.errorResponse
 import com.james.crm.api.core.util.Util.Companion.successResponse
 import com.james.crm.api.modules.team.data.dto.TeamLocationDto
@@ -24,7 +23,7 @@ import org.springframework.http.ResponseEntity
 class GetAllAllTeamLocationUseCaseImpl(
     private val teamRepository: TeamDataRepository
 ) : IGetAllTeamLocationUsecase {
-    override fun execute(input: Empty): ResponseEntity<ApiResponse<List<TeamLocationDto>>> {
+    override fun execute(input: Unit): ResponseEntity<ApiResponse<List<TeamLocationDto>>> {
         return try {
             val dtoList = teamRepository.findAll()
                 .filter { it.location != null }
