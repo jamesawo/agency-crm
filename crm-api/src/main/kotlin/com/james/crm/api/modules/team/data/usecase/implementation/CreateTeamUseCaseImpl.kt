@@ -30,7 +30,7 @@ class CreateTeamUseCaseImpl(
     private val teamRepository: TeamDataRepository,
     private val managerRepository: ManagerDataRepository
 ) : ICreateTeamUsecase {
-    
+
     override fun execute(input: TeamDetailDto): ResponseEntity<ApiResponse<TeamDto>> {
         return try {
             val savedTeam = teamRepository.save(Team(input.title, lookupManager(input), input.budget))
