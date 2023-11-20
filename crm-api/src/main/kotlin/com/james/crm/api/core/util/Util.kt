@@ -13,23 +13,24 @@ import com.james.crm.api.core.common.ErrorResponse
 import com.james.crm.api.core.common.SuccessResponse
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
+import org.springframework.http.ResponseEntity.status
 
 class Util {
     companion object {
 
         fun <T> successResponse(status: HttpStatus, data: T): ResponseEntity<ApiResponse<T>> {
-            return ResponseEntity.status(status).body(SuccessResponse(status, data) as ApiResponse<T>)
+            return status(status).body(SuccessResponse(status, data) as ApiResponse<T>)
         }
 
         fun <T> errorResponse(status: HttpStatus, errors: List<String>): ResponseEntity<ApiResponse<T>> {
-            return ResponseEntity.status(status).body(ErrorResponse(status, errors) as ApiResponse<T>)
+            return status(status).body(ErrorResponse(status, errors) as ApiResponse<T>)
         }
 
         fun <T> errorResponse(
             status: HttpStatus,
             error: CatchableError
         ): ResponseEntity<ApiResponse<T>> {
-            return ResponseEntity.status(status).body(error as ApiResponse<T>)
+            return status(status).body(error as ApiResponse<T>)
         }
 
         fun notFoundMessageAsList(modelName: String): List<String> {
