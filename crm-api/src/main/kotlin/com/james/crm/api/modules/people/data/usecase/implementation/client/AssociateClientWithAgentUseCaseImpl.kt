@@ -18,6 +18,7 @@ import com.james.crm.api.modules.people.domain.repository.AgentDataRepository
 import com.james.crm.api.modules.people.domain.repository.ClientDataRepository
 import org.springframework.http.HttpStatus
 import org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR
+import org.springframework.http.HttpStatus.NOT_FOUND
 import org.springframework.http.ResponseEntity
 
 @Usecase
@@ -28,13 +29,26 @@ class AssociateClientWithAgentUseCaseImpl(
 
     override fun execute(input: Pair<String, String>): ResponseEntity<ApiResponse<Boolean>> {
         return try {
-            clientDataRepository.findById(input.first).flatMap { client ->
-                agentRepository.findById(input.second).map { agent ->
+            val clientOptional = clientDataRepository.findById(input.first)
+            val agentOptional = agentRepository.findById(input.second)
+            clientOptional.flatMap { client ->
+                agentOptional.map { agent ->
                     client.agent = agent
                     clientDataRepository.save(client)
                     successResponse(HttpStatus.OK, true)
                 }
-            }.orElse(errorResponse(HttpStatus.NOT_FOUND, notFoundMessageAsList("client / agent")))
+            }.orElse(
+                errorResponse(
+                    NOT_FOUND,
+                    notFoundMessageAsList(
+                        when {
+                            clientOptional.isEmpty -> "Client"
+                            agentOptional.isEmpty -> "Agent"
+                            else -> "Client and Agent"
+                        }
+                    )
+                )
+            )
         } catch (ex: Exception) {
             errorResponse(INTERNAL_SERVER_ERROR, CatchableError(INTERNAL_SERVER_ERROR, ex))
         }

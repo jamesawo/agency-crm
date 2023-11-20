@@ -1,0 +1,104 @@
+### Create Client
+POST {{base_url}}/clients/{{agent_id}}
+Content-Type: application/json
+
+{
+  "firstName": "John",
+  "lastName": "Doe",
+  "businessName": "ABC Corporation",
+  "email": "john.doe@example.com",
+  "phone": "123-456-7890",
+  "address": "123 Main Street",
+  "industry": "Technology",
+  "notes": "Important client",
+  "status": "ACTIVE",
+  "revenue": 1000000.0,
+  "lastInteractionDate": "2023-11-19",
+  "preferredContactMethod": "EMAIL",
+  "task": {
+    "id": "{{task_id}}",
+    "description": "Follow up meeting",
+    "dueDate": "2023-12-01",
+    "completed": false
+  },
+  "tags": [
+    "important",
+    "VIP"
+  ],
+  "agent": {
+    "id": "{{agent_id}}"
+  }
+}
+
+> {%
+    client.global.set("client_id", response.body.data.id)
+%}
+
+### Quick Draft Client
+POST {{base_url}}/clients/quick-draft/{{agent_id}}
+Accept: application/json
+Content-Type: application/json
+
+{
+  "firstName": "",
+  "lastName": "",
+  "businessName": "",
+  "email": "",
+  "phone": "",
+  "address": "",
+  "industry": ""
+}
+
+> {%
+    client.global.set("client_id", response.body.data.id)
+%}
+
+### Update Client Information
+PUT {{base_url}}/clients/{{client_id}}/update-information
+Content-Type: application/json
+
+{
+  "id": "123456",
+  "firstName": "UPDATED",
+  "lastName": "NAME",
+  "businessName": "ABC Corporation UPDATED",
+  "email": "john.doe@example.com",
+  "phone": "123-456-7890-90",
+  "address": "123 Main Street UPDATED",
+  "industry": "HEALTH-CARE",
+  "notes": "Important client NOTICE",
+  "status": "ACTIVE",
+  "revenue": 2000000.0,
+  "lastInteractionDate": "2023-11-20",
+  "preferredContactMethod": "EMAIL",
+  "task": {
+    "id": "{{task_id}}"
+  },
+  "tags": ["VIP"],
+  "agent": {
+    "id": "{{agent_id}}"
+  }
+}
+
+### View Client Details
+GET {{base_url}}/clients/{{client_id}}
+Content-Type: application/json
+
+### Associate Client with Agent
+PUT {{base_url}}/clients/{{client_id}}/associate-with-agent/{{agent_id}}
+Content-Type: application/json
+
+### Search and Filter Clients
+POST {{base_url}}/clients/search-and-filter
+Content-Type: application/json
+
+{
+  "searchInput": {}
+}
+
+### Track Client Interaction
+POST {{base_url}}/clients/{{client_id}}/track-interaction
+Content-Type: application/json
+
+
+

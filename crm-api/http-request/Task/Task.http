@@ -1,1 +1,64 @@
-### task routes
+### Create Task
+POST {{base_url}}/tasks
+Content-Type: application/json
+
+{
+  "title": "Task Title",
+  "description": "Task Description",
+  "deadline": "2023-12-31",
+  "budget": 1000.0
+}
+
+> {%
+    client.global.set("task_id", response.body.data.id)
+%}
+
+### Set Task Parameters
+PUT {{base_url}}/tasks/{{task_id}}/set-parameters
+Content-Type: application/json
+
+{
+  "parameter1": "Value1",
+  "parameter2": "Value2"
+}
+
+### Set Task Status
+PUT {{base_url}}/tasks/{{task_id}}/set-status
+Content-Type: application/json
+
+{
+  "status": "In Progress"
+}
+
+### Assign Pipeline to Task
+PUT {{base_url}}/tasks/{{task_id}}/assign-pipeline/{{pipeline_id}}
+Content-Type: application/json
+
+### View Associated Pipelines
+GET {{base_url}}/tasks/{{task_id}}/associated-pipelines
+Content-Type: application/json
+
+### View Task List
+GET {{base_url}}/tasks
+Content-Type: application/json
+
+### Monitor Task Budget
+GET {{base_url}}/tasks/{{task_id}}/monitor-budget
+Content-Type: application/json
+
+### Track Task Commission
+GET {{base_url}}/tasks/{{task_id}}/track-commission
+Content-Type: application/json
+
+### Manage Task Timelines
+PUT {{base_url}}/tasks/{{task_id}}/manage-timelines
+Content-Type: application/json
+
+{
+  "start_date": "2023-01-01",
+  "end_date": "2023-02-01"
+}
+
+### Evaluate Task Performance
+GET {{base_url}}/tasks/{{task_id}}/evaluate-performance
+Content-Type: application/json

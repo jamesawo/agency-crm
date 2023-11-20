@@ -9,6 +9,9 @@ Content-Type: application/json
   "hierarchy": 2
 }
 
+> {%
+    client.global.set("pipeline_id", response.body.data.id)
+%}
 
 ### get all pipelines
 GET {{base_url}}/pipelines?page=1&size=10&sort=ASC

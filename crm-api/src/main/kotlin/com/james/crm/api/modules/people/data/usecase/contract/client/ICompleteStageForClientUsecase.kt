@@ -8,6 +8,5 @@
 package com.james.crm.api.modules.people.data.usecase.contract.client
 
 import com.james.crm.api.core.common.Usecase
-import com.james.crm.api.modules.people.data.dto.client.StageCompletionDto
 
-interface ICompleteStageForClientUsecase : Usecase<StageCompletionDto, Boolean>
+interface ICompleteStageForClientUsecase : Usecase<Pair<String, String>, Boolean>

@@ -13,5 +13,5 @@ import org.springframework.http.ResponseEntity
 
 interface IAgentTaskUsecase {
     fun getTasks(agentId: String): ResponseEntity<ApiResponse<List<TaskDto>>>
-    fun assignTask(agentId: String, taskDto: TaskDto): ResponseEntity<ApiResponse<TaskDto>>
+    fun assignTask(input: Pair<String, String>): ResponseEntity<ApiResponse<Boolean>>
 }

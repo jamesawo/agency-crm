@@ -14,6 +14,10 @@ Content-Type: application/json
   "budget": 20.0
 }
 
+> {%
+    client.global.set("team_id", response.body.data.id)
+%}
+
 ### get team by id
 GET {{base_url}}/teams/{{team_id}}
 Content-Type: application/json
@@ -51,3 +55,4 @@ Accept: application/json
 ### get team performance
 GET {{base_url}}/teams/{{team_id}}/performance
 Accept: application/json
+

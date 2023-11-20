@@ -1,9 +1,8 @@
 ### GET AGENT TASK
-GET {{base_url}}/agents/{{agent_id}}/task
+GET {{base_url}}/agents/{{agent_id}}/task/retrieve
 Accept: application/json
 
 ### UPDATE AGENT TASK
-PUT {{base_url}}/agents/{{agent_id}}/task
+PUT {{base_url}}/agents/{{agent_id}}/task/assign/{{task_id}}
 Accept: application/json
-Content-Type: application/json
 

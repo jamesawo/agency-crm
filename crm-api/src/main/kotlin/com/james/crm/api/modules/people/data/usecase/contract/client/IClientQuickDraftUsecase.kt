@@ -9,6 +9,6 @@ package com.james.crm.api.modules.people.data.usecase.contract.client
 
 import com.james.crm.api.core.common.ResourceId
 import com.james.crm.api.core.common.Usecase
-import com.james.crm.api.modules.people.data.dto.client.ClientDto
+import com.james.crm.api.modules.people.data.dto.client.ClientQuickDraftDto
 
-interface ICreateClientUsecase : Usecase<Pair<String, ClientDto>, ResourceId>
+interface IClientQuickDraftUsecase : Usecase<Pair<String, ClientQuickDraftDto>, ResourceId>
