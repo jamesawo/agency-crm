@@ -19,7 +19,7 @@ class AgentTaskUsecase : IAgentTaskUsecase {
         TODO()
     }
 
-    override fun assignTask(agentId: String, taskDto: TaskDto): ResponseEntity<ApiResponse<TaskDto>> {
+    override fun assignTask(input: Pair<String, String>): ResponseEntity<ApiResponse<Boolean>> {
         TODO()
     }
 }

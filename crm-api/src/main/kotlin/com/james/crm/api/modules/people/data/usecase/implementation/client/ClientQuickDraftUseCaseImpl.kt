@@ -15,11 +15,9 @@ import com.james.crm.api.core.util.Util.Companion.errorResponse
 import com.james.crm.api.core.util.Util.Companion.notFoundMessageAsList
 import com.james.crm.api.core.util.Util.Companion.successResponse
 import com.james.crm.api.modules.people.data.dto.client.ClientQuickDraftDto
-import com.james.crm.api.modules.people.data.dto.client.SearchCriteriaDto
 import com.james.crm.api.modules.people.data.usecase.contract.client.IClientQuickDraftUsecase
 import com.james.crm.api.modules.people.domain.repository.AgentDataRepository
 import com.james.crm.api.modules.people.domain.repository.ClientDataRepository
-import org.springframework.data.domain.PageRequest
 import org.springframework.http.HttpStatus.*
 import org.springframework.http.ResponseEntity
 
@@ -29,7 +27,7 @@ class ClientQuickDraftUseCaseImpl(
     private val agentRepository: AgentDataRepository
 ) : IClientQuickDraftUsecase {
 
-    override fun execute(input: Pair<PageRequest, SearchCriteriaDto>): ResponseEntity<ApiResponse<ResourceId>> {
+    override fun execute(input: Pair<String, ClientQuickDraftDto>): ResponseEntity<ApiResponse<ResourceId>> {
         return try {
             agentRepository.findById(input.first).map {
                 val newClient = clientRepository.save(ClientQuickDraftDto.toEntity(input.second))
