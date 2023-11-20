@@ -8,6 +8,7 @@
     <name>crm</name>
     <modules>
         <module>crm-api</module>
+        <module>crm-web</module>
     </modules>
     <description>Agent CRM</description>
     <properties>
