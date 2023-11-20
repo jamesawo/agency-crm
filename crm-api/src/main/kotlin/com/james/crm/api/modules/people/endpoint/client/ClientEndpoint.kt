@@ -8,6 +8,7 @@
 package com.james.crm.api.modules.people.endpoint.client
 
 import com.james.crm.api.core.common.ApiResponse
+import com.james.crm.api.core.common.Paginate
 import com.james.crm.api.core.common.ResourceId
 import com.james.crm.api.core.constant.Route
 import com.james.crm.api.modules.people.data.dto.agent.AgentDto
@@ -17,6 +18,8 @@ import com.james.crm.api.modules.people.domain.enums.ClientStatus
 import com.james.crm.api.modules.pipeline.data.dto.StageDto
 import com.james.crm.api.modules.task.data.dto.TaskDto
 import jakarta.validation.Valid
+import org.springframework.data.domain.PageRequest
+import org.springframework.data.domain.Sort
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 
@@ -34,15 +37,26 @@ class ClientEndpoint(
     private val retrieveClientsAssociatedWithAgentUsecase: IRetrieveClientsAssociatedWithAgentUsecase,
     private val viewAssignedStagesForClientUsecase: IViewAssignedStagesForClientUsecase,
     private val completeStageForClientUsecase: ICompleteStageForClientUsecase,
-    private val viewTaskDetailsForClientUsecase: IViewTaskDetailsForClientUsecase
+    private val viewTaskDetailsForClientUsecase: IViewTaskDetailsForClientUsecase,
+    private val clientQuickDraftUsecase: IClientQuickDraftUsecase,
+    private val getClientCategoriesUsecaseImpl: IGetClientCategoriesUsecase,
+    private val retrieveAgentFromClientUsecase: IRetrieveAgentAssociatedWithClientUsecase
 ) {
 
-    @PostMapping("{agentId}")
+    @PostMapping("/{agentId}")
     fun createClient(
         @PathVariable agentId: String,
-        @Valid @RequestBody input: ClientDto,
+        @Valid @RequestBody clientDto: ClientDto,
     ): ResponseEntity<ApiResponse<ResourceId>> {
-        return createClientUsecase.execute(Pair(agentId, input))
+        return createClientUsecase.execute(Pair(agentId, clientDto))
+    }
+
+    @PostMapping("/quick-draft/{agentId}")
+    fun quickDraftClient(
+        @PathVariable agentId: String,
+        @Valid @RequestBody input: ClientQuickDraftDto,
+    ): ResponseEntity<ApiResponse<ResourceId>> {
+        return clientQuickDraftUsecase.execute(Pair(agentId, input))
     }
 
     @PutMapping("{clientId}/update-information")
@@ -74,20 +88,29 @@ class ClientEndpoint(
 
     @PostMapping("/search-and-filter")
     fun searchAndFilterClients(
-        @Valid @RequestBody input: SearchCriteriaDto
-    ): ResponseEntity<ApiResponse<List<ClientDto>>> {
-        return searchAndFilterClientsUsecase.execute(input)
+        @Valid @RequestBody searchInput: SearchCriteriaDto,
+        @RequestParam(defaultValue = "1") page: Int,
+        @RequestParam(defaultValue = "10") size: Int,
+        @RequestParam(defaultValue = "ASC", required = false) sort: Sort.Direction
+    ): ResponseEntity<ApiResponse<Paginate<ClientDto>>> {
+        return searchAndFilterClientsUsecase.execute(
+            Pair(
+                PageRequest.of(page - 1, size, Sort.by(sort, "")),
+                searchInput
+            )
+        )
     }
 
+
     @PostMapping("{clientId}/track-interaction")
-    fun trackClientInteraction(
+    fun getClientInteraction(
         @PathVariable(required = true) clientId: String
     ): ResponseEntity<ApiResponse<InteractionDto>> {
         return trackClientInteractionsUsecase.execute(clientId)
     }
 
     @PostMapping("{clientId}/categorize")
-    fun categorizeClient(
+    fun setClientCategory(
         @PathVariable(required = true) clientId: String,
         @Valid @RequestBody input: CategorizationDto
     ): ResponseEntity<ApiResponse<Boolean>> {
@@ -104,9 +127,17 @@ class ClientEndpoint(
 
     @GetMapping("agent/{agentId}")
     fun retrieveClientsAssociatedWithAgent(
-        @PathVariable(required = true) agentId: String
-    ): ResponseEntity<ApiResponse<List<ClientDto>>> {
-        return retrieveClientsAssociatedWithAgentUsecase.execute(agentId)
+        @PathVariable(required = true) agentId: String,
+        @RequestParam(defaultValue = "1") page: Int,
+        @RequestParam(defaultValue = "10") size: Int,
+        @RequestParam(defaultValue = "ASC", required = false) sort: Sort.Direction
+    ): ResponseEntity<ApiResponse<Paginate<ClientDto>>> {
+        return retrieveClientsAssociatedWithAgentUsecase.execute(
+            Pair(
+                agentId,
+                PageRequest.of(page - 1, size, Sort.by(sort, "")),
+            )
+        )
     }
 
     @GetMapping("{clientId}/assigned-stages")
@@ -116,12 +147,13 @@ class ClientEndpoint(
         return viewAssignedStagesForClientUsecase.execute(clientId)
     }
 
-    @PostMapping("{clientId}/complete-stage")
+    @PostMapping("{clientId}/complete-stage/{stageId}")
     fun completeStageForClient(
         @PathVariable(required = true) clientId: String,
-        @Valid @RequestBody input: StageCompletionDto
-    ): ResponseEntity<ApiResponse<Boolean>> {
-        return completeStageForClientUsecase.execute(input)
+        @PathVariable(required = true) stageId: String,
+
+        ): ResponseEntity<ApiResponse<Boolean>> {
+        return completeStageForClientUsecase.execute(Pair(clientId, stageId))
     }
 
     @GetMapping("{clientId}/task-details")
@@ -132,32 +164,19 @@ class ClientEndpoint(
     }
 
 
-    @GetMapping("{clientId}/interactions")
-    fun getClientInteractions(
-        @PathVariable(required = true) clientId: String
-    ): ResponseEntity<ApiResponse<List<InteractionDto>>> {
-        TODO()
-    }
-
     @GetMapping("{clientId}/categories")
     fun getClientCategories(
         @PathVariable(required = true) clientId: String
-    ): ResponseEntity<ApiResponse<List<CategorizationDto>>> {
-        TODO()
+    ): ResponseEntity<ApiResponse<CategorizationDto>> {
+        return getClientCategoriesUsecaseImpl.execute(clientId)
     }
 
-    @GetMapping("{clientId}/status-history")
-    fun getClientStatusHistory(
-        @PathVariable(required = true) clientId: String
-    ): ResponseEntity<ApiResponse<List<ClientStatus>>> {
-        TODO()
-    }
 
     @GetMapping("{clientId}/associated-agent")
     fun getAssociatedAgent(
         @PathVariable(required = true) clientId: String
     ): ResponseEntity<ApiResponse<AgentDto>> {
-        TODO()
+        return retrieveAgentFromClientUsecase.execute(clientId)
     }
 
 

@@ -19,22 +19,21 @@ import org.springframework.web.bind.annotation.*
 class AgentTaskEndpoint(
     private val taskUsecase: IAgentTaskUsecase
 ) {
-    @GetMapping("/{id}/tasks")
+    @GetMapping("/retrieve")
     fun getTasks(
-        @PathVariable id: String, @PathVariable agentId: String
+        @PathVariable agentId: String
     ): ResponseEntity<ApiResponse<List<TaskDto>>> {
         // WIP
-        return taskUsecase.getTasks(id)
+        return taskUsecase.getTasks(agentId)
     }
 
-    @PostMapping("/{id}/tasks")
+    @PostMapping("/assign/{taskId}")
     fun assignTask(
-        @PathVariable id: String,
-        @RequestBody taskDto: TaskDto,
-        @PathVariable agentId: String
-    ): ResponseEntity<ApiResponse<TaskDto>> {
+        @PathVariable agentId: String,
+        @PathVariable taskId: String
+    ): ResponseEntity<ApiResponse<Boolean>> {
         // WIP
-        return taskUsecase.assignTask(id, taskDto)
+        return taskUsecase.assignTask(Pair(agentId, taskId))
     }
 
 }
