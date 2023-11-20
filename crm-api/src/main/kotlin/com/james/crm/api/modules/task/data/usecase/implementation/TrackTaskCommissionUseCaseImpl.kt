@@ -42,6 +42,10 @@ class TrackTaskCommissionUseCaseImpl(
          For example, you can use task.commissionType and task.commissionRate
          Return the calculated commission amount
          */
-        return TaskCommissionDto()
+        return TaskCommissionDto(
+            taskId = task.id,
+            commission = task.commissionRate,
+            commissionType = task.commissionType
+        )
     }
 }

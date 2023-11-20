@@ -25,7 +25,7 @@ class Task(id: String? = null) : Base(id) {
     var commissionRate: Double = 0.00
 
     @Enumerated(EnumType.STRING)
-    var commissionType: CommissionType? = null
+    var commissionType: CommissionType = CommissionType.PERCENTAGE_RATE
 
     @Enumerated(EnumType.STRING)
     var status: TaskStatus? = null
@@ -47,7 +47,7 @@ class Task(id: String? = null) : Base(id) {
         this.startDate = startDate
         this.endDate = endDate
         this.budget = budget
-        this.commissionType = commissionType
+        this.commissionType = commissionType ?: CommissionType.PERCENTAGE_RATE
         this.commissionRate = commissionRate
         this.status = status
         this.pipeline = pipeline
