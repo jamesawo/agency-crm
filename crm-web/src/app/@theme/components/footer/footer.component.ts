@@ -4,7 +4,7 @@ import {Component} from '@angular/core';
     selector: 'ngx-footer',
     styleUrls: ['./footer.component.scss'],
     template: `
-        <span class="created-by">
+        <span class="created-by" *ngIf="showCreatedBy">
       {{appTitle}} <b><a href="{{appUrl}}" target="_blank">{{appDeveloper}}</a></b> {{appDate}}
     </span>
         <div class="socials" *ngIf="showSocials">
@@ -21,5 +21,6 @@ export class FooterComponent {
     appDeveloper = 'T-Media';
     appDate = new Date().getFullYear();
     showSocials = false;
+    showCreatedBy = false;
 
 }
