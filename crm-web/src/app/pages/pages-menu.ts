@@ -1,277 +1,77 @@
 import {NbMenuItem} from '@nebular/theme';
 
 export const MENU_ITEMS: NbMenuItem[] = [
-    /*
-   {
-       title: 'E-commerce',
-       icon: 'shopping-cart-outline',
-       link: '/pages/dashboard',
-       home: true,
-   },
-   {
-       title: 'IoT Dashboard',
-       icon: 'home-outline',
-       link: '/pages/iot-dashboard',
-   },
-   {
-       title: 'MODULES',
-       group: true,
-   },
-   */
     {
-        title: 'Welcome Back',
-        icon: 'shopping-cart-outline',
+        title: 'Welcome',
+        icon: 'home-outline',
         link: '/pages/welcome',
         home: true,
     },
     {
-        title: 'Agent',
-        icon: 'layout-outline',
+        title: 'MODULES',
+        group: true,
+    },
+    {
+        title: 'Dashboard',
+        icon: 'activity-outline',
+        link: '/pages/dashboard',
+    },
+    {
+        title: 'PipeLine',
+        icon: 'swap-outline',
         children: [
-            {
-                title: 'Create Agents',
-                link: '',
-            },
-            {
-                title: 'View Agents',
-                link: '',
-            },
-            {
-                title: 'Manage Agent Profile',
-                link: '',
-            },
+            // step represent a stage in the backend
+            {title: 'manage steps', link: '/pages/pipeline/manage-steps'},
+            {title: 'manage pipelines', link: '/pages/pipeline/manage-pipelines'},
         ],
     },
-    /* {
-     {
-         title: 'FEATURES',
-         group: true,
-     },
-         title: 'Layout',
-         icon: 'layout-outline',
-         children: [
-             {
-                 title: 'Stepper',
-                 link: '/pages/layout/stepper',
-             },
-             {
-                 title: 'List',
-                 link: '/pages/layout/list',
-             },
-             {
-                 title: 'Infinite List',
-                 link: '/pages/layout/infinite-list',
-             },
-             {
-                 title: 'Accordion',
-                 link: '/pages/layout/accordion',
-             },
-             {
-                 title: 'Tabs',
-                 pathMatch: 'prefix',
-                 link: '/pages/layout/tabs',
-             },
-         ],
-     },
-     {
-         title: 'Forms',
-         icon: 'edit-2-outline',
-         children: [
-             {
-                 title: 'Form Inputs',
-                 link: '/pages/forms/inputs',
-             },
-             {
-                 title: 'Form Layouts',
-                 link: '/pages/forms/layouts',
-             },
-             {
-                 title: 'Buttons',
-                 link: '/pages/forms/buttons',
-             },
-             {
-                 title: 'Datepicker',
-                 link: '/pages/forms/datepicker',
-             },
-         ],
-     },
-     {
-         title: 'UI Features',
-         icon: 'keypad-outline',
-         link: '/pages/ui-features',
-         children: [
-             {
-                 title: 'Grid',
-                 link: '/pages/ui-features/grid',
-             },
-             {
-                 title: 'Icons',
-                 link: '/pages/ui-features/icons',
-             },
-             {
-                 title: 'Typography',
-                 link: '/pages/ui-features/typography',
-             },
-             {
-                 title: 'Animated Searches',
-                 link: '/pages/ui-features/search-fields',
-             },
-         ],
-     },
-     {
-         title: 'Modal & Overlays',
-         icon: 'browser-outline',
-         children: [
-             {
-                 title: 'Dialog',
-                 link: '/pages/modal-overlays/dialog',
-             },
-             {
-                 title: 'Window',
-                 link: '/pages/modal-overlays/window',
-             },
-             {
-                 title: 'Popover',
-                 link: '/pages/modal-overlays/popover',
-             },
-             {
-                 title: 'Toastr',
-                 link: '/pages/modal-overlays/toastr',
-             },
-             {
-                 title: 'Tooltip',
-                 link: '/pages/modal-overlays/tooltip',
-             },
-         ],
-     },
-     {
-         title: 'Extra Components',
-         icon: 'message-circle-outline',
-         children: [
-             {
-                 title: 'Calendar',
-                 link: '/pages/extra-components/calendar',
-             },
-             {
-                 title: 'Progress Bar',
-                 link: '/pages/extra-components/progress-bar',
-             },
-             {
-                 title: 'Spinner',
-                 link: '/pages/extra-components/spinner',
-             },
-             {
-                 title: 'Alert',
-                 link: '/pages/extra-components/alert',
-             },
-             {
-                 title: 'Calendar Kit',
-                 link: '/pages/extra-components/calendar-kit',
-             },
-             {
-                 title: 'Chat',
-                 link: '/pages/extra-components/chat',
-             },
-         ],
-     },
-     {
-         title: 'Maps',
-         icon: 'map-outline',
-         children: [
-             {
-                 title: 'Google Maps',
-                 link: '/pages/maps/gmaps',
-             },
-             {
-                 title: 'Leaflet Maps',
-                 link: '/pages/maps/leaflet',
-             },
-             {
-                 title: 'Bubble Maps',
-                 link: '/pages/maps/bubble',
-             },
-             {
-                 title: 'Search Maps',
-                 link: '/pages/maps/searchmap',
-             },
-         ],
-     },
-     {
-         title: 'Charts',
-         icon: 'pie-chart-outline',
-         children: [
-             {
-                 title: 'Echarts',
-                 link: '/pages/charts/echarts',
-             },
-             {
-                 title: 'Charts.js',
-                 link: '/pages/charts/chartjs',
-             },
-             {
-                 title: 'D3',
-                 link: '/pages/charts/d3',
-             },
-         ],
-     },
-     {
-         title: 'Editors',
-         icon: 'text-outline',
-         children: [
-             {
-                 title: 'TinyMCE',
-                 link: '/pages/editors/tinymce',
-             },
-             {
-                 title: 'CKEditor',
-                 link: '/pages/editors/ckeditor',
-             },
-         ],
-     },
-     {
-         title: 'Tables & Data',
-         icon: 'grid-outline',
-         children: [
-             {
-                 title: 'Smart Table',
-                 link: '/pages/tables/smart-table',
-             },
-             {
-                 title: 'Tree Grid',
-                 link: '/pages/tables/tree-grid',
-             },
-         ],
-     },
-     {
-         title: 'Miscellaneous',
-         icon: 'shuffle-2-outline',
-         children: [
-             {
-                 title: '404',
-                 link: '/pages/miscellaneous/404',
-             },
-         ],
-     },
-     {
-         title: 'Auth',
-         icon: 'lock-outline',
-         children: [
-             {
-                 title: 'Login',
-                 link: '/auth/login',
-             },
-             {
-                 title: 'Register',
-                 link: '/auth/register',
-             },
-             {
-                 title: 'Request Password',
-                 link: '/auth/request-password',
-             },
-             {
-                 title: 'Reset Password',
-                 link: '/auth/reset-password',
-             },
-         ],
-     },*/
+    {
+        title: 'Task',
+        icon: 'clipboard-outline',
+        children: [
+            {title: 'manage tasks', link: '/pages/task/manage-tasks'},
+        ],
+    },
+    {
+        title: 'Team',
+        icon: 'umbrella-outline',
+        children: [
+            {title: 'manage teams', link: '/pages/team/manage-teams'},
+        ],
+    },
+    {
+        title: 'Supervisor',
+        icon: 'monitor-outline',
+        children: [
+            // a supervisor is a manager in the backed
+            {title: 'manage supervisors', link: '/pages/manage-supervisors'},
+        ],
+    },
+    {
+        title: 'Agent',
+        icon: 'people-outline',
+        children: [
+            {title: 'manage agents', link: '/pages/agent/manage-agents'},
+            {title: 'manage agent\'s task', link: '/pages/agent/manage-tasks'},
+            {title: 'manage agent\'s team', link: '/pages/agent/manage-teams'},
+            {title: 'manage agent\'s clients', link: '/pages/agent/manage-clients'},
+            {title: 'view agent\'s performance', link: 'pages/agent/view-performances'},
+        ],
+    },
+    {
+        title: 'Client',
+        icon: 'pantone-outline',
+        children: [
+            {title: 'manage clients', link: '/pages/client/manage-clients'},
+        ],
+    },
+    {
+        title: 'Authorization',
+        icon: 'unlock-outline',
+        children: [
+            {title: 'manage users', link: '/pages/auth/users'},
+            {title: 'manage roles ', link: '/pages/auth/roles'},
+            {title: 'manage permission ', link: '/pages/auth/permissions'},
+        ],
+    },
 ];
