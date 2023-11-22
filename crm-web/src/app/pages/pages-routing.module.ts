@@ -1,9 +1,9 @@
-import {RouterModule, Routes} from '@angular/router';
 import {NgModule} from '@angular/core';
-
-import {PagesComponent} from './pages.component';
+import {RouterModule, Routes} from '@angular/router';
 import {NotFoundComponent} from './miscellaneous/not-found/not-found.component';
 import {WelcomeComponent} from './miscellaneous/welcome/welcome.component';
+
+import {PagesComponent} from './pages.component';
 
 const routes: Routes = [{
     path: '',
@@ -18,23 +18,23 @@ const routes: Routes = [{
             loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule),
         },
         {
-            path: 'pipeline',
-            loadChildren: () => import('./pipeline/pipeline-routing.module').then(m => m.PipelineRoutingModule),
+            path: 'pipelines',
+            loadChildren: () => import('./pipeline/pipeline.module').then(m => m.PipelineModule),
         },
         {
-            path: 'task',
+            path: 'tasks',
             loadChildren: () => import('./task/task.module').then(m => m.TaskModule),
         },
         {
-            path: 'team',
+            path: 'teams',
             loadChildren: () => import('./team/team.module').then(m => m.TeamModule),
         },
         {
-            path: 'supervisor',
+            path: 'supervisors',
             loadChildren: () => import('./supervisor/supervisor.module').then(m => m.SupervisorModule),
         },
         {
-            path: 'agent',
+            path: 'agents',
             loadChildren: () => import('./agent/agent.module').then(m => m.AgentModule),
         },
         {

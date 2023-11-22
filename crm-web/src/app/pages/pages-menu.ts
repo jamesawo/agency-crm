@@ -21,22 +21,22 @@ export const MENU_ITEMS: NbMenuItem[] = [
         icon: 'swap-outline',
         children: [
             // step represent a stage in the backend
-            {title: 'manage steps', link: '/pages/pipeline/manage-steps'},
-            {title: 'manage pipelines', link: '/pages/pipeline/manage-pipelines'},
+            {title: 'manage pipelines', link: '/pages/pipelines/pipelines'},
+            {title: 'manage steps', link: '/pages/pipelines/steps'},
         ],
     },
     {
         title: 'Task',
         icon: 'clipboard-outline',
         children: [
-            {title: 'manage tasks', link: '/pages/task/manage-tasks'},
+            {title: 'manage tasks', link: '/pages/tasks'},
         ],
     },
     {
         title: 'Team',
         icon: 'umbrella-outline',
         children: [
-            {title: 'manage teams', link: '/pages/team/manage-teams'},
+            {title: 'manage teams', link: '/pages/teams'},
         ],
     },
     {
@@ -44,25 +44,25 @@ export const MENU_ITEMS: NbMenuItem[] = [
         icon: 'monitor-outline',
         children: [
             // a supervisor is a manager in the backed
-            {title: 'manage supervisors', link: '/pages/manage-supervisors'},
+            {title: 'manage supervisors', link: '/pages/supervisors'},
         ],
     },
     {
         title: 'Agent',
         icon: 'people-outline',
         children: [
-            {title: 'manage agents', link: '/pages/agent/manage-agents'},
-            {title: 'manage agent\'s task', link: '/pages/agent/manage-tasks'},
-            {title: 'manage agent\'s team', link: '/pages/agent/manage-teams'},
-            {title: 'manage agent\'s clients', link: '/pages/agent/manage-clients'},
-            {title: 'view agent\'s performance', link: 'pages/agent/view-performances'},
+            {title: 'manage agents', link: '/pages/agents/agents'},
+            {title: 'manage agent\'s task', link: '/pages/agents/tasks'},
+            {title: 'manage agent\'s team', link: '/pages/agents/teams'},
+            {title: 'manage agent\'s clients', link: '/pages/agents/clients'},
+            {title: 'view agent\'s performance', link: 'pages/agents/view-performances'},
         ],
     },
     {
         title: 'Client',
         icon: 'pantone-outline',
         children: [
-            {title: 'manage clients', link: '/pages/client/manage-clients'},
+            {title: 'manage clients', link: '/pages/clients'},
         ],
     },
     {

@@ -1,17 +1,21 @@
 import {NgModule} from '@angular/core';
-import {NbMenuModule} from '@nebular/theme';
-
-import {ThemeModule} from '../@theme/theme.module';
-import {PagesComponent} from './pages.component';
-import {PagesRoutingModule} from './pages-routing.module';
+import {NbLayoutModule} from '@nebular/theme';
 import {MiscellaneousModule} from './miscellaneous/miscellaneous.module';
+import {PagesRoutingModule} from './pages-routing.module';
+import {PagesComponent} from './pages.component';
+import {PipelineModule} from './pipeline/pipeline.module';
+import {SharedModule} from './shared/shared.module';
 
 @NgModule({
+    exports: [
+        NbLayoutModule,
+        SharedModule,
+    ],
     imports: [
         PagesRoutingModule,
-        ThemeModule,
-        NbMenuModule,
+        SharedModule,
         MiscellaneousModule,
+        PipelineModule,
     ],
     declarations: [
         PagesComponent,
