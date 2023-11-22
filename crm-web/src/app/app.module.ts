@@ -1,20 +1,21 @@
+import {HttpClientModule} from '@angular/common/http';
+import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {NgModule} from '@angular/core';
-import {HttpClientModule} from '@angular/common/http';
+import {NbEvaIconsModule} from '@nebular/eva-icons';
+import {
+    NbChatModule,
+    NbDatepickerModule,
+    NbDialogModule,
+    NbMenuModule,
+    NbSidebarModule,
+    NbToastrModule,
+    NbWindowModule,
+} from '@nebular/theme';
 import {CoreModule} from './@core/core.module';
 import {ThemeModule} from './@theme/theme.module';
-import {AppComponent} from './app.component';
 import {AppRoutingModule} from './app-routing.module';
-import {
-  NbChatModule,
-  NbDatepickerModule,
-  NbDialogModule,
-  NbMenuModule,
-  NbSidebarModule,
-  NbToastrModule,
-  NbWindowModule,
-} from '@nebular/theme';
+import {AppComponent} from './app.component';
 
 @NgModule({
     declarations: [AppComponent],
@@ -32,6 +33,7 @@ import {
         NbChatModule.forRoot({
             messageGoogleMapKey: 'AIzaSyA_wNuCzia92MAmdLRzmqitRGvCF7wCZPY',
         }),
+        NbEvaIconsModule,
         CoreModule.forRoot(),
         ThemeModule.forRoot(),
     ],
