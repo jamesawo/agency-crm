@@ -1,0 +1,18 @@
+<div>
+    <nb-button-group (valueChange)="updateSingleSelectGroupValue($event)" [shape]="'semi-round'">
+        <button [value]="PageViewType.MAP" nbButtonToggle nbTooltip="Map View"
+                nbTooltipIcon="pin-outline">
+            <nb-icon [icon]="'pin-outline'"></nb-icon>
+        </button>
+        <button [value]="PageViewType.GRID" nbButtonToggle nbTooltip="Grid Layout" nbTooltipIcon="grid-outline">
+            <nb-icon [icon]="'grid-outline'"></nb-icon>
+        </button>
+        <button [value]="PageViewType.LIST" nbButtonToggle nbTooltip="List Layout" nbTooltipIcon="list-outline">
+            <nb-icon [icon]="'list-outline'"></nb-icon>
+        </button>
+        <button [pressed]="true" [value]="PageViewType.TABLE" nbButtonToggle nbTooltip="Table Layout"
+                nbTooltipIcon="keypad-outline">
+            <nb-icon [icon]="'keypad-outline'"></nb-icon>
+        </button>
+    </nb-button-group>
+</div>
