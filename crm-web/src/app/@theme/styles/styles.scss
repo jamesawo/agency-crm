@@ -30,4 +30,15 @@
   @include ngx-pace-theme();
 
   @include nb-overrides();
-};
+}
+
+;
+
+.pointer {
+  cursor: pointer;
+}
+
+nb-checkbox .custom-checkbox {
+  width: 16px;
+  height: 16px;
+}

@@ -1,7 +1,22 @@
-<nb-card>
-    <nb-card-body>
-        <ngx-page-header pageDescription="Create, update and manage all your pipeline in one place."
-                         pageTitle="Manage Pipeline"></ngx-page-header>
-        
-    </nb-card-body>
-</nb-card>
+<ngx-page-header
+        pageDescription="Create, update and manage all your pipeline in one place."
+        pageTitle="Manage Pipeline"></ngx-page-header>
+
+<ngx-page-spacer>
+    <nb-card>
+        <nb-card-body>
+
+            <ngx-pipeline-filter></ngx-pipeline-filter>
+
+            <ngx-page-spacer [class]="'d-flex flex-row flex-wrap justify-content-between'">
+                <ngx-page-buttons></ngx-page-buttons>
+                <ngx-page-view-buttons></ngx-page-view-buttons>
+            </ngx-page-spacer>
+
+            <ngx-page-spacer>
+                <ngx-pipeline-table></ngx-pipeline-table>
+            </ngx-page-spacer>
+
+        </nb-card-body>
+    </nb-card>
+</ngx-page-spacer>

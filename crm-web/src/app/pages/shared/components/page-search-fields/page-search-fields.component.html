@@ -1,0 +1,21 @@
+<div class="row ">
+    <div (click)="showSearchParameters = ! showSearchParameters"
+         class="d-flex w-100 pl-3 pr-3 pt-0 flex-row justify-content-between mb-3 pointer">
+        <label [nbTooltipIcon]="showSearchParameters ? 'collapse-outline' : 'expand-outline' "
+               class="text-muted  pointer" nbTooltip="Click here to toogle the search fields">
+            {{showSearchParameters ? 'Close' : 'Open'}} Search Fields
+        </label>
+        <div>
+            <ng-container *ngIf="showSearchParameters; else expand">
+                <nb-icon icon="collapse-outline"></nb-icon>
+            </ng-container>
+            <ng-template #expand>
+                <nb-icon icon="expand-outline"></nb-icon>
+            </ng-template>
+        </div>
+    </div>
+
+    <div *ngIf="showSearchParameters" class="col-md-12">
+        <ng-content></ng-content>
+    </div>
+</div>
