@@ -11,10 +11,8 @@ import com.james.crm.api.core.common.ApiResponse
 import com.james.crm.api.core.common.Paginate
 import com.james.crm.api.core.constant.Route
 import com.james.crm.api.modules.pipeline.data.dto.PipelineDto
-import com.james.crm.api.modules.pipeline.data.usecase.contract.pipeline.ICreatePipelineUsecase
-import com.james.crm.api.modules.pipeline.data.usecase.contract.pipeline.IGetAllPipelineUsecase
-import com.james.crm.api.modules.pipeline.data.usecase.contract.pipeline.IGetPipelineUsecase
-import com.james.crm.api.modules.pipeline.data.usecase.contract.pipeline.IUpdatePipelineUsecase
+import com.james.crm.api.modules.pipeline.data.dto.StageDto
+import com.james.crm.api.modules.pipeline.data.usecase.contract.pipeline.*
 import jakarta.validation.Valid
 import org.springframework.data.domain.PageRequest
 import org.springframework.data.domain.Sort
@@ -27,7 +25,8 @@ class PipelineEndpoint(
     private val createPipelineUsecase: ICreatePipelineUsecase,
     private val getAllPipelineUsecase: IGetAllPipelineUsecase,
     private val getPipelineUsecase: IGetPipelineUsecase,
-    private val updatePipelineUsecase: IUpdatePipelineUsecase
+    private val updatePipelineUsecase: IUpdatePipelineUsecase,
+    private val getAllStageInPipelineUsecase: IGetAllStageInPipelineUsecase
 
 ) {
     @GetMapping
@@ -62,5 +61,23 @@ class PipelineEndpoint(
         @Valid @RequestBody pipelineDto: PipelineDto
     ): ResponseEntity<ApiResponse<Boolean>> {
         return updatePipelineUsecase.execute(Pair(pipelineId, pipelineDto))
+    }
+
+    @GetMapping("{pipelineId}")
+    fun getAllStageInPipeline(
+        @RequestParam(defaultValue = "1") page: Int,
+        @RequestParam(defaultValue = "10") size: Int,
+        @RequestParam(defaultValue = "ASC", required = false) sort: Sort.Direction,
+        @PathVariable(required = true) pipelineId: String
+    ): ResponseEntity<ApiResponse<Paginate<StageDto>>> {
+        return getAllStageInPipelineUsecase.execute(
+            Pair(
+                pipelineId,
+                PageRequest.of(
+                    page - 1, size,
+                    Sort.by(sort, "title")
+                )
+            )
+        )
     }
 }
