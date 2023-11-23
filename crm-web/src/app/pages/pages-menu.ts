@@ -21,22 +21,22 @@ export const MENU_ITEMS: NbMenuItem[] = [
         icon: 'swap-outline',
         children: [
             // step represent a stage in the backend
-            {title: 'manage pipelines', link: '/pages/pipelines/pipelines'},
-            {title: 'manage steps', link: '/pages/pipelines/steps'},
+            {title: 'Manage pipelines', link: '/pages/pipelines/pipelines'},
+            {title: 'Manage steps', link: '/pages/pipelines/steps'},
         ],
     },
     {
         title: 'Task',
         icon: 'clipboard-outline',
         children: [
-            {title: 'manage tasks', link: '/pages/tasks'},
+            {title: 'Manage tasks', link: '/pages/tasks'},
         ],
     },
     {
         title: 'Team',
         icon: 'umbrella-outline',
         children: [
-            {title: 'manage teams', link: '/pages/teams'},
+            {title: 'Manage teams', link: '/pages/teams'},
         ],
     },
     {
@@ -44,34 +44,34 @@ export const MENU_ITEMS: NbMenuItem[] = [
         icon: 'monitor-outline',
         children: [
             // a supervisor is a manager in the backed
-            {title: 'manage supervisors', link: '/pages/supervisors'},
+            {title: 'Manage supervisors', link: '/pages/supervisors'},
         ],
     },
     {
         title: 'Agent',
         icon: 'people-outline',
         children: [
-            {title: 'manage agents', link: '/pages/agents/agents'},
-            {title: 'manage agent\'s task', link: '/pages/agents/tasks'},
-            {title: 'manage agent\'s team', link: '/pages/agents/teams'},
-            {title: 'manage agent\'s clients', link: '/pages/agents/clients'},
-            {title: 'view agent\'s performance', link: 'pages/agents/view-performances'},
+            {title: 'Manage agents', link: '/pages/agents/agents'},
+            {title: 'Manage agent\'s task', link: '/pages/agents/tasks'},
+            {title: 'Manage agent\'s team', link: '/pages/agents/teams'},
+            {title: 'Manage agent\'s clients', link: '/pages/agents/clients'},
+            {title: 'View agent\'s performance', link: 'pages/agents/view-performances'},
         ],
     },
     {
         title: 'Client',
         icon: 'pantone-outline',
         children: [
-            {title: 'manage clients', link: '/pages/clients'},
+            {title: 'Manage clients', link: '/pages/clients'},
         ],
     },
     {
         title: 'Authorization',
         icon: 'unlock-outline',
         children: [
-            {title: 'manage users', link: '/pages/auth/users'},
-            {title: 'manage roles ', link: '/pages/auth/roles'},
-            {title: 'manage permission ', link: '/pages/auth/permissions'},
+            {title: 'Manage users', link: '/pages/auth/users'},
+            {title: 'Manage roles ', link: '/pages/auth/roles'},
+            {title: 'Manage permission ', link: '/pages/auth/permissions'},
         ],
     },
 ];
