@@ -24,7 +24,6 @@ import {Component, OnInit} from '@angular/core';
     ],
 })
 export class PipelineFilterComponent implements OnInit {
-    showSearchParameters = false;
 
     constructor() {
     }
