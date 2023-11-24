@@ -9,14 +9,14 @@
             <ngx-pipeline-filter></ngx-pipeline-filter>
 
             <ngx-page-spacer [class]="'d-flex flex-row flex-wrap justify-content-between'">
-                <ngx-page-buttons></ngx-page-buttons>
-                <ngx-page-view-buttons></ngx-page-view-buttons>
+                <ngx-page-buttons [buttons]="pageButtons"></ngx-page-buttons>
+                <ngx-page-view-buttons [options]="pageViewOpts"></ngx-page-view-buttons>
             </ngx-page-spacer>
 
             <ngx-page-spacer>
-                <ngx-pipeline-table></ngx-pipeline-table>
+                <ngx-pipeline-data-renderer></ngx-pipeline-data-renderer>
             </ngx-page-spacer>
-
+            
         </nb-card-body>
     </nb-card>
 </ngx-page-spacer>
