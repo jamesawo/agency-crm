@@ -1,18 +1,51 @@
-<div>
-    <nb-button-group (valueChange)="updateSingleSelectGroupValue($event)" [shape]="'semi-round'">
-        <button [value]="PageViewType.MAP" nbButtonToggle nbTooltip="Map View"
-                nbTooltipIcon="pin-outline">
-            <nb-icon [icon]="'pin-outline'"></nb-icon>
-        </button>
-        <button [value]="PageViewType.GRID" nbButtonToggle nbTooltip="Grid Layout" nbTooltipIcon="grid-outline">
-            <nb-icon [icon]="'grid-outline'"></nb-icon>
-        </button>
-        <button [value]="PageViewType.LIST" nbButtonToggle nbTooltip="List Layout" nbTooltipIcon="list-outline">
-            <nb-icon [icon]="'list-outline'"></nb-icon>
-        </button>
-        <button [pressed]="true" [value]="PageViewType.TABLE" nbButtonToggle nbTooltip="Table Layout"
-                nbTooltipIcon="keypad-outline">
-            <nb-icon [icon]="'keypad-outline'"></nb-icon>
-        </button>
+<div class="mt-1r">
+    <nb-button-group (valueChange)="updateSingleSelectGroupValue($event)" [shape]="'rectangle'">
+        <ng-container *ngFor="let option of options.buttons">
+            <button
+                    (click)="option.action"
+                    *ngIf="option.type == PageViewType.LIST"
+                    [pressed]="options.default == PageViewType.LIST"
+                    [value]="PageViewType.LIST"
+                    nbButtonToggle
+                    nbTooltip="List Layout"
+                    nbTooltipIcon="list-outline"
+            >
+                <nb-icon [icon]="'list-outline'"></nb-icon>
+            </button>
+
+            <button (click)="option.action"
+                    *ngIf="option.type == PageViewType.MAP"
+                    [pressed]="options.default == PageViewType.MAP"
+                    [value]="PageViewType.MAP"
+                    nbButtonToggle
+                    nbTooltip="Map View"
+                    nbTooltipIcon="pin-outline"
+            >
+                <nb-icon [icon]="'pin-outline'"></nb-icon>
+            </button>
+
+            <button
+                    (click)="option.action"
+                    *ngIf="option.type == PageViewType.GRID"
+                    [pressed]="options.default == PageViewType.GRID"
+                    [value]="PageViewType.GRID"
+                    nbButtonToggle
+                    nbTooltip="Grid Layout"
+                    nbTooltipIcon="grid-outline"
+            >
+                <nb-icon [icon]="'grid-outline'"></nb-icon>
+            </button>
+            <button
+                    (click)="option.action"
+                    *ngIf="option.type == PageViewType.TABLE"
+                    [pressed]="options.default == PageViewType.TABLE"
+                    [value]="PageViewType.TABLE"
+                    nbButtonToggle
+                    nbTooltip="Table Layout"
+                    nbTooltipIcon="keypad-outline"
+            >
+                <nb-icon [icon]="'keypad-outline'"></nb-icon>
+            </button>
+        </ng-container>
     </nb-button-group>
 </div>

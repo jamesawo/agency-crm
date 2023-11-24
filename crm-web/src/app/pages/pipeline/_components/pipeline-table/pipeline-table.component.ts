@@ -1,4 +1,6 @@
 import {Component, OnInit} from '@angular/core';
+import {IPageTable} from '../../../shared/data/shared.interface';
+import {pipelineTableColumns, pipelineTableHeader} from '../../_data/pipeline-data';
 
 @Component({
     selector: 'ngx-pipeline-table',
@@ -6,47 +8,10 @@ import {Component, OnInit} from '@angular/core';
     styleUrls: ['./pipeline-table.component.scss'],
 })
 export class PipelineTableComponent implements OnInit {
-    settings = {
-        add: {
-            addButtonContent: '<i class="nb-plus"></i>',
-            createButtonContent: '<i class="nb-checkmark"></i>',
-            cancelButtonContent: '<i class="nb-close"></i>',
-        },
-        edit: {
-            editButtonContent: '<i class="nb-edit"></i>',
-            saveButtonContent: '<i class="nb-checkmark"></i>',
-            cancelButtonContent: '<i class="nb-close"></i>',
-        },
-        delete: {
-            deleteButtonContent: '<i class="nb-trash"></i>',
-            confirmDelete: true,
-        },
-        columns: {
-            id: {
-                title: 'ID',
-                type: 'number',
-            },
-            firstName: {
-                title: 'First Name',
-                type: 'string',
-            },
-            lastName: {
-                title: 'Last Name',
-                type: 'string',
-            },
-            username: {
-                title: 'Username',
-                type: 'string',
-            },
-            email: {
-                title: 'E-mail',
-                type: 'string',
-            },
-            age: {
-                title: 'Age',
-                type: 'number',
-            },
-        },
+
+    pipeLineTable: IPageTable = {
+        tableHeader: pipelineTableHeader,
+        tableColumns: pipelineTableColumns,
     };
 
     constructor() {

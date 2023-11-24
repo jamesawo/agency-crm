@@ -1,10 +1,13 @@
 <div class="p-0">
-    <button nbButton size="medium" status="basic">
-        <nb-icon [icon]="'search'"></nb-icon>
-        Search
-    </button>
-    <button class="ml-2" nbButton size="medium" status="primary">
-        <nb-icon [icon]="'plus'"></nb-icon>
-        Add
-    </button>
+
+    <ng-container *ngFor="let button of buttons">
+        <button
+                [shape]="button.shape"
+                [size]="button.size"
+                [status]="button.status"
+                class="mr-2" nbButton>
+            <nb-icon *ngIf="button.icon" [icon]="button.icon"></nb-icon>
+            {{button.text}}
+        </button>
+    </ng-container>
 </div>

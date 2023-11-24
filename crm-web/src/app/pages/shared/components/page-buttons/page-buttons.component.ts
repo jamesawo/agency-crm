@@ -1,4 +1,5 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {IPageButton} from '../../data/shared.interface';
 
 @Component({
     selector: 'ngx-page-buttons',
@@ -6,6 +7,8 @@ import {Component, OnInit} from '@angular/core';
     styles: [],
 })
 export class PageButtonsComponent implements OnInit {
+    @Input()
+    buttons: IPageButton[] = [];
 
     constructor() {
     }
