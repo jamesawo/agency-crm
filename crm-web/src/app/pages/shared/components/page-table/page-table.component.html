@@ -1,0 +1,103 @@
+<div *ngIf="tableHeader" class="d-flex flex-row justify-content-between py-2 flex-wrap">
+    <label class="">
+        <ng-container *ngIf="tableHeader.title; else noTitle">
+            <span class="text-capitalize"> {{tableHeader.title}} Records </span>
+        </ng-container>
+        <ng-template #noTitle>
+            <span></span>
+        </ng-template>
+    </label>
+    <div class="">
+        <ng-container *ngFor="let icon of tableHeader.buttons">
+            <ngx-icon-button
+                    [action]="icon.action" [class]="'mx-1'"
+                    [icon]="icon.icon" [tooltip]="icon.tooltip"
+            ></ngx-icon-button>
+        </ng-container>
+    </div>
+</div>
+
+<ng-container *ngIf="tableData | async as dataList; else emptyTableRef">
+
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover table-striped">
+            <thead>
+            <tr>
+                <th scope="col">
+                    <nb-checkbox status="basic"></nb-checkbox>
+                </th>
+                <ng-container *ngTemplateOutlet="tableColTmplRef"></ng-container>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let rowData of dataList">
+                <th scope="row">
+                    <nb-checkbox status="basic"></nb-checkbox>
+                </th>
+                <td *ngFor="let row of tableRows">
+                    <ng-template
+                            [ngTemplateOutletContext]="{ item: rowData }"
+                            [ngTemplateOutlet]="row">
+                    </ng-template>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div *ngIf="showPagination"
+         class="d-flex flex-row justify-content-between mt-4 py-2 align-items-center flex-wrap">
+        <label class="">Page {{pageIndex}} / {{pageTotalSize}}</label>
+
+        <ul class="pagination mb-0 overflow-auto mt-0-5r">
+            <li class="page-item disabled">
+                <a class="page-link" tabindex="-1">Previous</a>
+            </li>
+
+            <li class="page-item"><a class="page-link">1</a></li>
+            <li class="page-item"><a class="page-link">2</a></li>
+            <li class="page-item"><a class="page-link">3</a></li>
+            <li class="page-item"><a class="page-link">...</a></li>
+            <li class="page-item"><a class="page-link">49</a></li>
+            <li class="page-item"><a class="page-link">50</a></li>
+
+            <li class="page-item">
+                <a class="page-link">Next</a>
+            </li>
+        </ul>
+
+        <div *ngIf="showSizeChanger" class="mt-1r">
+            <nb-select placeholder="Size" size="small">
+                <nb-option [value]="0">10</nb-option>
+                <nb-option [value]="1">20</nb-option>
+            </nb-select>
+        </div>
+    </div>
+</ng-container>
+
+<ng-template #emptyTableRef>
+    <div class="table-responsive">
+        <table class="w-100 table table-bordered table-hover table-striped empty-table">
+            <thead>
+            <tr>
+                <ng-container *ngTemplateOutlet="tableColTmplRef"></ng-container>
+            </tr>
+            </thead>
+            <tbody class="d-flex justify-content-center">
+            <div class="text-center">
+                <nb-icon icon="shopping-bag-outline" style="width: 24px; height: 24px"></nb-icon>
+                <p>No data available</p>
+            </div>
+            </tbody>
+            <div></div>
+        </table>
+    </div>
+</ng-template>
+
+<ng-template #tableColTmplRef>
+    <ng-container *ngFor="let col of tableCols">
+        <th scope="col">
+            <span class="text-dark"> {{col.title}} </span>
+        </th>
+    </ng-container>
+</ng-template>
