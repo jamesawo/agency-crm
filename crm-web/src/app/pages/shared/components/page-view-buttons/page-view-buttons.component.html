@@ -1,8 +1,8 @@
 <div class="mt-1r">
-    <nb-button-group (valueChange)="updateSingleSelectGroupValue($event)" [shape]="'rectangle'">
+    <nb-button-group (valueChange)="onViewSelectionChange($event)" [multiple]="false" [shape]="'rectangle'">
         <ng-container *ngFor="let option of options.buttons">
             <button
-                    (click)="option.action"
+
                     *ngIf="option.type == PageViewType.LIST"
                     [pressed]="options.default == PageViewType.LIST"
                     [value]="PageViewType.LIST"
@@ -13,7 +13,7 @@
                 <nb-icon [icon]="'list-outline'"></nb-icon>
             </button>
 
-            <button (click)="option.action"
+            <button
                     *ngIf="option.type == PageViewType.MAP"
                     [pressed]="options.default == PageViewType.MAP"
                     [value]="PageViewType.MAP"
@@ -25,7 +25,7 @@
             </button>
 
             <button
-                    (click)="option.action"
+
                     *ngIf="option.type == PageViewType.GRID"
                     [pressed]="options.default == PageViewType.GRID"
                     [value]="PageViewType.GRID"
@@ -36,7 +36,7 @@
                 <nb-icon [icon]="'grid-outline'"></nb-icon>
             </button>
             <button
-                    (click)="option.action"
+
                     *ngIf="option.type == PageViewType.TABLE"
                     [pressed]="options.default == PageViewType.TABLE"
                     [value]="PageViewType.TABLE"
