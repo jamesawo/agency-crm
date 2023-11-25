@@ -7,7 +7,7 @@
       "severity": "warning"
     },
     "trailing-comma": [
-      true,
+      false,
       {
         "multiline": "always",
         "singleline": "never"
@@ -41,7 +41,6 @@
     "no-console": [
       true,
       "debug",
-      "log",
       "time",
       "timeEnd",
       "trace"
