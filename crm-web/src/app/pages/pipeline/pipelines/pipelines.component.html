@@ -10,13 +10,15 @@
 
             <ngx-page-spacer [class]="'d-flex flex-row flex-wrap justify-content-between'">
                 <ngx-page-buttons [buttons]="pageButtons"></ngx-page-buttons>
-                <ngx-page-view-buttons [options]="pageViewOpts"></ngx-page-view-buttons>
+
+                <ngx-page-view-buttons (viewChange)="handleViewChange($event)"
+                                       [options]="pageViewOpts"></ngx-page-view-buttons>
             </ngx-page-spacer>
 
             <ngx-page-spacer>
                 <ngx-pipeline-data-renderer></ngx-pipeline-data-renderer>
             </ngx-page-spacer>
-            
+
         </nb-card-body>
     </nb-card>
 </ngx-page-spacer>

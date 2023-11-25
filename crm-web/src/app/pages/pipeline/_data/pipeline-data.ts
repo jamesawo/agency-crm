@@ -27,6 +27,7 @@ export const pipelinePageViewButtons: IPageViewButton[] = [
         type: PageView.TABLE, action: () => {
         },
     },
+    /*
     {
         type: PageView.GRID, action: () => {
         },
@@ -35,6 +36,7 @@ export const pipelinePageViewButtons: IPageViewButton[] = [
         type: PageView.LIST, action: () => {
         },
     },
+     */
 ];
 
 export const pipelineTableHeader: IPageTableHeader = {
