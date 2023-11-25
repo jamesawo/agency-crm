@@ -3,7 +3,6 @@ import {NbMediaBreakpointsService, NbMenuService, NbSidebarService, NbThemeServi
 import {Subject} from 'rxjs';
 import {map, takeUntil} from 'rxjs/operators';
 
-import {UserData} from '../../../@core/data/users';
 import {LayoutService} from '../../../@core/utils';
 
 @Component({
@@ -41,17 +40,13 @@ export class HeaderComponent implements OnInit, OnDestroy {
     constructor(private sidebarService: NbSidebarService,
                 private menuService: NbMenuService,
                 private themeService: NbThemeService,
-                private userService: UserData,
                 private layoutService: LayoutService,
                 private breakpointService: NbMediaBreakpointsService) {
     }
 
     ngOnInit() {
         this.currentTheme = this.themeService.currentTheme;
-
-        this.userService.getUsers()
-            .pipe(takeUntil(this.destroy$))
-            .subscribe((users: any) => this.user = users.nick);
+        this.user = {name: 'Nick Jones', picture: 'assets/images/nick.png'};
 
         const {xl} = this.breakpointService.getBreakpointsMap();
         this.themeService.onMediaQueryChange()
