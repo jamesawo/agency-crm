@@ -24,7 +24,7 @@
             <thead>
             <tr>
                 <th scope="col">
-                    <nb-checkbox status="basic"></nb-checkbox>
+                    <nb-checkbox (checkedChange)="onCheckAllRecord($event)" status="basic"></nb-checkbox>
                 </th>
                 <ng-container *ngTemplateOutlet="tableColTmplRef"></ng-container>
             </tr>
@@ -80,6 +80,9 @@
         <table class="w-100 table table-bordered table-hover table-striped empty-table">
             <thead>
             <tr>
+                <th scope="col">
+                    <nb-checkbox status="basic"></nb-checkbox>
+                </th>
                 <ng-container *ngTemplateOutlet="tableColTmplRef"></ng-container>
             </tr>
             </thead>
@@ -96,6 +99,7 @@
 
 <ng-template #tableColTmplRef>
     <ng-container *ngFor="let col of tableCols">
+
         <th scope="col">
             <span class="text-dark"> {{col.title}} </span>
         </th>

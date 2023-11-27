@@ -1,6 +1,14 @@
-import {ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit} from '@angular/core';
+import {
+    ChangeDetectionStrategy,
+    ChangeDetectorRef,
+    Component,
+    EventEmitter,
+    Input,
+    OnInit,
+    Output
+} from '@angular/core';
 import {PageView} from '../../data/shared.enum';
-import {IPageViewButton, IPageViewOptions} from '../../data/shared.interface';
+import {IPageViewOptions} from '../../data/shared.interface';
 
 @Component({
     selector: 'ngx-page-view-buttons',
@@ -10,23 +18,26 @@ import {IPageViewButton, IPageViewOptions} from '../../data/shared.interface';
 })
 export class PageViewButtonsComponent implements OnInit {
     @Input()
-    options: IPageViewOptions;
+    options: IPageViewOptions = {default: PageView.TABLE, buttons: []};
 
-    @Input()
-    views: IPageViewButton[];
-
-    viewType = PageView.MAP;
+    @Output()
+    viewChange: EventEmitter<PageView> = new EventEmitter<PageView>();
+    view: PageView = PageView.TABLE;
 
     readonly PageViewType = PageView;
 
-    constructor(private cd: ChangeDetectorRef) {
-    }
-
-    updateSingleSelectGroupValue(value): void {
-        this.viewType = value;
-        this.cd.markForCheck();
+    constructor(
+        private cd: ChangeDetectorRef,
+    ) {
     }
 
     ngOnInit(): void {
+        this.view = this.options.default;
+    }
+
+    onViewSelectionChange(value: any): void {
+        this.viewChange.emit(value[0]);
+        this.view = value[0];
+        this.cd.markForCheck();
     }
 }

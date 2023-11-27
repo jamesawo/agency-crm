@@ -14,21 +14,21 @@ import {
 })
 export class PageTableComponent implements OnInit, IPageTablePaginationOpts, IPageTableOptions {
     @Input()
-    tableHeader: IPageTableHeader;
+    tableHeader: IPageTableHeader = {title: '', buttons: []};
     @Input()
-    tableCols: IPageTableCols[];
+    tableCols: IPageTableCols[] = [];
     @Input()
-    tableRows?: TemplateRef<any>[];
+    tableRows?: TemplateRef<any>[] = [];
     @Input()
-    tableData?: Observable<any[]>;
+    tableData?: Observable<any[]> = new Observable<any[]>();
     @Input()
     pageIndex: number = 0;
     @Output()
-    pageIndexChange: EventEmitter<number>;
+    pageIndexChange: EventEmitter<number> = new EventEmitter<number>();
     @Input()
     pageSize: number = 10;
     @Output()
-    pageSizeChange: EventEmitter<number>;
+    pageSizeChange: EventEmitter<number> = new EventEmitter<number>();
     @Input()
     pageTotalSize: number = 0;
     @Input()
@@ -37,6 +37,11 @@ export class PageTableComponent implements OnInit, IPageTablePaginationOpts, IPa
     showPagination: boolean = false;
     @Input()
     showSizeChanger: boolean = false;
+    @Output()
+    onAllRecordChecked: EventEmitter<boolean> = new EventEmitter<boolean>(false);
+    @Output()
+    onSingleRecordChecked: EventEmitter<any> = new EventEmitter<any>();
+
 
     constructor() {
     }
@@ -44,4 +49,13 @@ export class PageTableComponent implements OnInit, IPageTablePaginationOpts, IPa
     ngOnInit(): void {
     }
 
+    onCheckAllRecord(value: boolean) {
+        console.log(value);
+        this.onAllRecordChecked.emit(value);
+    }
+
+    onCheckSingleRecord(record: any) {
+        console.log(record);
+        this.onSingleRecordChecked.emit(record);
+    }
 }

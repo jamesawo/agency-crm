@@ -1,4 +1,4 @@
-<ng-container [ngSwitch]="currentView">
+<ng-container [ngSwitch]="currentView | async">
     <ngx-pipeline-table *ngSwitchCase="PageView.TABLE"></ngx-pipeline-table>
     <ngx-pipeline-list *ngSwitchCase="PageView.LIST"></ngx-pipeline-list>
     <ngx-pipeline-grid *ngSwitchCase="PageView.GRID"></ngx-pipeline-grid>

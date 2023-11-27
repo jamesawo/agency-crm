@@ -9,6 +9,7 @@ import {PipelineTableComponent} from './_components/pipeline-table/pipeline-tabl
 import {PipelineRoutingModule} from './pipeline-routing.module';
 import {PipelinesComponent} from './pipelines/pipelines.component';
 import {StagesComponent} from './stages/stages.component';
+import {PipelineStore} from './state/pipeline.store';
 
 const COMPONENTS: Array<Type<any>> = [
     StagesComponent,
@@ -31,6 +32,9 @@ const COMPONENTS: Array<Type<any>> = [
     exports: [
         SharedModule,
         ...COMPONENTS,
+    ],
+    providers: [
+        PipelineStore,
     ],
 })
 export class PipelineModule {
