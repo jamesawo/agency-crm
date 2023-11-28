@@ -21,6 +21,7 @@ data class StageDto(var id: String? = null) {
     var status: StageStatus = StageStatus.CLOSE
     var hierarchy: Int = 0
     var pipeline: Pipeline = Pipeline()
+    var stageValue: String = ""
 
     constructor() : this(id = null)
 
@@ -39,7 +40,6 @@ data class StageDto(var id: String? = null) {
         this.status = status
         this.hierarchy = hierarchy
         this.pipeline = pipeline
-
     }
 
     companion object : Mapper<StageDto, Stage> {
@@ -49,7 +49,8 @@ data class StageDto(var id: String? = null) {
                 title = request.title,
                 action = request.action,
                 hierarchy = request.hierarchy,
-                status = request.status
+                status = request.status,
+                stageValue = request.stageValue
             )
         }
 

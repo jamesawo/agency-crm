@@ -33,13 +33,16 @@ class Stage(id: String?) : Base(id) {
     @ManyToOne(fetch = FetchType.LAZY)
     var pipeline: Pipeline = Pipeline()
 
+    var stageValue: String = ""
+
     constructor() : this(id = null)
     constructor(
         id: String?,
         title: String,
         action: StageAction,
         hierarchy: Int,
-        status: StageStatus
+        status: StageStatus,
+        stageValue: String
     ) : this(id) {
         this.id = id
         this.title = title
@@ -47,6 +50,7 @@ class Stage(id: String?) : Base(id) {
         this.reviewType = StageReviewType.AUTO
         this.status = status
         this.hierarchy = hierarchy
+        this.stageValue = value
     }
 
 }
