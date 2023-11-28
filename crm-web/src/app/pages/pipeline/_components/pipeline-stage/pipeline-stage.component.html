@@ -1,0 +1,31 @@
+<div class="row">
+    <div class="col-sm-12 col-md-12">
+        <div class="form-group">
+            <label class="d-block label" for="title">Title</label>
+            <input class=""
+                   fieldSize="medium" fullWidth
+                   id="title" nbInput placeholder="Enter title" type="text"
+            >
+        </div>
+    </div>
+    <div class="col-sm-12 col-md-6">
+        <div class="form-group">
+            <label class="label d-block" for="reviewType">Review Type</label>
+            <nb-select fullWidth id="reviewType" placeholder="Size" scrollStrategy="noop"
+                       size="small">
+                <nb-option [value]="'manual'">MANUAL</nb-option>
+                <nb-option [value]="'auto'">AUTO</nb-option>
+            </nb-select>
+        </div>
+    </div>
+    <div class="col-sm-12 col-md-6">
+        <div class="form-group">
+            <label class="label d-block" for="requirement">Requirement</label>
+            <nb-select fullWidth id="requirement" placeholder="Size" scrollStrategy="noop"
+                       size="small">
+                <nb-option [value]="'upload'" class="w-100">UPLOAD FILE</nb-option>
+                <nb-option [value]="'sale'" class="w-100">CLOSE SALE</nb-option>
+            </nb-select>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,23 @@
+<div class="row">
+    <div class="col-sm-12 col-md-9">
+        <div class="form-group">
+            <label class="label" for="title">Pipeline Title</label>
+            <input [(ngModel)]="pipeline.title"
+                   class="input-full-width" fieldSize="medium"
+                   id="title" nbInput placeholder="Enter the pipeline title" type="text"
+            >
+        </div>
+    </div>
+    <div class="col-sm-12 col-md-3 align-self-end">
+
+        <div class="form-group">
+            <button
+                    (click)="onAddStage()"
+                    [status]="'primary'"
+                    class="" nbButton>
+                <nb-icon [icon]="'plus'"></nb-icon>
+                Step
+            </button>
+        </div>
+    </div>
+</div>

@@ -1,5 +1,6 @@
 import {PageView} from '../../shared/data/shared.enum';
 import {IPageButton, IPageTableCols, IPageTableHeader, IPageViewButton} from '../../shared/data/shared.interface';
+import {PipelineService} from '../state/pipeline.service';
 
 export const pipelinePageButtons: IPageButton[] = [
     {
@@ -17,8 +18,7 @@ export const pipelinePageButtons: IPageButton[] = [
         size: 'medium',
         status: 'primary',
         shape: 'rectangle',
-        action: () => {
-        },
+        action: PipelineService.onAddButtonClick,
     },
 ];
 
@@ -27,7 +27,6 @@ export const pipelinePageViewButtons: IPageViewButton[] = [
         type: PageView.TABLE, action: () => {
         },
     },
-    /*
     {
         type: PageView.GRID, action: () => {
         },
@@ -36,7 +35,6 @@ export const pipelinePageViewButtons: IPageViewButton[] = [
         type: PageView.LIST, action: () => {
         },
     },
-     */
 ];
 
 export const pipelineTableHeader: IPageTableHeader = {

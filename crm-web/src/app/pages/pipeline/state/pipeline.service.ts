@@ -1,7 +1,8 @@
 import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
+import {NbWindowService} from '@nebular/theme';
 import {environment} from '../../../../environments/environment';
-import {Pipeline} from './pipeline.model';
+import {IPipeline} from './pipeline.model';
 import {PipelineStore} from './pipeline.store';
 
 @Injectable({providedIn: 'root'})
@@ -11,15 +12,19 @@ export class PipelineService {
     constructor(
         private store: PipelineStore,
         private http: HttpClient,
+        private nbWindowService: NbWindowService
     ) {
     }
 
-    getAll() {
-        return this.http.get<Pipeline[]>(`${this.url}/all`);
-        // .pipe(tap((entries) => this.store.set(entries)));
+    static onAddButtonClick(): void {
+        console.log('This is a static function.');
     }
 
-    update(id: string, pipeline: Partial<Pipeline>) {
+    getAll() {
+        return this.http.get<IPipeline[]>(`${this.url}/all`);
+    }
+
+    update(id: string, pipeline: Partial<IPipeline>) {
         this.store.update('', pipeline);
     }
 }

@@ -1,0 +1,30 @@
+<div class="row">
+    <div class="col-sm-12 col-md-12">
+        <nb-accordion>
+            <nb-accordion-item *ngFor="let stage of pipeline?.stages; let i = index" class="mt-1">
+                <nb-accordion-item-header>
+                    Step {{i + 1}}
+
+                    <!--                            [action]="pipeline.removeStage"-->
+                    <!--                            [args]="{stage, pipeline}"-->
+                    <ngx-icon-button
+                            (click)="$event.stopPropagation()"
+                            [action]="removeStage"
+                            [args]="stage"
+                            [icon]="'trash-2-outline'"
+                            [size]="'small'"
+                            [status]="'danger'" class="mr-3"
+                    ></ngx-icon-button>
+
+                </nb-accordion-item-header>
+                <nb-accordion-item-body>
+                    <ngx-pipeline-stage [stage]="stage"></ngx-pipeline-stage>
+                </nb-accordion-item-body>
+            </nb-accordion-item>
+
+        </nb-accordion>
+    </div>
+
+</div>
+
+

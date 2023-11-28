@@ -1,7 +1,20 @@
-export interface Pipeline {
-    id: string;
+import {StageAction, StageReviewType, StageStatus} from '../_data/pipeline.enum';
+
+export interface IStage {
+    title: string;
+    action: StageAction;
+    reviewType: StageReviewType;
+    status: StageStatus;
+    hierarchy: number;
+    stageValue: string;
 }
 
-export function createInitialPipeline(): Pipeline {
-    return {} as Pipeline;
+export interface IPipeline {
+    id: string;
+    title: string;
+    hierarchy: number;
+    // stages: IStage[];
+    stages: Set<IStage>;
 }
+
+
