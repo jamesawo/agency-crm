@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {NbComponentShape} from '@nebular/theme';
 import {NbComponentSize} from '@nebular/theme/components/component-size';
+import {NbComponentOrCustomStatus} from '@nebular/theme/components/component-status';
 import {ActionFn} from '../../data/shared.types';
 
 @Component({
@@ -9,6 +10,8 @@ import {ActionFn} from '../../data/shared.types';
     styles: [],
 })
 export class PageIconButtonComponent implements OnInit {
+    @Input()
+    status: NbComponentOrCustomStatus = 'basic';
 
     @Input()
     shape: NbComponentShape = 'rectangle';

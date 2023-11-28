@@ -1,0 +1,11 @@
+<nb-card class="model-full">
+    <nb-card-header>
+        <span>{{title.toUpperCase()}}</span>
+        <button (click)="onClose(true)" aria-label="Close" class="close">
+            <nb-icon icon="close"></nb-icon>
+        </button>
+    </nb-card-header>
+    <nb-card-body>
+        <ng-content></ng-content>
+    </nb-card-body>
+</nb-card>

@@ -1,5 +1,9 @@
-<div class="mt-1r">
-    <nb-button-group (valueChange)="onViewSelectionChange($event)" [multiple]="false" [shape]="'rectangle'">
+<div [class]="class" class="">
+    <nb-button-group
+            (valueChange)="onViewSelectionChange($event)"
+            [multiple]="false"
+            [shape]="shape"
+            [size]="size">
         <ng-container *ngFor="let option of options.buttons">
             <button
 
