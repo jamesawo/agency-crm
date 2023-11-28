@@ -6,6 +6,7 @@ import {
     NbCardModule,
     NbCheckboxModule,
     NbDatepickerModule,
+    NbFormFieldModule,
     NbIconModule,
     NbInputModule,
     NbLayoutModule,
@@ -14,6 +15,7 @@ import {
     NbSelectModule,
     NbTooltipModule,
     NbTreeGridModule,
+    NbWindowModule,
 } from '@nebular/theme';
 import {ThemeModule} from '../../@theme/theme.module';
 
@@ -33,4 +35,6 @@ export const SHARED_NEBULA_MODULES: Array<Type<void>> = [
     NbTooltipModule,
     NbTreeGridModule,
     NbSelectModule,
+    NbWindowModule,
+    NbFormFieldModule
 ];
