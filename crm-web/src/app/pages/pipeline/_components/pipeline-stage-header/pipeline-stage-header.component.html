@@ -3,8 +3,10 @@
         <div class="form-group">
             <label class="label" for="title">Pipeline Title</label>
             <input [(ngModel)]="pipeline.title"
-                   class="input-full-width" fieldSize="medium"
-                   id="title" nbInput placeholder="Enter the pipeline title" type="text"
+                   [status]="pipeline.title? 'basic': 'danger'"
+                   class="input-full-width"
+                   fieldSize="medium"
+                   id="title" nbInput placeholder="Enter a title for the pipeline" type="text"
             >
         </div>
     </div>
@@ -13,10 +15,10 @@
         <div class="form-group">
             <button
                     (click)="onAddStage()"
-                    [status]="'primary'"
+                    [status]="'basic'"
                     class="" nbButton>
                 <nb-icon [icon]="'plus'"></nb-icon>
-                Step
+                Add Step
             </button>
         </div>
     </div>

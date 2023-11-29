@@ -1,4 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
+import {NbToastrService} from '@nebular/theme';
+import {pipe} from 'rxjs';
 import {Pipeline, Stage} from '../../state/pipeline.class';
 
 @Component({
@@ -10,8 +12,9 @@ export class PipelineStageHeaderComponent implements OnInit {
 
     @Input()
     pipeline?: Pipeline;
+    protected readonly pipe = pipe;
 
-    constructor() {
+    constructor(private toast: NbToastrService) {
     }
 
     ngOnInit(): void {
@@ -19,10 +22,10 @@ export class PipelineStageHeaderComponent implements OnInit {
 
     onAddStage() {
 
-        if (this.pipeline) {
-            this.pipeline.addStage(new Stage());
+        if (!this.pipeline || !this.pipeline.title) {
+            return;
         }
+        this.pipeline.addStage(new Stage());
 
-        console.log('adding stage to pipeline, ', this.pipeline);
     }
 }

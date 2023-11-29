@@ -13,22 +13,11 @@ export class Pipeline implements IPipeline {
     addStage(stage: Stage): void {
         if (this.stages.size < 5) {
             this.stages.add(stage);
-            // this.stages = [...this.stages, stage];
         }
     }
 
-    removeStage(args: { stage: Stage, pipeline: Pipeline }): void {
-        console.log('removing stage ', args.stage);
-        console.log('removing stage from this pipeline', args.pipeline);
-
-        this.stages.delete(args.stage);
-
-        // if (this.stages?.size > 0) {
-        //     console.log('yes removed, ', stage);
-        //     const b = this.stages.delete(stage);
-        //     console.log(b);
-        //     // this.stages = [...this.stages.filter(existingStage => existingStage !== stage)];
-        // }
+    removeStage(stage: Stage): void {
+        this.stages.delete(stage);
     }
 
 }
@@ -40,6 +29,7 @@ export class Stage implements IStage {
     stageValue: string = '';
     status: StageStatus = StageStatus.OPEN;
     title: string = '';
+    id: string = '';
 
     constructor(title = '') {
         this.title = title;

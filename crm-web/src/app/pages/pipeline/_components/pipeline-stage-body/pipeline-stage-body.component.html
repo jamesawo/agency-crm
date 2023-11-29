@@ -5,12 +5,10 @@
                 <nb-accordion-item-header>
                     Step {{i + 1}}
 
-                    <!--                            [action]="pipeline.removeStage"-->
-                    <!--                            [args]="{stage, pipeline}"-->
                     <ngx-icon-button
                             (click)="$event.stopPropagation()"
-                            [action]="removeStage"
-                            [args]="stage"
+                            [action]="onRemoveStage"
+                            [args]="{stage, pipeline}"
                             [icon]="'trash-2-outline'"
                             [size]="'small'"
                             [status]="'danger'" class="mr-3"

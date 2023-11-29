@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {Pipeline, Stage} from '../../state/pipeline.class';
 
 @Component({
@@ -6,7 +6,7 @@ import {Pipeline, Stage} from '../../state/pipeline.class';
     templateUrl: './pipeline-stage-body.component.html',
     styleUrls: ['./pipeline-stage-body.component.scss'],
 })
-export class PipelineStageBodyComponent implements OnInit, OnChanges, AfterViewInit {
+export class PipelineStageBodyComponent implements OnInit {
 
     @Input()
     pipeline: Pipeline;
@@ -14,23 +14,11 @@ export class PipelineStageBodyComponent implements OnInit, OnChanges, AfterViewI
     constructor() {
     }
 
-    ngOnChanges(changes: SimpleChanges): void {
-        console.log(changes);
-    }
-
     ngOnInit(): void {
     }
 
-
-    removeStage(stage: Stage) {
-        console.log(this.pipeline);
-        // this.pipeline.stages = new Set<Stage>([]);
-
-        // const stages = this.pipeline?.stages;
-    }
-
-    ngAfterViewInit(): void {
-        console.log(this.pipeline);
+    onRemoveStage(arg: { stage: Stage, pipeline: Pipeline }): void {
+        arg.pipeline.removeStage(arg.stage);
     }
 
 }

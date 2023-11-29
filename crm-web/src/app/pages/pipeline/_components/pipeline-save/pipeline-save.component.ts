@@ -8,12 +8,11 @@ import {Pipeline} from '../../state/pipeline.class';
 })
 export class PipelineSaveComponent implements OnInit {
 
-    pipeline: Pipeline;
+    pipeline: Pipeline = new Pipeline();
 
     constructor() {
     }
 
     ngOnInit(): void {
-        this.pipeline = new Pipeline();
     }
 }

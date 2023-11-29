@@ -1,8 +1,12 @@
 <ngx-page-drawer [title]="'Create Pipeline'">
-    <nb-card>
+    <nb-card class="justify-content-between h-100">
         <nb-card-body class="flex flex-row justify-content-between">
             <ngx-pipeline-stage-header [pipeline]="pipeline"></ngx-pipeline-stage-header>
             <ngx-pipeline-stage-body [pipeline]="pipeline"></ngx-pipeline-stage-body>
         </nb-card-body>
+        <nb-card-footer>
+            <button nbButton status="basic">Reset</button>
+            <button class="ml-md-2 mt-sm-1r" nbButton status="primary">Save</button>
+        </nb-card-footer>
     </nb-card>
 </ngx-page-drawer>
