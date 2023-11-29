@@ -59,4 +59,5 @@ export interface IPageButton {
     status: NbComponentOrCustomStatus;
     shape: NbComponentShape;
     action: ActionFn;
+    args?: any;
 }

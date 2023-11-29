@@ -1,18 +1,16 @@
 <ngx-page-header
         pageDescription="Create, update and manage all your pipeline in one place."
-        pageTitle="Manage Pipeline"></ngx-page-header>
-
+        pageTitle="Manage Pipeline"
+></ngx-page-header>
 <ngx-page-spacer>
     <nb-card>
         <nb-card-body>
 
             <ngx-pipeline-filter></ngx-pipeline-filter>
 
-            <ngx-page-spacer [class]="'d-flex flex-row flex-wrap justify-content-between'">
+            <ngx-page-spacer [class]="'d-flex flex-column flex-wrap justify-content-between flex-sm-row'">
                 <ngx-page-buttons [buttons]="pageButtons"></ngx-page-buttons>
-
-                <ngx-page-view-buttons (viewChange)="handleViewChange($event)"
-                                       [options]="pageViewOpts"></ngx-page-view-buttons>
+                <ngx-page-view-buttons [class]="'mt-sm-1r'" [options]="pageViewOpts"></ngx-page-view-buttons>
             </ngx-page-spacer>
 
             <ngx-page-spacer>

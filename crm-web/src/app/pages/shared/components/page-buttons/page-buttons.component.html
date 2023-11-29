@@ -1,7 +1,6 @@
 <div class="p-0">
-
     <ng-container *ngFor="let button of buttons">
-        <button
+        <button (click)="button.action(button?.args)"
                 [shape]="button.shape"
                 [size]="button.size"
                 [status]="button.status"

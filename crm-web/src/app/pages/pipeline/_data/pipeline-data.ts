@@ -1,33 +1,11 @@
 import {PageView} from '../../shared/data/shared.enum';
-import {IPageButton, IPageTableCols, IPageTableHeader, IPageViewButton} from '../../shared/data/shared.interface';
-
-export const pipelinePageButtons: IPageButton[] = [
-    {
-        text: 'Search',
-        icon: 'search',
-        size: 'medium',
-        status: 'basic',
-        shape: 'rectangle',
-        action: () => {
-        },
-    },
-    {
-        text: 'Add',
-        icon: 'plus',
-        size: 'medium',
-        status: 'primary',
-        shape: 'rectangle',
-        action: () => {
-        },
-    },
-];
+import {IPageTableCols, IPageTableHeader, IPageViewButton} from '../../shared/data/shared.interface';
 
 export const pipelinePageViewButtons: IPageViewButton[] = [
     {
         type: PageView.TABLE, action: () => {
         },
     },
-    /*
     {
         type: PageView.GRID, action: () => {
         },
@@ -36,7 +14,6 @@ export const pipelinePageViewButtons: IPageViewButton[] = [
         type: PageView.LIST, action: () => {
         },
     },
-     */
 ];
 
 export const pipelineTableHeader: IPageTableHeader = {
@@ -44,7 +21,6 @@ export const pipelineTableHeader: IPageTableHeader = {
     buttons: [
         {
             icon: 'cloud-download-outline', tooltip: 'Download Records', action: () => {
-                console.info('some action');
             },
         },
         {

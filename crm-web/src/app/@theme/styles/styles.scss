@@ -74,3 +74,29 @@ td {
     margin-top: 1rem;
   }
 }
+
+/*Device = Low Resolution Tablets, Mobiles (Landscape)*/
+@media (min-width: 481px) and (max-width: 767px) {
+}
+
+/*Device = Most of the Smartphones Mobiles (Portrait)*/
+@media (min-width: 320px) and (max-width: 480px) {
+}
+
+/*
+  Combining
+ */
+@media (min-width: 481px) and (max-width: 767px),
+(min-width: 320px) and (max-width: 480px) {
+  .ml-sm-1r {
+    margin-left: 1rem !important;
+  }
+
+  .mt-sm-1r {
+    margin-top: 1rem !important;
+  }
+
+  .w-sm-100 {
+    width: 100% !important;
+  }
+}

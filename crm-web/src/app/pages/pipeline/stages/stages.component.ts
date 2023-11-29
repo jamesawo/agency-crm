@@ -1,16 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
-  selector: 'ngx-stages',
-  templateUrl: './stages.component.html',
-  styles: [
-  ]
+    selector: 'ngx-stages',
+    templateUrl: './stages.component.html',
+    styles: []
 })
 export class StagesComponent implements OnInit {
 
-  constructor() { }
+    @Input()
+    name: string;
 
-  ngOnInit(): void {
-  }
+    constructor() {
+    }
+
+    ngOnInit(): void {
+        console.log(this.name);
+    }
 
 }

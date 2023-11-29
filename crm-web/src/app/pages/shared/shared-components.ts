@@ -1,5 +1,6 @@
 import {Type} from '@angular/core';
 import {PageButtonsComponent} from './components/page-buttons/page-buttons.component';
+import {PageDrawerComponent} from './components/page-drawer/page-drawer.component';
 import {PageHeaderComponent} from './components/page-header/page-header.component';
 import {PageIconButtonComponent} from './components/page-icon-button/page-icon-button.component';
 import {PageSearchFieldsComponent} from './components/page-search-fields/page-search-fields.component';
@@ -15,4 +16,5 @@ export const SHARED_COMPONENTS: Array<Type<void>> = [
     PageSpacerComponent,
     PageIconButtonComponent,
     PageTableComponent,
+    PageDrawerComponent,
 ];
