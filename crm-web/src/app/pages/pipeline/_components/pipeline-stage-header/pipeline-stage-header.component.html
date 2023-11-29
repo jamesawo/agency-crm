@@ -2,8 +2,9 @@
     <div class="col-sm-12 col-md-9">
         <div class="form-group">
             <label class="label" for="title">Pipeline Title</label>
-            <input [(ngModel)]="pipeline.title"
+            <input #titleInputRef [(ngModel)]="pipeline.title"
                    [status]="pipeline.title? 'basic': 'danger'"
+                   autofocus
                    class="input-full-width"
                    fieldSize="medium"
                    id="title" nbInput placeholder="Enter a title for the pipeline" type="text"
