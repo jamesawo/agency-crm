@@ -1,0 +1,6 @@
+<nb-select (selectedChange)="onValueChange($event)" [selected]="value"
+           [size]="size"
+           fullWidth
+           placeholder="Select {{title?.toLowerCase() ?? '...'}} " scrollStrategy="noop">
+    <nb-option *ngFor="let data of source" [value]="data.value">{{data.label}}</nb-option>
+</nb-select>
