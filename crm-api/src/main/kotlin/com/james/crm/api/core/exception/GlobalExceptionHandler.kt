@@ -10,9 +10,9 @@ package com.james.crm.api.core.exception
 import com.fasterxml.jackson.databind.JsonMappingException
 import com.james.crm.api.core.common.ApiResponse
 import com.james.crm.api.core.common.ErrorResponse
-import org.springframework.http.HttpStatus
-import org.springframework.http.HttpStatus.BAD_REQUEST
-import org.springframework.http.HttpStatus.METHOD_NOT_ALLOWED
+import org.hibernate.TransientPropertyValueException
+import org.springframework.dao.InvalidDataAccessApiUsageException
+import org.springframework.http.HttpStatus.*
 import org.springframework.http.ResponseEntity
 import org.springframework.http.converter.HttpMessageNotReadableException
 import org.springframework.validation.FieldError
@@ -96,16 +96,60 @@ class GlobalExceptionHandler {
         return ResponseEntity.status(BAD_REQUEST).body(apiErrorResponse)
     }
 
+    @ExceptionHandler(TransientPropertyValueException::class)
+    @ResponseStatus(INTERNAL_SERVER_ERROR)
+    fun handleTransientPropertyValueException(e: TransientPropertyValueException): ResponseEntity<ErrorResponse> {
+        val propertyName = e.propertyName
+        val propertyOwnerEntityName = e.propertyOwnerEntityName
+        val transientEntityName = e.transientEntityName
+
+        val apiErrorResponse = ErrorResponse(
+            message = INTERNAL_SERVER_ERROR.reasonPhrase,
+            status = INTERNAL_SERVER_ERROR.value(),
+            errors = listOf(
+                "Cannot save the data. The property '$propertyName' on '${entityName(propertyOwnerEntityName)}' " +
+                        "is referencing an unsaved transient instance: '${entityName(transientEntityName)}' "
+            )
+        )
+        return ResponseEntity.status(INTERNAL_SERVER_ERROR).body(apiErrorResponse)
+    }
+
+    @ExceptionHandler(InvalidDataAccessApiUsageException::class)
+    @ResponseStatus(INTERNAL_SERVER_ERROR)
+    fun handleTransientPropertyValueException(e: InvalidDataAccessApiUsageException): ResponseEntity<ErrorResponse> {
+
+        val localMessage = e.localizedMessage
+
+        if (localMessage != null && localMessage.contains("TransientPropertyValueException")) {
+            val cause: TransientPropertyValueException = e.cause?.cause as TransientPropertyValueException
+            return handleTransientPropertyValueException(cause)
+        }
+
+        val apiErrorResponse = ErrorResponse(
+            message = INTERNAL_SERVER_ERROR.reasonPhrase,
+            status = INTERNAL_SERVER_ERROR.value(),
+            errors = listOf("Cannot access data. ${e.message}")
+        )
+        return ResponseEntity.status(BAD_REQUEST).body(apiErrorResponse)
+    }
+
     @ExceptionHandler(Exception::class)
-    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    @ResponseStatus(INTERNAL_SERVER_ERROR)
     fun handleGenericException(
         ex: Exception
     ): ResponseEntity<ErrorResponse> {
         val response = ErrorResponse(
-            message = HttpStatus.INTERNAL_SERVER_ERROR.reasonPhrase,
-            status = HttpStatus.INTERNAL_SERVER_ERROR.value(),
+            message = INTERNAL_SERVER_ERROR.reasonPhrase,
+            status = INTERNAL_SERVER_ERROR.value(),
             errors = listOf("An unexpected error occurred: ${ex.message}")
         )
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response)
+        return ResponseEntity.status(INTERNAL_SERVER_ERROR).body(response)
+    }
+
+    private fun entityName(packageName: String): String {
+        if (packageName.contains(".")) {
+            return packageName.split(".").last()
+        }
+        return packageName
     }
 }

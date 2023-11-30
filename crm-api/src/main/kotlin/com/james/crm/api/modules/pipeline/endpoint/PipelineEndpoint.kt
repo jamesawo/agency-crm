@@ -43,7 +43,7 @@ class PipelineEndpoint(
         )
     }
 
-    @PostMapping
+    @PostMapping()
     fun createPipeline(
         @Valid @RequestBody pipelineDto: PipelineDto
     ): ResponseEntity<ApiResponse<PipelineDto>> {
@@ -63,7 +63,7 @@ class PipelineEndpoint(
         return updatePipelineUsecase.execute(Pair(pipelineId, pipelineDto))
     }
 
-    @GetMapping("{pipelineId}")
+    @GetMapping("{pipelineId}/stages")
     fun getAllStageInPipeline(
         @RequestParam(defaultValue = "1") page: Int,
         @RequestParam(defaultValue = "10") size: Int,

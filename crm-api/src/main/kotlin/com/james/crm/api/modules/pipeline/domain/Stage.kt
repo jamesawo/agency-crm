@@ -12,10 +12,7 @@ import com.james.crm.api.core.constant.DatabaseTable.Companion.STAGE
 import com.james.crm.api.modules.pipeline.domain.enums.StageAction
 import com.james.crm.api.modules.pipeline.domain.enums.StageReviewType
 import com.james.crm.api.modules.pipeline.domain.enums.StageStatus
-import jakarta.persistence.Entity
-import jakarta.persistence.FetchType
-import jakarta.persistence.ManyToOne
-import jakarta.persistence.Table
+import jakarta.persistence.*
 
 @Entity
 @Table(name = STAGE)
@@ -30,7 +27,7 @@ class Stage(id: String?) : Base(id) {
 
     var hierarchy: Int = 0
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
     var pipeline: Pipeline = Pipeline()
 
     var stageValue: String = ""
@@ -50,7 +47,7 @@ class Stage(id: String?) : Base(id) {
         this.reviewType = StageReviewType.AUTO
         this.status = status
         this.hierarchy = hierarchy
-        this.stageValue = value
+        this.stageValue = stageValue
     }
 
 }

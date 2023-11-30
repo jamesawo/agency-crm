@@ -21,15 +21,16 @@ data class PipelineDto(
     @NotNull
     var hierarchy: Int = 0
 ) {
-    
-    var stages: List<StageDto> = emptyList()
+
+    var stages: MutableList<StageDto> = mutableListOf()
+
 
     constructor() : this(id = null)
     constructor(
         id: String?,
         title: String,
         hierarchy: Int,
-        stages: List<StageDto>
+        stages: MutableList<StageDto>
     ) : this(id = null) {
         this.id = id
         this.title = title
@@ -39,12 +40,17 @@ data class PipelineDto(
 
     companion object : Mapper<PipelineDto, Pipeline> {
         override fun toEntity(request: PipelineDto): Pipeline {
+            val stages = if (request.stages.isNotEmpty()) request.stages
+                .map { StageDto.toEntity(it) }
+                .toMutableList() else mutableListOf()
+
             return Pipeline(
                 id = request.id,
                 title = request.title,
                 hierarchy = request.hierarchy,
+                stages = stages
             )
-            //stages = request.stages.map { Stage(it.id) }
+
         }
 
         override fun toRequest(entity: Pipeline): PipelineDto {
@@ -52,7 +58,7 @@ data class PipelineDto(
                 id = entity.id,
                 title = entity.title,
                 hierarchy = entity.hierarchy,
-                stages = entity.stages.map { StageDto(id = it.id, title = it.title) }
+                stages = entity.stages.map { StageDto(id = it.id, title = it.title) }.toMutableList()
             )
         }
 

@@ -17,10 +17,9 @@ class Pipeline(id: String?) : Base(id) {
     var title: String = ""
 
     @OneToMany(mappedBy = "pipeline", cascade = [CascadeType.ALL], fetch = FetchType.LAZY)
-    var stages: List<Stage> = emptyList()
+    var stages: MutableList<Stage> = mutableListOf()
     var hierarchy: Int = 0
-    // todo add functionality to group pipeline together, add hierarchy to the grouped pipeline
-    
+
     constructor() : this(id = null)
     constructor(
         id: String?,
@@ -29,18 +28,20 @@ class Pipeline(id: String?) : Base(id) {
     ) : this(id = null) {
         this.id = id
         this.title = title
-        this.stages = emptyList()
+        this.stages = mutableListOf()
         this.hierarchy = hierarchy
     }
 
     constructor(
         id: String?,
         title: String,
-        stages: List<Stage>
+        hierarchy: Int,
+        stages: MutableList<Stage>
     ) : this(id = null) {
         this.id = id
         this.title = title
         this.stages = stages
+        this.hierarchy = hierarchy
     }
 
 }

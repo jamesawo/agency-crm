@@ -1,2 +1,1 @@
-export type ActionFn = (args?: any) => void
-
+export type ActionFn = (args?: any) => void;

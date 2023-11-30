@@ -13,7 +13,7 @@ import com.james.crm.api.modules.people.domain.enums.ContactMethod
 import com.james.crm.api.modules.people.domain.model.Client
 import java.time.LocalDate
 
-data class ClientDetailDto(var clientId: String = "") {
+data class ClientDetailDto(var id: String? = "") {
     var firstName: String = ""
     var lastName: String = ""
     var businessName: String = ""
@@ -29,7 +29,7 @@ data class ClientDetailDto(var clientId: String = "") {
     var tags: Set<String> = emptySet()
 
     constructor(
-        clientId: String?,
+        id: String?,
         firstName: String,
         lastName: String,
         businessName: String,
@@ -44,6 +44,7 @@ data class ClientDetailDto(var clientId: String = "") {
         preferredContactMethod: ContactMethod?,
         tags: Set<String>
     ) : this() {
+        this.id = id
         this.firstName = firstName
         this.lastName = lastName
         this.businessName = businessName
@@ -62,7 +63,7 @@ data class ClientDetailDto(var clientId: String = "") {
     companion object : Mapper<ClientDetailDto, Client> {
         override fun toEntity(request: ClientDetailDto): Client {
             return Client(
-                id = request.clientId,
+                id = request.id,
                 firstName = request.firstName,
                 lastName = request.lastName,
                 businessName = request.businessName,
@@ -81,7 +82,7 @@ data class ClientDetailDto(var clientId: String = "") {
 
         override fun toRequest(entity: Client): ClientDetailDto {
             return ClientDetailDto(
-                clientId = entity.id,
+                id = entity.id,
                 firstName = entity.firstName,
                 lastName = entity.lastName,
                 businessName = entity.businessName,
