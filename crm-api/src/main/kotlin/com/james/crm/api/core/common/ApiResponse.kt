@@ -66,8 +66,9 @@ data class CatchableError(
         log()
     }
 
+   
     private fun log(logger: Logger = LoggerFactory.getLogger(this.javaClass)) {
         logger.error("notify logger service: Status=$status, Errors=$errors, $message ${exception?.localizedMessage} ")
-        // if (exception != null) throw exception
+        if (exception != null) throw exception
     }
 }
