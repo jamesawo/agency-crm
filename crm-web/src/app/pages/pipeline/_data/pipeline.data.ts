@@ -35,14 +35,11 @@ export const pipelineTableHeader: IPageTableHeader = {
 };
 
 export const pipelineTableColumns: IPageTableCols[] = [
-    {title: 'First', type: 'string'},
-    {title: 'Last', type: 'string'},
-    {title: 'Handle of the pipeline', type: 'string'},
+    {title: '', type: 'string'},
+    {title: 'Title', type: 'string'},
     {title: 'Date of Creation', type: 'string'},
-    {title: 'State of the Pipeline', type: 'string'},
+    {title: 'No. of Stages', type: 'string'},
     {title: 'Status', type: 'string'},
-    {title: 'Handle of the pipeline', type: 'string'},
-    {title: 'Date of Creation', type: 'string'},
-    {title: 'State of the Pipeline', type: 'string'},
-    {title: 'Status', type: 'string'},
+    {title: 'Created At', type: 'string'},
+    {title: 'Created By', type: 'string'},
 ];
