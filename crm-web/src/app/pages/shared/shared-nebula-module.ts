@@ -1,6 +1,7 @@
 import {Type} from '@angular/core';
 import {
     NbAccordionModule,
+    NbAlertModule,
     NbButtonGroupModule,
     NbButtonModule,
     NbCardModule,
@@ -13,6 +14,7 @@ import {
     NbMenuModule,
     NbPopoverModule,
     NbSelectModule,
+    NbSpinnerModule,
     NbTooltipModule,
     NbTreeGridModule,
     NbWindowModule,
@@ -36,5 +38,7 @@ export const SHARED_NEBULA_MODULES: Array<Type<void>> = [
     NbTreeGridModule,
     NbSelectModule,
     NbWindowModule,
-    NbFormFieldModule
+    NbFormFieldModule,
+    NbSpinnerModule,
+    NbAlertModule,
 ];

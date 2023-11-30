@@ -13,8 +13,7 @@ export interface IPipeline {
     id: string;
     title: string;
     hierarchy: number;
-    // stages: IStage[];
-    stages: Set<IStage>;
+    stages: IStage[];
 }
 
 

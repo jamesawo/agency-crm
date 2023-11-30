@@ -61,3 +61,19 @@ export interface IPageButton {
     action: ActionFn;
     args?: any;
 }
+
+export interface IOption {
+    label: string;
+    value: any;
+}
+
+export interface IValidationStatus {
+    status: boolean;
+    message: string;
+}
+
+export interface IResponse<T> {
+    message?: string,
+    status: number,
+    data: T
+}

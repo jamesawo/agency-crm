@@ -1,9 +1,9 @@
 <div class="row">
     <div class="col-sm-12 col-md-12">
         <nb-accordion>
-            <nb-accordion-item *ngFor="let stage of pipeline?.stages; let i = index" class="mt-1">
+            <nb-accordion-item *ngFor="let stage of pipeline?.stages; let key = index" class="mt-1">
                 <nb-accordion-item-header>
-                    Step {{i + 1}}
+                    Step {{key + 1}}
 
                     <ngx-icon-button
                             (click)="$event.stopPropagation()"
@@ -16,7 +16,7 @@
 
                 </nb-accordion-item-header>
                 <nb-accordion-item-body>
-                    <ngx-pipeline-stage [stage]="stage"></ngx-pipeline-stage>
+                    <ngx-pipeline-stage [stage]="setHierarchy(key, stage)"></ngx-pipeline-stage>
                 </nb-accordion-item-body>
             </nb-accordion-item>
 

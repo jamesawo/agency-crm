@@ -9,12 +9,17 @@ import {Pipeline, Stage} from '../../state/pipeline.class';
 export class PipelineStageBodyComponent implements OnInit {
 
     @Input()
-    pipeline: Pipeline;
+    pipeline?: Pipeline;
 
     constructor() {
     }
 
     ngOnInit(): void {
+    }
+
+    setHierarchy(hierarchy: number, stage: Stage): Stage {
+        stage.hierarchy = hierarchy;
+        return stage;
     }
 
     onRemoveStage(arg: { stage: Stage, pipeline: Pipeline }): void {
