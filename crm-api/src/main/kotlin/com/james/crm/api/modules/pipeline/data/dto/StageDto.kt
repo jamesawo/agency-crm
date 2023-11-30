@@ -8,7 +8,6 @@
 package com.james.crm.api.modules.pipeline.data.dto
 
 import com.james.crm.api.core.common.Mapper
-import com.james.crm.api.modules.pipeline.domain.Pipeline
 import com.james.crm.api.modules.pipeline.domain.Stage
 import com.james.crm.api.modules.pipeline.domain.enums.StageAction
 import com.james.crm.api.modules.pipeline.domain.enums.StageReviewType
@@ -20,7 +19,6 @@ data class StageDto(var id: String? = null) {
     var reviewType: StageReviewType = StageReviewType.AUTO
     var status: StageStatus = StageStatus.CLOSE
     var hierarchy: Int = 0
-    var pipeline: Pipeline = Pipeline()
     var stageValue: String = ""
 
     constructor() : this(id = null)
@@ -32,14 +30,12 @@ data class StageDto(var id: String? = null) {
         reviewType: StageReviewType = StageReviewType.AUTO,
         status: StageStatus = StageStatus.CLOSE,
         hierarchy: Int = 0,
-        pipeline: Pipeline = Pipeline(),
     ) : this(id) {
         this.title = title
         this.action = action
         this.reviewType = reviewType
         this.status = status
         this.hierarchy = hierarchy
-        this.pipeline = pipeline
     }
 
     companion object : Mapper<StageDto, Stage> {

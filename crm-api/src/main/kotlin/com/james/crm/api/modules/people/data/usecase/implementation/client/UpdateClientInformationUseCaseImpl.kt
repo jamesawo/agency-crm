@@ -11,6 +11,7 @@ import com.james.crm.api.core.annotation.Usecase
 import com.james.crm.api.core.common.ApiResponse
 import com.james.crm.api.core.common.CatchableError
 import com.james.crm.api.core.util.Util.Companion.errorResponse
+import com.james.crm.api.core.util.Util.Companion.normalizeErrorMessages
 import com.james.crm.api.core.util.Util.Companion.notFoundMessageAsList
 import com.james.crm.api.core.util.Util.Companion.successResponse
 import com.james.crm.api.modules.people.data.dto.client.ClientDetailDto
@@ -26,10 +27,13 @@ class UpdateClientInformationUseCaseImpl(
 
     override fun execute(input: ClientDetailDto): ResponseEntity<ApiResponse<Boolean>> {
         return try {
-            clientRepository.findById(input.clientId).map { client ->
-                clientRepository.save(ClientDetailDto.updateDetails(input, client))
-                successResponse(OK, true)
-            }.orElse(errorResponse(NOT_FOUND, notFoundMessageAsList("client")))
+            if (input.id != null) {
+                clientRepository.findById(input.id!!).map { client ->
+                    clientRepository.save(ClientDetailDto.updateDetails(input, client))
+                    successResponse(OK, true)
+                }.orElse(errorResponse(NOT_FOUND, notFoundMessageAsList("client")))
+            }
+            return errorResponse(BAD_REQUEST, normalizeErrorMessages("client id is missing"))
         } catch (ex: Exception) {
             errorResponse(INTERNAL_SERVER_ERROR, CatchableError(INTERNAL_SERVER_ERROR, ex))
         }
