@@ -2,7 +2,6 @@ import {NgModule} from '@angular/core';
 import {SharedModule} from '../shared/shared.module';
 import {PIPELINE_COMPONENTS} from './pipeline-component-import';
 import {PipelineRoutingModule} from './pipeline-routing.module';
-import {PipelineStore} from './state/pipeline.store';
 
 
 @NgModule({
@@ -17,9 +16,7 @@ import {PipelineStore} from './state/pipeline.store';
         SharedModule,
         ...PIPELINE_COMPONENTS,
     ],
-    providers: [
-        PipelineStore,
-    ],
+    providers: [],
 })
 export class PipelineModule {
 }

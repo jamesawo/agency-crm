@@ -5,8 +5,10 @@
 <ngx-page-spacer>
     <nb-card>
         <nb-card-body>
-
-            <ngx-pipeline-filter></ngx-pipeline-filter>
+            <ngx-pipeline-filter
+                #pipelineFilterComponent
+                [searchParam]="searchParam"
+            ></ngx-pipeline-filter>
 
             <ngx-page-spacer [class]="'d-flex flex-column flex-wrap justify-content-between flex-sm-row'">
                 <ngx-page-buttons [buttons]="pageButtons"></ngx-page-buttons>

@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {EntityState, EntityStore, QueryEntity, StoreConfig} from '@datorama/akita';
-import {IPipeline} from './pipeline.model';
+import {IPipeline} from '../_data/pipeline.interface';
 
 export interface PipelineState extends EntityState<IPipeline, string> {
 }
