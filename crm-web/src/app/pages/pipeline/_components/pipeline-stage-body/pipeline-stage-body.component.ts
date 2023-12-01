@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Pipeline, Stage} from '../../state/pipeline.class';
+import {Pipeline, Stage} from '../../_data/pipeline.class';
 
 @Component({
     selector: 'ngx-pipeline-stage-body',

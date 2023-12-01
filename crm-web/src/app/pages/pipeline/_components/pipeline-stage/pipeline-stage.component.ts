@@ -1,8 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {IOption} from '../../../shared/data/shared.interface';
 import {UtilService} from '../../../shared/service/util.service';
+import {Stage} from '../../_data/pipeline.class';
 import {StageAction, StageReviewType} from '../../_data/pipeline.enum';
-import {Stage} from '../../state/pipeline.class';
 
 @Component({
     selector: 'ngx-pipeline-stage',

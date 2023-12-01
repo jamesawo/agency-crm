@@ -1,6 +1,34 @@
-<ngx-page-spacer>
-    <ngx-page-table
-            [tableCols]="pipeLineTable.tableColumns"
-            [tableHeader]="pipeLineTable.tableHeader"
-    ></ngx-page-table>
-</ngx-page-spacer>
+<ngx-page-table
+        [tableCols]="pipeLineTable.tableColumns"
+        [tableData]="pipeLineTable.tableData"
+        [tableHeader]="pipeLineTable.tableHeader"
+        [tableRows]="[actionTemp, titleTemp, noOfStagesTmpl,
+         statusTemp, createdAtTemp, createdByTemp]"
+></ngx-page-table>
+
+<ng-template #actionTemp let-data="data">
+    <ngx-page-buttons [buttons]="actionButtons"></ngx-page-buttons>
+</ng-template>
+
+<ng-template #titleTemp let-data="data">
+    <label>{{data.title}}</label>
+</ng-template>
+
+<ng-template #noOfStagesTmpl let-data="data">
+    <label>{{data.stages?.length }}</label>
+</ng-template>
+
+
+<ng-template #statusTemp let-data="data">
+    <label>{{data.isActive ? 'Active' : 'InActive' }}</label>
+</ng-template>
+
+
+<ng-template #createdAtTemp let-data="data">
+    <label>{{data.createdAt | date}}</label>
+</ng-template>
+
+
+<ng-template #createdByTemp let-data="data">
+    <label>{{data.createdBy }}</label>
+</ng-template>

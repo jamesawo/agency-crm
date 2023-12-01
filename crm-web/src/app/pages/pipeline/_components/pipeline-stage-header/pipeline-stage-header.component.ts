@@ -1,7 +1,7 @@
 import {AfterViewInit, Component, ElementRef, Input, OnInit, Renderer2, ViewChild} from '@angular/core';
 import {NbToastrService} from '@nebular/theme';
 import {pipe} from 'rxjs';
-import {Pipeline, Stage} from '../../state/pipeline.class';
+import {Pipeline, Stage} from '../../_data/pipeline.class';
 
 @Component({
     selector: 'ngx-pipeline-stage-header',
