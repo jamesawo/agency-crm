@@ -11,6 +11,7 @@ import com.james.crm.api.core.common.Mapper
 import com.james.crm.api.modules.pipeline.domain.Pipeline
 import jakarta.validation.constraints.NotBlank
 import jakarta.validation.constraints.NotNull
+import java.time.LocalDate
 
 data class PipelineDto(
     var id: String? = null,
@@ -24,8 +25,15 @@ data class PipelineDto(
 
     var stages: MutableList<StageDto> = mutableListOf()
 
+    var createdAt: LocalDate? = null
+
+    var isActive: Boolean? = null
+
+    var createdBy: String? = null
+
 
     constructor() : this(id = null)
+
     constructor(
         id: String?,
         title: String,
@@ -50,24 +58,31 @@ data class PipelineDto(
                 hierarchy = request.hierarchy,
                 stages = stages
             )
-
         }
 
         override fun toRequest(entity: Pipeline): PipelineDto {
-            return PipelineDto(
+            val pipeline = PipelineDto(
                 id = entity.id,
                 title = entity.title,
                 hierarchy = entity.hierarchy,
-                stages = entity.stages.map { StageDto(id = it.id, title = it.title) }.toMutableList()
+                stages = entity.stages.map { StageDto.toRequest(it) }.toMutableList()
             )
+            pipeline.createdAt = entity.createdAt.toLocalDate()
+            pipeline.isActive = entity.isActive
+            pipeline.createdBy = entity.createdBy
+            return pipeline
         }
 
         override fun toTrimRequest(entity: Pipeline): PipelineDto {
-            return PipelineDto(
+            val pipeline = PipelineDto(
                 id = entity.id,
                 title = entity.title,
                 hierarchy = entity.hierarchy,
             )
+            pipeline.createdAt = entity.createdAt.toLocalDate()
+            pipeline.isActive = entity.isActive
+            pipeline.createdBy = entity.createdBy
+            return pipeline
         }
     }
 }

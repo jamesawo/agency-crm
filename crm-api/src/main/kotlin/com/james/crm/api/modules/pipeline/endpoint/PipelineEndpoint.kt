@@ -8,9 +8,11 @@
 package com.james.crm.api.modules.pipeline.endpoint
 
 import com.james.crm.api.core.common.ApiResponse
+import com.james.crm.api.core.common.PagePayload
 import com.james.crm.api.core.common.Paginate
 import com.james.crm.api.core.constant.Route
 import com.james.crm.api.modules.pipeline.data.dto.PipelineDto
+import com.james.crm.api.modules.pipeline.data.dto.PipelineSearchParams
 import com.james.crm.api.modules.pipeline.data.dto.StageDto
 import com.james.crm.api.modules.pipeline.data.usecase.contract.pipeline.*
 import jakarta.validation.Valid
@@ -26,7 +28,8 @@ class PipelineEndpoint(
     private val getAllPipelineUsecase: IGetAllPipelineUsecase,
     private val getPipelineUsecase: IGetPipelineUsecase,
     private val updatePipelineUsecase: IUpdatePipelineUsecase,
-    private val getAllStageInPipelineUsecase: IGetAllStageInPipelineUsecase
+    private val getAllStageInPipelineUsecase: IGetAllStageInPipelineUsecase,
+    private val searchPipelineUsecase: ISearchPipelineUsecase
 
 ) {
     @GetMapping
@@ -36,12 +39,20 @@ class PipelineEndpoint(
         @RequestParam(defaultValue = "ASC", required = false) sort: Sort.Direction
     ): ResponseEntity<ApiResponse<Paginate<PipelineDto>>> {
         return getAllPipelineUsecase.execute(
-            PageRequest.of(
-                page - 1, size,
-                Sort.by(sort, "hierarchy")
-            )
+            PageRequest.of(page - 1, size, Sort.by(sort, "hierarchy"))
         )
     }
+
+    @PostMapping("/search")
+    fun searchForPipelines(
+        @RequestParam(defaultValue = "1") page: Int,
+        @RequestParam(defaultValue = "10") size: Int,
+        @RequestParam(defaultValue = "ASC", required = false) sort: Sort.Direction,
+        @RequestBody searchParams: PipelineSearchParams,
+    ): ResponseEntity<ApiResponse<Paginate<PipelineDto>>> {
+        return searchPipelineUsecase.execute(Pair(searchParams, PagePayload(page, size, sort)))
+    }
+
 
     @PostMapping()
     fun createPipeline(
