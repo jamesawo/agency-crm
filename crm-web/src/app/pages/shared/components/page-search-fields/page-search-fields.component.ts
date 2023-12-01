@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
     selector: 'ngx-page-search-fields',
@@ -6,7 +6,8 @@ import {Component, OnInit} from '@angular/core';
     styles: [],
 })
 export class PageSearchFieldsComponent implements OnInit {
-    showSearchParameters = false;
+    @Input()
+    open = false;
 
     constructor() {
     }

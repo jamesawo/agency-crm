@@ -36,7 +36,7 @@
                 </th>
                 <td *ngFor="let row of tableRows">
                     <ng-template
-                            [ngTemplateOutletContext]="{ item: rowData }"
+                            [ngTemplateOutletContext]="{ data: rowData }"
                             [ngTemplateOutlet]="row">
                     </ng-template>
                 </td>
@@ -79,8 +79,8 @@
     <div class="table-responsive">
         <table class="w-100 table table-bordered table-hover table-striped empty-table">
             <thead>
-            <tr>
-                <th scope="col">
+            <tr class="d-flex">
+                <th class="flex-grow-0" scope="col">
                     <nb-checkbox status="basic"></nb-checkbox>
                 </th>
                 <ng-container *ngTemplateOutlet="tableColTmplRef"></ng-container>
@@ -100,7 +100,7 @@
 <ng-template #tableColTmplRef>
     <ng-container *ngFor="let col of tableCols">
 
-        <th scope="col">
+        <th class="flex-grow-1">
             <span class="text-dark"> {{col.title}} </span>
         </th>
     </ng-container>

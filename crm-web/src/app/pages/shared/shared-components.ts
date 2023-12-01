@@ -1,5 +1,7 @@
 import {Type} from '@angular/core';
 import {PageButtonsComponent} from './components/page-buttons/page-buttons.component';
+import {PageDatePickerComponent} from './components/page-date-picker/page-date-picker.component';
+import {PageDateRangeComponent} from './components/page-date-range/page-date-range.component';
 import {PageDrawerComponent} from './components/page-drawer/page-drawer.component';
 import {PageDropdownComponent} from './components/page-dropdown/page-dropdown.component';
 import {PageHeaderComponent} from './components/page-header/page-header.component';
@@ -18,5 +20,7 @@ export const SHARED_COMPONENTS: Array<Type<void>> = [
     PageIconButtonComponent,
     PageTableComponent,
     PageDrawerComponent,
-    PageDropdownComponent
+    PageDropdownComponent,
+    PageDateRangeComponent,
+    PageDatePickerComponent
 ];

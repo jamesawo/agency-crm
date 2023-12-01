@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output, TemplateRef} from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, TemplateRef} from '@angular/core';
 import {Observable} from 'rxjs';
 import {
     IPageTableCols,
@@ -11,8 +11,9 @@ import {
     selector: 'ngx-page-table',
     templateUrl: './page-table.component.html',
     styles: [],
+    // changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class PageTableComponent implements OnInit, IPageTablePaginationOpts, IPageTableOptions {
+export class PageTableComponent implements OnInit, OnChanges, IPageTablePaginationOpts, IPageTableOptions {
     @Input()
     tableHeader: IPageTableHeader = {title: '', buttons: []};
     @Input()
@@ -42,20 +43,22 @@ export class PageTableComponent implements OnInit, IPageTablePaginationOpts, IPa
     @Output()
     onSingleRecordChecked: EventEmitter<any> = new EventEmitter<any>();
 
-
     constructor() {
     }
 
     ngOnInit(): void {
+        console.log('ngOnInit in PageTableComponent');
+    }
+
+    ngOnChanges(changes: SimpleChanges): void {
+        console.log('ngOnChanges called in PageTableComponent', changes);
     }
 
     onCheckAllRecord(value: boolean) {
-        console.log(value);
         this.onAllRecordChecked.emit(value);
     }
 
     onCheckSingleRecord(record: any) {
-        console.log(record);
         this.onSingleRecordChecked.emit(record);
     }
 }

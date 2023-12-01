@@ -2,6 +2,7 @@ import {EventEmitter, TemplateRef} from '@angular/core';
 import {NbComponentShape} from '@nebular/theme/components/component-shape';
 import {NbComponentSize} from '@nebular/theme/components/component-size';
 import {NbComponentOrCustomStatus} from '@nebular/theme/components/component-status';
+import {Observable} from 'rxjs';
 import {PageView} from './shared.enum';
 import {ActionFn} from './shared.types';
 
@@ -40,6 +41,8 @@ export interface IPageTable {
     tableHeader: IPageTableHeader;
     tableColumns: IPageTableCols[];
     tableRows?: TemplateRef<any>[];
+    tableData?: Observable<any[]>;
+    tablePage?: IPagination;
 }
 
 export interface IPageViewButton {
@@ -53,13 +56,14 @@ export interface IPageViewOptions {
 }
 
 export interface IPageButton {
-    text: string;
-    icon: string;
-    size: NbComponentSize;
-    status: NbComponentOrCustomStatus;
-    shape: NbComponentShape;
-    action: ActionFn;
+    text?: string;
+    icon?: string;
+    size?: NbComponentSize;
+    status?: NbComponentOrCustomStatus;
+    shape?: NbComponentShape;
+    action?: ActionFn;
     args?: any;
+    loading?: boolean;
 }
 
 export interface IOption {
@@ -72,8 +76,14 @@ export interface IValidationStatus {
     message: string;
 }
 
-export interface IResponse<T> {
-    message?: string,
-    status: number,
-    data: T
+export interface IPaginate<T> {
+    pageNumber: number;
+    pageSize: number;
+    totalPages: number;
+    totalElements: number;
+    sort: { direction: 'ASC' | 'DESC', property: string };
+    content?: T;
+}
+
+export interface IPagination extends IPaginate<any> {
 }

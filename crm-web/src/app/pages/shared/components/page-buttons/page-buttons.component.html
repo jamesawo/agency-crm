@@ -1,10 +1,10 @@
 <div class="p-0">
     <ng-container *ngFor="let button of buttons">
         <button (click)="button.action(button?.args)"
+                [disabled]="button?.loading"
                 [shape]="button.shape"
                 [size]="button.size"
-                [status]="button.status"
-                class="mr-2" nbButton>
+                [status]="button.status" class="mr-2" nbButton>
             <nb-icon *ngIf="button.icon" [icon]="button.icon"></nb-icon>
             {{button.text}}
         </button>

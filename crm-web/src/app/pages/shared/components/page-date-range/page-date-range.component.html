@@ -1,0 +1,11 @@
+<input #inputElement
+       [fullWidth]="fullWidth"
+       [nbDatepicker]="dateRangeComponent"
+       [placeholder]="placeholder"
+       nbInput>
+<nb-rangepicker
+    #dateRangeComponent
+    (rangeChange)="onDateRangeChange($event)"
+    [(range)]="localValue"
+    [max]="max"
+></nb-rangepicker>
