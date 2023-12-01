@@ -39,7 +39,8 @@ export class UtilService {
             const error = err.error;
 
             if (err && error) {
-                this.showToast({message: error.errors, title: error.message, status: 'danger'});
+                const errMessage = this.isNetworkError(err) ? 'Network failure' : error.message;
+                this.showToast({message: error.errors, title: errMessage, status: 'danger'});
             }
             // send error to logger service
             return Promise.resolve(err);
@@ -56,5 +57,10 @@ export class UtilService {
 
         this.toast.show(message, title,
             {duration: 10000, preventDuplicates: true, status: args.status});
+    }
+
+    private isNetworkError(err: any) {
+        const message: string = err.message ?? '';
+        return message.indexOf('Http failure response') === 0;
     }
 }

@@ -1,7 +1,7 @@
 <div class="row border-danger">
     <div class="col-sm-12 col-md-12">
         <div class="form-group">
-            <label class="d-block label" for="stageId">Title</label>
+            <label class="d-block" for="stageId">Title</label>
             <input [(ngModel)]="stage.title"
                    fieldSize="medium" fullWidth
                    id="stageId" nbInput
@@ -11,14 +11,14 @@
     </div>
     <div class="col-sm-12 col-md-6">
         <div class="form-group">
-            <label class="label d-block" for="reviewType">Review Type</label>
+            <label class="d-block" for="reviewType">Review Type</label>
             <ngx-page-dropdown [(value)]="stage.reviewType" [source]="stageReviewTypes"
                                id="reviewType"></ngx-page-dropdown>
         </div>
     </div>
     <div class="col-sm-12 col-md-6">
         <div class="form-group">
-            <label class="label d-block">Requirement</label>
+            <label class="d-block">Requirement</label>
             <ngx-page-dropdown [(value)]="stage.action" [source]="stageActions"
             ></ngx-page-dropdown>
         </div>

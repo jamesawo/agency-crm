@@ -1,30 +1,30 @@
-<ngx-page-search-fields>
+<ngx-page-search-fields [open]="true">
     <div class="row">
         <div class="col-sm-12 col-md-4">
             <div class="form-group">
-                <label class="label" for="title">Title</label>
-                <input class="input-full-width shape-rectangle"
-                       fieldSize="medium"
-                       id="title" nbInput placeholder="enter title" type="text"
+                <label for="title">Title</label>
+                <input [(ngModel)]="searchParam.title" class="input-full-width shape-rectangle"
+                       fieldSize="medium" id="title"
+                       name="title" nbInput placeholder="Enter a pipeline title" type="text"
                 >
             </div>
         </div>
         <div class="col-sm-12 col-md-4">
             <div class="form-group">
-                <label class="label" for="lastName">Date Range</label>
-                <input class="input-full-width shape-rectangle "
-                       fieldSize="medium"
-                       id="lastName" nbInput placeholder="Enter stages count" type="number"
-                >
+                <label>Date Range</label>
+                <div class="d-block">
+                    <ngx-page-date-range
+                        #dateRangeComponent
+                        (valueChange)="searchParam.dateRange = $event"
+                    ></ngx-page-date-range>
+                </div>
+
             </div>
         </div>
         <div class="col-sm-12 col-md-4">
             <div class="form-group">
-                <label class="label" for="otherName">Created By</label>
-                <input class="input-full-width "
-                       fieldSize="medium"
-                       id="otherName" nbInput placeholder="Select Supervisor" type="text"
-                >
+                <label>Created By</label>
+                <ngx-page-dropdown [title]="'User'"></ngx-page-dropdown>
             </div>
         </div>
     </div>

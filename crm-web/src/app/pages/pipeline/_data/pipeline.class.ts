@@ -1,35 +1,29 @@
+import {NbCalendarRange} from '@nebular/theme';
 import {IValidationStatus} from '../../shared/data/shared.interface';
-import {StageAction, StageReviewType, StageStatus} from '../_data/pipeline.enum';
-import {IPipeline, IStage} from './pipeline.model';
+import {StageAction, StageReviewType, StageStatus} from './pipeline.enum';
+import {IPipeline, IStage} from './pipeline.interface';
 
 export class Pipeline implements IPipeline {
     id: string = '';
     title: string = '';
     hierarchy: number = 0;
-    // stages: Set<Stage> = new Set<Stage>();
     stages: Stage[] = [];
+    createdAt: string = '';
 
     constructor() {
     }
 
     addStage(stage: Stage): void {
-        // if (this.stages.size < 5) {
-        //     this.stages.add(stage);
-        // }
-
         if (this.stages.length < 5) {
             this.stages.push(stage);
         }
-
     }
 
     removeStage(stage: Stage): void {
-        // this.stages.delete(stage);
         this.stages = this.stages.filter(value => value !== stage);
     }
 
     reset(): void {
-        // this.stages = new Set<Stage>();
         this.stages = [];
         this.title = '';
         this.id = '';
@@ -51,4 +45,24 @@ export class Stage implements IStage {
     constructor(title = '') {
         this.title = title;
     }
+}
+
+export class PipelineSearchParam {
+    title?: string;
+    dateRange?: NbCalendarRange<Date>;
+    createdBy?: string;
+    isActive?: boolean;
+    numOfStages?: number;
+
+    constructor() {
+    }
+
+    reset() {
+        this.title = null;
+        this.dateRange = null;
+        this.createdBy = null;
+        this.isActive = null;
+        this.numOfStages = null;
+    }
+
 }

@@ -8,6 +8,7 @@ import {UIQuery} from '../../../shared/state/shared.query';
     selector: 'ngx-pipeline-data-renderer',
     templateUrl: './pipeline-data-renderer.component.html',
     styles: [],
+    // changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PipelineDataRendererComponent implements OnInit {
     currentView: Observable<PageView> = new Observable<PageView>();

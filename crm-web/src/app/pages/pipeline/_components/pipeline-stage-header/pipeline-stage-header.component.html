@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-sm-12 col-md-9">
         <div class="form-group">
-            <label class="label" for="title">Pipeline Title</label>
+            <label for="title">Pipeline Title</label>
             <input #titleInputRef [(ngModel)]="pipeline.title"
                    [status]="pipeline.title? 'basic': 'danger'"
                    autofocus
