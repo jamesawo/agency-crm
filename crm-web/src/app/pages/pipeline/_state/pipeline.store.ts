@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {EntityState, EntityStore, StoreConfig} from '@datorama/akita';
+import {EntityState, EntityStore, QueryEntity, StoreConfig} from '@datorama/akita';
 import {IPipeline} from './pipeline.model';
 
 export interface PipelineState extends EntityState<IPipeline, string> {
@@ -13,3 +13,13 @@ export class PipelineStore extends EntityStore<PipelineState> {
         super();
     }
 }
+
+@Injectable({providedIn: 'root'})
+export class PipelineQuery extends QueryEntity<PipelineState> {
+
+    constructor(protected store: PipelineStore) {
+        super(store);
+    }
+
+}
+

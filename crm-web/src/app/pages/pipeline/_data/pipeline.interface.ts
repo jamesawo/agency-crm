@@ -15,5 +15,3 @@ export interface IPipeline {
     hierarchy: number;
     stages: IStage[];
 }
-
-
