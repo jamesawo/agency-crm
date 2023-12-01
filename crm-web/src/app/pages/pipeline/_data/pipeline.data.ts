@@ -37,7 +37,6 @@ export const pipelineTableHeader: IPageTableHeader = {
 export const pipelineTableColumns: IPageTableCols[] = [
     {title: '', type: 'string'},
     {title: 'Title', type: 'string'},
-    {title: 'Date of Creation', type: 'string'},
     {title: 'No. of Stages', type: 'string'},
     {title: 'Status', type: 'string'},
     {title: 'Created At', type: 'string'},

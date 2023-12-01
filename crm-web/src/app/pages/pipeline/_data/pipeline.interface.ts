@@ -1,4 +1,4 @@
-import {StageAction, StageReviewType, StageStatus} from '../_data/pipeline.enum';
+import {StageAction, StageReviewType, StageStatus} from './pipeline.enum';
 
 export interface IStage {
     title: string;
