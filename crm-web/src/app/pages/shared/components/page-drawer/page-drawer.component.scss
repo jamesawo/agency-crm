@@ -39,3 +39,9 @@
     position: absolute;
   }
 }
+
+.drawer.close {
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+}
