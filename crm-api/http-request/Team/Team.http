@@ -56,3 +56,6 @@ Accept: application/json
 GET {{base_url}}/teams/{{team_id}}/performance
 Accept: application/json
 
+### get team count
+
+
