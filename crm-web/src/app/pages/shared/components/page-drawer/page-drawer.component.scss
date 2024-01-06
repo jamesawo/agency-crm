@@ -1,3 +1,18 @@
+.drawer {
+  width: 50% !important;
+  height: 100% !important;
+  top: 0;
+  position: absolute;
+  transition: all 0.5s ease;
+}
+
+.drawer.open {
+  transform: translateX(0%);
+  opacity: 1;
+  pointer-events: auto;
+  visibility: visible;
+}
+
 .model-full {
   width: 50% !important;
   height: 100% !important;
@@ -23,4 +38,10 @@
     left: 70px;
     position: absolute;
   }
+}
+
+.drawer.close {
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
 }
